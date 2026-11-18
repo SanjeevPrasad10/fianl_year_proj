@@ -1,0 +1,22 @@
+{
+  "name": "crypto-wallet-root",
+  "version": "1.0.0",
+  "description": "Multi-Cryptocurrency Web Wallet Final Year Project",
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "start": "node server/app.js",
+    "install:server": "npm install --prefix server",
+    "install:client": "npm install --prefix client"
+  },
+  "keywords": [
+    "crypto-wallet",
+    "ethereum",
+    "sepolia",
+    "web3",
+    "fullstack",
+    "mern"
+  ],
+  "author": "",
+  "license": "ISC"
+}

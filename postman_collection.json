@@ -1,0 +1,264 @@
+{
+  "info": {
+    "_postman_id": "crypto-wallet-api-collection",
+    "name": "Crypto Wallet API - Final Year Project",
+    "description": "Complete Postman collection for testing the Crypto Wallet backend REST API endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "1. Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice Nakamoto\",\n  \"email\": \"alice@crypto.dev\",\n  \"password\": \"wallet1234\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "2. Login User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.token) {",
+                  "    pm.collectionVariables.set('token', json.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"alice@crypto.dev\",\n  \"password\": \"wallet1234\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "3. Get User Profile (/auth/me)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Wallet Backup",
+      "item": [
+        {
+          "name": "4. Save Wallet Encrypted Backup",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"walletAddress\": \"0x71C8A53B8A72F6B8E4907F620bB1F4F96C1864A6\",\n  \"encryptedKeystore\": \"{\\\"address\\\":\\\"71c8a53b8a72f6b8e4907f620bb1f4f96c1864a6\\\",\\\"crypto\\\":{\\\"cipher\\\":\\\"aes-128-ctr\\\"}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/wallet",
+              "host": ["{{baseUrl}}"],
+              "path": ["wallet"]
+            }
+          }
+        },
+        {
+          "name": "5. Fetch Wallet Encrypted Backup",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/wallet",
+              "host": ["{{baseUrl}}"],
+              "path": ["wallet"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "6. Record New Transaction",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"txHash\": \"0x8a9234857b68b7537b98d1a123f85e4901c900e9a56cbef119c8f4208a329481\",\n  \"from\": \"0x71C8A53B8A72F6B8E4907F620bB1F4F96C1864A6\",\n  \"to\": \"0x4838B106FCe9647Bdf1E7877BF73cE8B0BAD5f97\",\n  \"amount\": \"0.05\",\n  \"asset\": \"ETH\",\n  \"network\": \"sepolia\",\n  \"status\": \"confirmed\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transactions",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions"]
+            }
+          }
+        },
+        {
+          "name": "7. List User Transactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transactions",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Address Book (Contacts)",
+      "item": [
+        {
+          "name": "8. Add Contact",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Bob Smith\",\n  \"address\": \"0x4838B106FCe9647Bdf1E7877BF73cE8B0BAD5f97\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/contacts",
+              "host": ["{{baseUrl}}"],
+              "path": ["contacts"]
+            }
+          }
+        },
+        {
+          "name": "9. List Contacts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/contacts",
+              "host": ["{{baseUrl}}"],
+              "path": ["contacts"]
+            }
+          }
+        },
+        {
+          "name": "10. Delete Contact",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/contacts/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["contacts", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "<contact_id_here>"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
