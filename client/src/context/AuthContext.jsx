@@ -32,6 +32,10 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const initAuth = async () => {
       if (token) {
+        if (token === 'demo-jwt-token-preview') {
+          setLoading(false);
+          return;
+        }
         try {
           const res = await authApi.getMe();
           if (res.data?.success) {
@@ -55,6 +59,22 @@ export const AuthProvider = ({ children }) => {
       return res.data;
     }
     throw new Error(res.data?.message || 'Login failed');
+  };
+
+  const loginDemo = () => {
+    const hasKeystore = !!localStorage.getItem('cw_keystore');
+    const demoUser = {
+      id: 'demo-user-123',
+      name: 'Alice Dev (Demo)',
+      email: 'alice@crypto.dev',
+      hasWallet: hasKeystore,
+    };
+    const demoToken = 'demo-jwt-token-preview';
+    setToken(demoToken);
+    setUser(demoUser);
+    localStorage.setItem('cw_token', demoToken);
+    localStorage.setItem('cw_user', JSON.stringify(demoUser));
+    return { success: true, user: demoUser, token: demoToken };
   };
 
   const register = async (name, email, password) => {
@@ -88,6 +108,7 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated: !!token,
         loading,
         login,
+        loginDemo,
         register,
         logout,
         updateUser,

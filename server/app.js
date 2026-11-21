@@ -15,10 +15,11 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/crypto
 
 // Middleware
 app.use(cors({
-  origin: '*', // Allow client connections
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+app.options('*', cors());
 app.use(express.json());
 
 // Routes
@@ -28,8 +29,8 @@ app.use('/api/transactions', transactionRoutes);
 app.use('/api/contacts', contactRoutes);
 app.use('/api/agent', agentRoutes);
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
+// Root and Health check endpoints
+app.get(['/', '/health', '/api/health'], (req, res) => {
   res.json({
     status: 'online',
     project: 'Crypto Wallet Final Year Project API',
