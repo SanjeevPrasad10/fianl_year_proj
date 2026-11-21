@@ -62,9 +62,30 @@ export const Login = () => {
     }
   };
 
+  const formatTargetUrl = (val) => {
+    if (!val || typeof val !== 'string') return '';
+    let clean = val.trim();
+    if (!clean || clean === 'undefined' || clean === 'null') return '';
+    if (!clean.startsWith('http://') && !clean.startsWith('https://')) {
+      clean = `https://${clean}`;
+    }
+    return clean.replace(/\/+$/, '');
+  };
+
   const testConnection = async (urlToTest) => {
-    const raw = (urlToTest || inputUrl || '').trim().replace(/\/+$/, '');
-    if (!raw) return;
+    const raw = formatTargetUrl(urlToTest || inputUrl || '');
+    if (!raw) {
+      setPingStatus({ loading: false, ok: false, message: 'Please enter a valid URL.' });
+      return;
+    }
+
+    try {
+      new URL(raw);
+    } catch {
+      setPingStatus({ loading: false, ok: false, message: 'Invalid URL format. Example: https://app.onrender.com/api' });
+      return;
+    }
+
     setPingStatus({ loading: true, ok: false, message: 'Pinging backend health endpoint...' });
 
     // Clean endpoint: if ends in /api, ping /api/health; else ping /api/health
@@ -97,14 +118,20 @@ export const Login = () => {
   };
 
   const handleSaveApiUrl = () => {
-    let clean = inputUrl.trim().replace(/\/+$/, '');
-    if (clean && !clean.endsWith('/api')) {
+    let clean = formatTargetUrl(inputUrl);
+    if (!clean) return;
+    if (!clean.endsWith('/api')) {
       clean = `${clean}/api`;
     }
-    localStorage.setItem('cw_api_url', clean);
-    setCurrentApiUrl(clean);
-    setInputUrl(clean);
-    testConnection(clean);
+    try {
+      new URL(clean);
+      localStorage.setItem('cw_api_url', clean);
+      setCurrentApiUrl(clean);
+      setInputUrl(clean);
+      testConnection(clean);
+    } catch {
+      setPingStatus({ loading: false, ok: false, message: 'Invalid URL format.' });
+    }
   };
 
   const handleResetApiUrl = () => {

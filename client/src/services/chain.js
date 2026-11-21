@@ -1,9 +1,28 @@
 import { ethers } from 'ethers';
 import axios from 'axios';
 
+// Sanitize RPC URL to avoid "Failed to construct 'URL'" errors
+const sanitizeRpc = (rpc) => {
+  if (!rpc || typeof rpc !== 'string') return null;
+  let clean = rpc.trim().replace(/\/+$/, '');
+  if (!clean || clean === 'undefined' || clean === 'null') return null;
+  if (!clean.startsWith('http://') && !clean.startsWith('https://')) {
+    clean = `https://${clean}`;
+  }
+  try {
+    const parsed = new URL(clean);
+    return parsed.href;
+  } catch {
+    return null;
+  }
+};
+
+const DEFAULT_SEPOLIA_RPC = 'https://ethereum-sepolia-rpc.publicnode.com';
+const envRpc = sanitizeRpc(import.meta.env.VITE_SEPOLIA_RPC);
+
 // Default Sepolia Public RPC endpoints (with fallback redundancy)
 const SEPOLIA_RPCS = [
-  import.meta.env.VITE_SEPOLIA_RPC || 'https://ethereum-sepolia-rpc.publicnode.com',
+  envRpc || DEFAULT_SEPOLIA_RPC,
   'https://rpc.sepolia.org',
   'https://1rpc.io/sepolia',
 ];

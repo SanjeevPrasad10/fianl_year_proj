@@ -1,12 +1,30 @@
 import axios from 'axios';
 
+export const sanitizeApiUrl = (url) => {
+  if (!url || typeof url !== 'string') return null;
+  let clean = url.trim().replace(/\/+$/, '');
+  if (!clean || clean === 'undefined' || clean === 'null') return null;
+  if (!clean.startsWith('http://') && !clean.startsWith('https://')) {
+    clean = `https://${clean}`;
+  }
+  try {
+    const parsed = new URL(clean);
+    return parsed.href.replace(/\/+$/, '');
+  } catch {
+    return null;
+  }
+};
+
 export const getApiBaseUrl = () => {
   if (typeof window !== 'undefined') {
     const custom = localStorage.getItem('cw_api_url');
-    if (custom) return custom.trim().replace(/\/+$/, '');
+    const sanitizedCustom = sanitizeApiUrl(custom);
+    if (sanitizedCustom) return sanitizedCustom;
   }
   const envUrl = import.meta.env.VITE_API_URL;
-  if (envUrl) return envUrl.trim().replace(/\/+$/, '');
+  const sanitizedEnv = sanitizeApiUrl(envUrl);
+  if (sanitizedEnv) return sanitizedEnv;
+
   return 'http://localhost:5000/api';
 };
 
