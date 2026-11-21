@@ -65,4 +65,10 @@ export const contactsApi = {
   delete: (id) => api.delete(`/contacts/${id}`),
 };
 
+// AI Agent APIs (ReAct Web3 Assistant)
+export const agentApi = {
+  chat: (message, activeWalletAddress) =>
+    api.post('/agent/chat', { message, activeWalletAddress }),
+};
+
 export default api;

@@ -4,6 +4,7 @@ import { AuthProvider } from './context/AuthContext';
 import { WalletProvider } from './context/WalletContext';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
+import AIAgentCopilot from './components/AIAgentCopilot';
 
 // Pages
 import Dashboard from './pages/Dashboard';
@@ -120,6 +121,7 @@ export const App = () => {
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </main>
+            <AIAgentCopilot />
           </div>
         </WalletProvider>
       </AuthProvider>

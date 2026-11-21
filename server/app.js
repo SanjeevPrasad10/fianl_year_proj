@@ -7,6 +7,7 @@ const authRoutes = require('./routes/auth');
 const walletRoutes = require('./routes/wallet');
 const transactionRoutes = require('./routes/transactions');
 const contactRoutes = require('./routes/contacts');
+const agentRoutes = require('./routes/agent');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -25,6 +26,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/wallet', walletRoutes);
 app.use('/api/transactions', transactionRoutes);
 app.use('/api/contacts', contactRoutes);
+app.use('/api/agent', agentRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
