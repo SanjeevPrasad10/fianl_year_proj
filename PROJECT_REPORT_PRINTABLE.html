@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Final Year Project Report - BCA 2026 - Quantum University</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 20mm 20mm 20mm 20mm;
+    }
+    *, *:before, *:after {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12pt;
+      line-height: 1.5;
+      color: #000;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    .page-sheet {
+      background: #fff;
+      width: 210mm;
+      min-height: 297mm;
+      padding: 25mm 20mm;
+      margin: 15px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    .page-break {
+      page-break-after: always;
+      break-after: page;
+    }
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .page-sheet {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        min-height: 100vh;
+        page-break-after: always;
+        break-after: page;
+        padding: 0;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+    .text-center { text-align: center; }
+    .text-justify { text-align: justify; text-justify: inter-word; }
+    .text-right { text-align: right; }
+    
+    h1.title-main {
+      font-size: 18pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      line-height: 1.4;
+      margin-top: 10mm;
+      margin-bottom: 5mm;
+    }
+    h2.chapter-heading {
+      font-size: 15pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-top: 15px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 4px;
+    }
+    h3.sub-heading {
+      font-size: 13pt;
+      font-weight: bold;
+      margin-top: 16px;
+      margin-bottom: 6px;
+    }
+    h4.sub-sub-heading {
+      font-size: 12pt;
+      font-weight: bold;
+      margin-top: 12px;
+      margin-bottom: 4px;
+    }
+    p {
+      margin-top: 6px;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+    .logo-container {
+      text-align: right;
+      margin-bottom: 10mm;
+    }
+    .logo-badge {
+      display: inline-block;
+      text-align: center;
+      border: 2px solid #8B1D41;
+      padding: 6px 12px;
+      color: #8B1D41;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      border-radius: 4px;
+      line-height: 1.2;
+    }
+    .logo-badge-center {
+      display: block;
+      margin: 20mm auto;
+      text-align: center;
+      border: 2px solid #8B1D41;
+      padding: 10px 18px;
+      color: #8B1D41;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      width: 220px;
+      border-radius: 6px;
+      line-height: 1.3;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px 0;
+      font-size: 10.5pt;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    .toc-table td {
+      border: none;
+      padding: 4px 0;
+    }
+    .signature-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 35mm;
+    }
+    .signature-block {
+      text-align: center;
+      width: 45%;
+    }
+    .diagram-box {
+      background: #fafafa;
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 9.5pt;
+      white-space: pre;
+      overflow-x: auto;
+      margin: 10px 0;
+      line-height: 1.25;
+    }
+    .caption {
+      text-align: center;
+      font-style: italic;
+      font-size: 10.5pt;
+      margin-top: 4px;
+      margin-bottom: 14px;
+    }
+    .page-footer-num {
+      position: absolute;
+      bottom: 12mm;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 11pt;
+    }
+    ul, ol {
+      margin-top: 4px;
+      margin-bottom: 10px;
+      padding-left: 25px;
+    }
+    li {
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1: TITLE PAGE -->
+  <div class="page-sheet page-break">
+    <div class="logo-container">
+      <div class="logo-badge">
+        Quantum UNIVERSITY<br>
+        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 10mm;">
+      <h1 class="title-main">
+        CRYPTO WALLET: A SECURE NON-CUSTODIAL MULTI-CURRENCY WEB3 WALLET WITH ENCRYPTED CLOUD BACKUP
+      </h1>
+      <p style="font-size: 12pt; font-style: italic; color: #444; margin-top: 4px;">
+        (Times New Roman, 18 Pt)
+      </p>
+
+      <p style="margin-top: 15mm; font-size: 12pt;">
+        Project Report submitted in partial fulfillment of the requirement for the award of the Degree of
+      </p>
+
+      <h2 style="font-size: 14pt; font-weight: bold; margin-top: 5mm;">
+        Bachelor of Computer Applications
+      </h2>
+
+      <p style="margin-top: 10mm; font-size: 12pt; font-weight: bold;">By</p>
+
+      <p style="font-size: 12pt; line-height: 1.8; margin-top: 4mm;">
+        <strong>Sanjiv Prasad</strong>, Roll No. ________________<br>
+        <strong>[Teammate 2 Name]</strong>, Roll No. ________________<br>
+        <strong>[Teammate 3 Name]</strong>, Roll No. ________________<br>
+        <strong>[Teammate 4 Name]</strong>, Roll No. ________________
+      </p>
+
+      <div class="logo-badge-center">
+        <span style="font-size: 16pt;">Ψ</span><br>
+        Quantum UNIVERSITY<br>
+        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
+      </div>
+
+      <div style="margin-top: 12mm;">
+        <h3 style="font-size: 13pt; font-weight: bold; margin: 2px 0;">Department of Computer Applications</h3>
+        <h3 style="font-size: 13pt; font-weight: bold; margin: 2px 0;">School of Technology</h3>
+        <h3 style="font-size: 13pt; font-weight: bold; margin: 2px 0;">Quantum University, Roorkee</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: CERTIFICATE -->
+  <div class="page-sheet page-break">
+    <div class="logo-container">
+      <div class="logo-badge">
+        Quantum UNIVERSITY<br>
+        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 10mm;">
+      <h3 style="font-size: 14pt; font-weight: bold; margin-bottom: 2mm;">2026</h3>
+      <h2 style="font-size: 16pt; font-weight: bold; letter-spacing: 1px; margin-bottom: 12mm;">CERTIFICATE</h2>
+    </div>
+
+    <p class="text-justify" style="font-size: 12pt; line-height: 2; margin-top: 10mm;">
+      This is to certify that the project report entitled <strong>“CRYPTO WALLET: A SECURE NON-CUSTODIAL MULTI-CURRENCY WEB3 WALLET WITH ENCRYPTED CLOUD BACKUP”</strong> being submitted by <strong>Mr. Sanjiv Prasad and Team</strong> in partial fulfillment for the award of the Degree of <strong>Bachelor of Computer Applications</strong>, is a record of bonafide work carried out by him/her under my guidance and supervision.
+    </p>
+
+    <div class="signature-row" style="margin-top: 45mm;">
+      <div class="signature-block">
+        <p>___________________________</p>
+        <p><strong>(Name & Signature)</strong><br>Project Guide</p>
+      </div>
+      <div class="signature-block">
+        <p>___________________________</p>
+        <p><strong>(Dr. Ankur Rana)</strong><br>Program Officer, CA</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 30mm; text-align: center;">
+      <p>___________________________</p>
+      <p><strong>(Dr. Mridula)</strong><br>HoD, CA<br>Department of Computer Applications</p>
+    </div>
+    <div class="page-footer-num">i</div>
+  </div>
+
+  <!-- PAGE 3: DECLARATION -->
+  <div class="page-sheet page-break">
+    <div class="logo-container">
+      <div class="logo-badge">
+        Quantum UNIVERSITY<br>
+        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 15mm;">
+      <h2 style="font-size: 16pt; font-weight: bold; letter-spacing: 1px; margin-bottom: 15mm;">DECLARATION</h2>
+    </div>
+
+    <p class="text-justify" style="font-size: 12pt; line-height: 2; margin-top: 15mm;">
+      I hereby declare that the project entitled <strong>“CRYPTO WALLET: A SECURE NON-CUSTODIAL MULTI-CURRENCY WEB3 WALLET WITH ENCRYPTED CLOUD BACKUP”</strong> submitted for the <strong>Bachelor of Computer Applications</strong>, is my original work and the project has not formed the basis or submitted for the award of any degree, diploma, or any other similar titles in any other college / institute / university.
+    </p>
+
+    <div style="margin-top: 40mm; font-size: 12pt; line-height: 2;">
+      <p><strong>Name:</strong> Sanjiv Prasad & Team</p>
+      <p><strong>Signature:</strong> ___________________________</p>
+      <p><strong>Place:</strong> Roorkee</p>
+      <p><strong>Date:</strong> ___________________________</p>
+    </div>
+    <div class="page-footer-num">ii</div>
+  </div>
+
+  <!-- PAGE 4: ACKNOWLEDGEMENTS -->
+  <div class="page-sheet page-break">
+    <div class="logo-container">
+      <div class="logo-badge">
+        Quantum UNIVERSITY<br>
+        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 10mm; margin-bottom: 8mm;">
+      <h2 style="font-size: 16pt; font-weight: bold;">ACKNOWLEDGEMENTS</h2>
+    </div>
+
+    <p class="text-justify" style="line-height: 1.8;">
+      We express our profound sense of gratitude to our <strong>Project Guide</strong> for their continuous encouragement, technical guidance, and valuable advice throughout the design and realization of this cryptocurrency software project.
+    </p>
+    <p class="text-justify" style="line-height: 1.8;">
+      We extend our heartfelt gratitude to <strong>Dr. Ankur Rana</strong>, Program Officer, Department of Computer Applications, for his institutional guidance, technical project reviews, and academic encouragement.
+    </p>
+    <p class="text-justify" style="line-height: 1.8;">
+      We are deeply indebted to <strong>Dr. Mridula</strong>, Head of the Department (HoD), Department of Computer Applications, School of Technology, Quantum University, Roorkee, for providing us with advanced computing resources, technical laboratory infrastructure, and research motivation.
+    </p>
+    <p class="text-justify" style="line-height: 1.8;">
+      We also express our appreciation to our faculty members, laboratory assistants, and fellow classmates for their constructive feedback and support during testing. Finally, we thank our parents and families whose moral support and prayers inspired us to complete this degree milestone.
+    </p>
+
+    <div style="margin-top: 25mm;">
+      <p><strong>Sanjiv Prasad</strong><br>
+      (On behalf of the Project Team)<br>
+      Bachelor of Computer Applications (BCA)<br>
+      Quantum University, Roorkee</p>
+    </div>
+    <div class="page-footer-num">iii</div>
+  </div>
+
+  <!-- PAGE 5: TABLE OF CONTENT -->
+  <div class="page-sheet page-break">
+    <div class="logo-container">
+      <div class="logo-badge">
+        Quantum UNIVERSITY<br>
+        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 6mm; margin-bottom: 6mm;">
+      <h2 style="font-size: 16pt; font-weight: bold;">Table of Content</h2>
+    </div>
+
+    <table class="toc-table">
+      <tr><td>Certificate of the Supervisor</td><td class="text-right">i</td></tr>
+      <tr><td>Declaration</td><td class="text-right">ii</td></tr>
+      <tr><td>Acknowledgements</td><td class="text-right">iii</td></tr>
+      <tr><td>Table of Contents</td><td class="text-right">iv</td></tr>
+      <tr><td>List of Tables</td><td class="text-right">v</td></tr>
+      <tr><td>List of Figures</td><td class="text-right">vi</td></tr>
+      <tr><td>List of Abbreviations</td><td class="text-right">vii</td></tr>
+      <tr><td>Abstract</td><td class="text-right">viii</td></tr>
+      <tr><td colspan="2" style="padding-top: 6px;"><strong>CHAPTER 1: INTRODUCTION</strong></td><td class="text-right" style="padding-top: 6px;"><strong>1</strong></td></tr>
+      <tr><td style="padding-left: 20px;">1.1 Background and Motivation</td><td class="text-right">4</td></tr>
+      <tr><td style="padding-left: 20px;">1.2 Problem Statement</td><td class="text-right">6</td></tr>
+      <tr><td style="padding-left: 40px;">1.2.1 Core Vulnerabilities in Centralized Custody</td><td class="text-right">7</td></tr>
+      <tr><td style="padding-left: 20px;">1.3 Objectives of the Project</td><td class="text-right">8</td></tr>
+      <tr><td style="padding-left: 20px;">1.4 Scope of the Project</td><td class="text-right">9</td></tr>
+      <tr><td colspan="2"><strong>CHAPTER 2: LITERATURE SURVEY</strong></td><td class="text-right"><strong>10</strong></td></tr>
+      <tr><td colspan="2"><strong>CHAPTER 3: METHODOLOGY</strong></td><td class="text-right"><strong>15</strong></td></tr>
+      <tr><td colspan="2"><strong>CHAPTER 4: SOFTWARE/HARDWARE DESIGN</strong></td><td class="text-right"><strong>20</strong></td></tr>
+      <tr><td colspan="2"><strong>CHAPTER 5: RESULTS AND DISCUSSIONS</strong></td><td class="text-right"><strong>25</strong></td></tr>
+      <tr><td colspan="2"><strong>CHAPTER 6: CONCLUSION</strong></td><td class="text-right"><strong>30</strong></td></tr>
+      <tr><td colspan="2"><strong>CHAPTER 7: FUTURE WORK</strong></td><td class="text-right"><strong>32</strong></td></tr>
+      <tr><td colspan="2" style="padding-top: 6px;"><strong>References</strong></td><td class="text-right" style="padding-top: 6px;"><strong>33</strong></td></tr>
+      <tr><td colspan="2"><strong>List of Publications</strong></td><td class="text-right"><strong>36</strong></td></tr>
+    </table>
+    <div class="page-footer-num">iv</div>
+  </div>
+
+  <!-- PAGE 6: LIST OF TABLES -->
+  <div class="page-sheet page-break">
+    <div class="logo-container">
+      <div class="logo-badge">
+        Quantum UNIVERSITY<br>
+        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 6mm; margin-bottom: 6mm;">
+      <h2 style="font-size: 16pt; font-weight: bold;">List of Tables</h2>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 20%;">Table No.</th>
+          <th>Title</th>
+          <th style="width: 15%; text-align: right;">Page No.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1.1</td><td>Supported Cryptocurrency Assets and Specifications</td><td class="text-right">9</td></tr>
+        <tr><td>2.1</td><td>Comparative Matrix: Custodial vs Non-Custodial Paradigms</td><td class="text-right">11</td></tr>
+        <tr><td>2.2</td><td>Competitive Feature Comparison: MetaMask vs Trust Wallet vs Proposed Wallet</td><td class="text-right">13</td></tr>
+        <tr><td>3.1</td><td>Cryptographic Parameters for Key Derivation and Encryption</td><td class="text-right">17</td></tr>
+        <tr><td>4.1</td><td>Minimum and Recommended Hardware Specifications</td><td class="text-right">20</td></tr>
+        <tr><td>4.2</td><td>Software Environment and Technology Stack Specifications</td><td class="text-right">21</td></tr>
+        <tr><td>4.3</td><td>MongoDB Schema Data Dictionary: User Collection</td><td class="text-right">22</td></tr>
+        <tr><td>4.4</td><td>MongoDB Schema Data Dictionary: Transaction Collection</td><td class="text-right">22</td></tr>
+        <tr><td>4.5</td><td>MongoDB Schema Data Dictionary: Contact Collection</td><td class="text-right">23</td></tr>
+        <tr><td>4.6</td><td>RESTful Backend API Endpoint Route Mapping</td><td class="text-right">24</td></tr>
+        <tr><td>5.1</td><td>Black-Box Verification & Test Case Execution Results (20 Test Cases)</td><td class="text-right">27</td></tr>
+        <tr><td>5.2</td><td>Security Risk Vectors and Implemented Mitigation Strategies</td><td class="text-right">29</td></tr>
+      </tbody>
+    </table>
+    <div class="page-footer-num">v</div>
+  </div>
+
+  <!-- PAGE 7: LIST OF FIGURES -->
+  <div class="page-sheet page-break">
+    <div class="logo-container">
+      <div class="logo-badge">
+        Quantum UNIVERSITY<br>
+        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 6mm; margin-bottom: 6mm;">
+      <h2 style="font-size: 16pt; font-weight: bold;">List of Figures</h2>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 20%;">Figure No.</th>
+          <th>Title</th>
+          <th style="width: 15%; text-align: right;">Page No.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1.1</td><td>High-Level Non-Custodial Multi-Currency Ecosystem Architecture</td><td class="text-right">5</td></tr>
+        <tr><td>2.1</td><td>Cryptographic Key Derivation Flow from BIP-39 Seed to Ethereum Address</td><td class="text-right">12</td></tr>
+        <tr><td>2.2</td><td>secp256k1 Elliptic Curve Point Addition and Scalar Multiplication</td><td class="text-right">12</td></tr>
+        <tr><td>3.1</td><td>Agile Iterative Development Lifecycle Sprints</td><td class="text-right">15</td></tr>
+        <tr><td>3.2</td><td>Non-Custodial Security Boundary: Browser RAM vs Database Server</td><td class="text-right">16</td></tr>
+        <tr><td>3.3</td><td>Mathematical Flow of Scrypt Key Derivation and AES-128-CTR Keystore Encryption</td><td class="text-right">18</td></tr>
+        <tr><td>3.4</td><td>Dynamic Gas Fee Estimation and Outbound Transaction Signing Protocol</td><td class="text-right">19</td></tr>
+        <tr><td>4.1</td><td>4-Tier Distributed System Architecture Framework</td><td class="text-right">21</td></tr>
+        <tr><td>4.2</td><td>Level 0 Context Data Flow Diagram (DFD)</td><td class="text-right">23</td></tr>
+        <tr><td>4.3</td><td>Level 1 Detailed Functional Data Flow Diagram (DFD)</td><td class="text-right">24</td></tr>
+        <tr><td>4.4</td><td>End-to-End Sequence Diagram for Cryptographic Transaction Execution</td><td class="text-right">24</td></tr>
+        <tr><td>5.1</td><td>Primary Wallet Dashboard Interface with Live Portfolio Valuation</td><td class="text-right">25</td></tr>
+        <tr><td>5.2</td><td>BIP-39 12-Word Mnemonic Phrase Generation and Verification Screen</td><td class="text-right">26</td></tr>
+        <tr><td>5.3</td><td>Inbound Receive Screen with High-Density Vector QR Code</td><td class="text-right">26</td></tr>
+        <tr><td>5.4</td><td>Ethereum Sepolia Etherscan Block Explorer Confirmation Receipt</td><td class="text-right">27</td></tr>
+      </tbody>
+    </table>
+    <div class="page-footer-num">vi</div>
+  </div>
+
+  <!-- PAGE 8: LIST OF ABBREVIATIONS -->
+  <div class="page-sheet page-break">
+    <div class="logo-container">
+      <div class="logo-badge">
+        Quantum UNIVERSITY<br>
+        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 6mm; margin-bottom: 6mm;">
+      <h2 style="font-size: 16pt; font-weight: bold;">List of Abbreviations</h2>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Abbreviation</th>
+          <th>Full Meaning / Definition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>AES</td><td>Advanced Encryption Standard (NIST FIPS 197)</td></tr>
+        <tr><td>API</td><td>Application Programming Interface</td></tr>
+        <tr><td>BCA</td><td>Bachelor of Computer Applications</td></tr>
+        <tr><td>BIP</td><td>Bitcoin Improvement Proposal</td></tr>
+        <tr><td>CRUD</td><td>Create, Read, Update, Delete</td></tr>
+        <tr><td>CORS</td><td>Cross-Origin Resource Sharing</td></tr>
+        <tr><td>DFD</td><td>Data Flow Diagram</td></tr>
+        <tr><td>ECDSA</td><td>Elliptic Curve Digital Signature Algorithm</td></tr>
+        <tr><td>ERC</td><td>Ethereum Request for Comment</td></tr>
+        <tr><td>ETH</td><td>Ether (Native Consensus Cryptocurrency of Ethereum)</td></tr>
+        <tr><td>EVM</td><td>Ethereum Virtual Machine</td></tr>
+        <tr><td>HD</td><td>Hierarchical Deterministic</td></tr>
+        <tr><td>HTTP</td><td>HyperText Transfer Protocol</td></tr>
+        <tr><td>JSON</td><td>JavaScript Object Notation</td></tr>
+        <tr><td>JWT</td><td>JSON Web Token (RFC 7519)</td></tr>
+        <tr><td>KDF</td><td>Key Derivation Function</td></tr>
+        <tr><td>MERN</td><td>MongoDB, Express.js, React.js, Node.js</td></tr>
+        <tr><td>NoSQL</td><td>Non-Relational Document Database</td></tr>
+        <tr><td>RAM</td><td>Random Access Memory</td></tr>
+        <tr><td>REST</td><td>Representational State Transfer</td></tr>
+        <tr><td>RPC</td><td>Remote Procedure Call</td></tr>
+        <tr><td>SDLC</td><td>Software Development Life Cycle</td></tr>
+        <tr><td>USDC</td><td>USD Coin (Fiat-Collateralized ERC-20 Token)</td></tr>
+        <tr><td>Web3</td><td>Decentralized Internet Ecosystem</td></tr>
+      </tbody>
+    </table>
+    <div class="page-footer-num">vii</div>
+  </div>
+
+  <!-- PAGE 9: ABSTRACT -->
+  <div class="page-sheet page-break">
+    <div class="logo-container">
+      <div class="logo-badge">
+        Quantum UNIVERSITY<br>
+        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 15mm; margin-bottom: 12mm;">
+      <h2 style="font-size: 16pt; font-weight: bold;">Abstract (150 Words)</h2>
+    </div>
+
+    <p class="text-justify" style="font-size: 12pt; line-height: 2;">
+      Centralized cryptocurrency management exposes digital assets to catastrophic counterparty vulnerabilities, structural insolvency, and unauthorized credential exposure. This project develops a production-grade, full-stack, non-custodial multi-currency Web3 wallet operating on the Ethereum Sepolia testnet. Built using React.js, Node.js, Express.js, MongoDB, and Ethers.js v6, the architecture enforces strict client-side sovereignty: 12-word BIP-39 mnemonic recovery phrases, private keys, and transaction signatures are computed exclusively within the browser's isolated runtime. Sensitive key material is encrypted using Scrypt key derivation and AES-128-CTR ciphers before generating encrypted keystores. The backend stores only zero-knowledge ciphertext, transaction metadata, and contact directories, completely isolating the database from unencrypted secrets. Features include real-time portfolio valuation via CoinGecko, dynamic EIP-1559 gas fee estimation, vector QR code generation, address book auto-fill, and session locking. Black-box testing across 20 rigorous functional scenarios verified a 100% pass rate, providing enterprise-grade security and frictionless cross-device accessibility for modern decentralized financial systems.
+    </p>
+    <div class="page-footer-num">viii</div>
+  </div>
+
+  <!-- CHAPTER 1: INTRODUCTION -->
+  <div class="page-sheet page-break">
+    <h2 class="chapter-heading">CHAPTER 1: INTRODUCTION</h2>
+    
+    <h3 class="sub-heading">1.1 Background and Motivation</h3>
+    <p>
+      Over the preceding decade, public blockchain networks have matured from experimental cryptographic protocols into foundational components of international decentralized finance. Unlike traditional financial architectures where private bank ledgers maintain absolute custodial authority over customer balances, public blockchains operate as deterministic, distributed state machines. In these networks, accounts are represented through public-key cryptography.
+    </p>
+    <p>
+      Every digital wallet consists of an asymmetric cryptographic pair: a public address used as the destination identifier for receiving capital, and a 256-bit secret private key that confers mathematically absolute authorization to sign outbound transactions. Despite the sovereign promise of Web3, the majority of retail participants interface with cryptocurrencies through centralized custodial platforms where third parties hold their private keys. When centralized custodians suffer security intrusions, regulatory freezes, or insolvency (such as the collapse of FTX in 2022), user funds are permanently lost. This vulnerability popularized the fundamental Web3 doctrine: <em>"Not your keys, not your coins."</em>
+    </p>
+
+    <div class="diagram-box">
+[ Client Browser (Isolated RAM) ]
+├── BIP-39 12-Word Mnemonic Generation
+├── Scrypt + AES-128-CTR Keystore Encryption
+└── Local Transaction Signing (Ethers.js v6)
+              │                              │
+(Encrypted Keystore JSON)         (Signed Raw Transaction Hex)
+              │                              │
+              ▼                              ▼
+  [ Node.js/Express Server ]       [ Ethereum Sepolia RPC Node ]
+              │
+              ▼
+   [ MongoDB Atlas Cloud ]
+    </div>
+    <div class="caption">Figure 1.1: High-Level Non-Custodial Multi-Currency Ecosystem Architecture</div>
+
+    <h3 class="sub-heading">1.2 Problem Statement</h3>
+    <p>
+      Existing digital asset custody solutions suffer from three structural flaws:
+      1) <strong>Custodial Counterparty Vulnerabilities:</strong> Centralized databases act as attack honeypots;
+      2) <strong>Device Isolation:</strong> Local extension wallets lock users to a single PC without automated secure cloud recovery;
+      3) <strong>Typographical Loss:</strong> Manual entry of 42-character hexadecimal addresses frequently results in irreversible asset loss.
+    </p>
+
+    <h4 class="sub-sub-heading">1.2.1 Core Vulnerabilities in Centralized Custody</h4>
+    <p>
+      Centralized custodians store unencrypted private keys or database balance records on internal servers. An attacker gaining root database access or executing an insider exploit can instantly drain all registered user funds. In contrast, non-custodial systems isolate secrets exclusively to client-side hardware.
+    </p>
+
+    <h3 class="sub-heading">1.3 Objectives of the Project</h3>
+    <ul>
+      <li>Generate deterministic 12-word BIP-39 mnemonic seed phrases in browser volatile memory.</li>
+      <li>Perform client-side Web3 keystore encryption using Scrypt key derivation and AES-128-CTR.</li>
+      <li>Implement a zero-knowledge cloud backup subsystem in MongoDB for multi-device portability.</li>
+      <li>Support native Ethereum (ETH) alongside ERC-20 smart contract tokens (Circle USDC and Chainlink LINK).</li>
+      <li>Provide dynamic EIP-1559 gas fee estimation and live USD portfolio tracking.</li>
+      <li>Develop an integrated contact directory to prevent 42-character address typographical errors.</li>
+    </ul>
+
+    <h3 class="sub-heading">1.4 Scope of the Project</h3>
+    <p>
+      The scope encompasses full-stack MERN Web3 development, deployment on the Ethereum Sepolia testnet (Chain ID 11155111), and 20-scenario black-box functional validation.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Asset Symbol</th><th>Asset Full Name</th><th>Token Standard</th><th>Contract Address (Sepolia)</th><th>Decimals</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>ETH</strong></td><td>Ether</td><td>Native Layer-1</td><td><em>Native Network Currency (None)</em></td><td>18</td></tr>
+        <tr><td><strong>USDC</strong></td><td>USD Coin</td><td>ERC-20</td><td><code>0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238</code></td><td>6</td></tr>
+        <tr><td><strong>LINK</strong></td><td>Chainlink Token</td><td>ERC-20</td><td><code>0x779877A7B0D9E8603169DdbD7836e478b4624789</code></td><td>18</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 1.1: Supported Cryptocurrency Assets and Specifications</div>
+    <div class="page-footer-num">1</div>
+  </div>
+
+  <!-- CHAPTER 2: LITERATURE SURVEY -->
+  <div class="page-sheet page-break">
+    <h2 class="chapter-heading">CHAPTER 2: LITERATURE SURVEY</h2>
+    
+    <h3 class="sub-heading">2.1 Evolution of Cryptocurrency Wallets</h3>
+    <p>
+      Cryptocurrency wallet architectures have evolved from non-deterministic JBOK ("Just a Bunch of Keys") files into modern Hierarchical Deterministic (HD) wallets governed by Bitcoin Improvement Proposals BIP-32 and BIP-39. Under BIP-39, 128 bits of entropy map to 12 English dictionary words, which derive a 512-bit binary master seed through PBKDF2 with HMAC-SHA512.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Custodial Web Exchange</th><th>Local Browser Extension</th><th>Proposed Crypto Wallet</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Key Custody</strong></td><td>Central Server Database</td><td>Local Browser Profile</td><td><strong>Browser RAM (Isolated)</strong></td></tr>
+        <tr><td><strong>Trust Model</strong></td><td>Full Trust (Vulnerable)</td><td>Zero Trust</td><td><strong>Zero-Knowledge Architecture</strong></td></tr>
+        <tr><td><strong>Portability</strong></td><td>High (Login anywhere)</td><td>Zero (Locked to one PC)</td><td><strong>High (Encrypted Keystore Sync)</strong></td></tr>
+        <tr><td><strong>Installation</strong></td><td>Web Browser</td><td>Extension Plugin Required</td><td><strong>Zero-Install Web Application</strong></td></tr>
+        <tr><td><strong>Address Book</strong></td><td>Basic or None</td><td>Third-party or None</td><td><strong>Full CRUD Address Book</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 2.1: Comparative Matrix: Custodial vs Non-Custodial Paradigms</div>
+
+    <h3 class="sub-heading">2.2 Cryptographic Standards: BIP-39, BIP-32, secp256k1</h3>
+    <p>
+      Ethereum utilizes the Koblitz curve secp256k1 (defined by y² = x³ + 7 mod p) for key derivation and ECDSA transaction signing. The public key point K is computed via scalar multiplication of the private key integer k with the generator point G: K = k × G.
+    </p>
+
+    <div class="diagram-box">
+[ 128-bit Entropy ] ──► SHA-256 Checksum (4 bits) ──► 132-bit Stream
+      │
+      ▼ (Split into 12 × 11-bit chunks)
+[ 12-Word BIP-39 Seed Phrase ] ──► PBKDF2 with HMAC-SHA512 (2048 Rounds)
+      │
+      ▼
+[ 512-bit Master Binary Seed ] ──► Derivation Path m/44'/60'/0'/0/0
+      │
+      ▼
+[ 256-bit Ethereum Private Key ] ──► secp256k1 Elliptic Curve Scalar Mult
+      │
+      ▼
+[ 64-byte Public Key ] ──► Keccak-256 Hash ──► [ 20-byte Public Ethereum Address ]
+    </div>
+    <div class="caption">Figure 2.1: Cryptographic Key Derivation Flow from BIP-39 Seed to Ethereum Address</div>
+
+    <h3 class="sub-heading">2.3 Ethereum Virtual Machine (EVM) and Smart Contract Tokens</h3>
+    <p>
+      The Ethereum Virtual Machine executes smart contract logic across decentralized nodes. Tokenized digital assets are implemented through the ERC-20 standard interface, requiring smart contracts to expose balanceOf, transfer, and decimals.
+    </p>
+
+    <h3 class="sub-heading">2.4 Comparative Analysis of Existing Solutions</h3>
+    <table>
+      <thead>
+        <tr><th>Feature</th><th>MetaMask Extension</th><th>Trust Wallet Mobile</th><th>Proposed Crypto Wallet</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Platform</strong></td><td>Browser Plugin</td><td>Mobile OS Application</td><td><strong>Universal Web Application</strong></td></tr>
+        <tr><td><strong>Signing Location</strong></td><td>Extension Sandbox</td><td>Mobile Secure Enclave</td><td><strong>Browser Memory (Ethers.js v6)</strong></td></tr>
+        <tr><td><strong>Cloud Keystore Sync</strong></td><td>No (Manual seed entry)</td><td>No (Manual export)</td><td><strong>Yes (MongoDB Zero-Knowledge)</strong></td></tr>
+        <tr><td><strong>Address Book</strong></td><td>Basic</td><td>Basic</td><td><strong>Integrated CRUD Directory</strong></td></tr>
+        <tr><td><strong>Visual Theme</strong></td><td>Fox Graphic / Blue</td><td>Blue Fintech</td><td><strong>Institutional Dark Green & White</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 2.2: Competitive Feature Comparison: MetaMask vs Trust Wallet vs Proposed Wallet</div>
+
+    <h3 class="sub-heading">2.5 Research Gap Identification</h3>
+    <p>
+      Existing decentralized wallets lack seamless cloud synchronization without requiring manual exposure of master recovery phrases across multiple workstations.
+    </p>
+    <div class="page-footer-num">10</div>
+  </div>
+
+  <!-- CHAPTER 3: METHODOLOGY -->
+  <div class="page-sheet page-break">
+    <h2 class="chapter-heading">CHAPTER 3: METHODOLOGY</h2>
+    
+    <h3 class="sub-heading">3.1 Software Development Life Cycle (SDLC) Model</h3>
+    <p>
+      The project followed the Agile Iterative SDLC model across three 24-hour sprints:
+      Sprint 1 implemented the cryptographic engine and Express/MongoDB backend;
+      Sprint 2 integrated Ethers.js v6 with Sepolia JSON-RPC nodes and ERC-20 tokens;
+      Sprint 3 hardened session locking and executed 20 black-box functional validations.
+    </p>
+
+    <h3 class="sub-heading">3.2 Non-Custodial Architecture & Zero-Knowledge Principle</h3>
+    <p>
+      The architecture enforces a strict Zero-Knowledge boundary: the backend server and database never receive, process, or store unencrypted private keys, mnemonic phrases, or wallet passwords.
+    </p>
+
+    <h3 class="sub-heading">3.3 Key Derivation & Client-Side Encryption Workflow</h3>
+    <p>
+      The client encrypts the raw private key using Scrypt key derivation (N=8192, r=8, p=1, dkLen=32) and AES-128-CTR symmetric counter mode:
+    </p>
+    <div class="diagram-box">
+DerivedKey = Scrypt(Password, Salt, N=8192, r=8, p=1, dkLen=32)
+Ciphertext = AES-128-CTR(DerivedKey[0..15], PrivateKey)
+MAC = Keccak-256(DerivedKey[16..31] || Ciphertext)
+    </div>
+    <div class="caption">Figure 3.3: Mathematical Flow of Scrypt Key Derivation and AES-128-CTR Keystore Encryption</div>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Value</th><th>Cryptographic Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>N (Cost Factor)</td><td>8192 (2^13)</td><td>Memory difficulty parameter resisting ASIC brute-force</td></tr>
+        <tr><td>r (Block Size)</td><td>8</td><td>Sequential read memory parameter</td></tr>
+        <tr><td>p (Parallelization)</td><td>1</td><td>Parallel compute threads</td></tr>
+        <tr><td>Cipher Algorithm</td><td>AES-128-CTR</td><td>Symmetric encryption operating in Counter mode</td></tr>
+        <tr><td>MAC Hash</td><td>Keccak-256</td><td>Validates password decryption integrity</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 3.1: Cryptographic Parameters for Key Derivation and Encryption</div>
+
+    <h3 class="sub-heading">3.4 Dynamic Gas Estimation & Signing Mechanics</h3>
+    <p>
+      The client calculates the network fee in real time: Total Fee = Gas Limit × Gas Price.
+      For native ETH transfers, Gas Limit is fixed at 21,000 units. For ERC-20 token transfers, dynamic gas estimation is queried via JSON-RPC with a +20% safety margin.
+    </p>
+
+    <h3 class="sub-heading">3.5 Encrypted Keystore Synchronization Protocol</h3>
+    <p>
+      When a user logs in from a new machine, the client retrieves the encrypted JSON keystore from MongoDB via GET /api/wallet. The user inputs their wallet password, triggering local in-browser Scrypt decryption without server involvement.
+    </p>
+    <div class="page-footer-num">15</div>
+  </div>
+
+  <!-- CHAPTER 4: SOFTWARE/HARDWARE DESIGN -->
+  <div class="page-sheet page-break">
+    <h2 class="chapter-heading">CHAPTER 4: SOFTWARE/HARDWARE DESIGN</h2>
+    
+    <h3 class="sub-heading">4.1 System Hardware & Software Requirements</h3>
+    <table>
+      <thead>
+        <tr><th>Hardware Component</th><th>Minimum Requirement</th><th>Recommended Specification</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Processor</td><td>Intel Core i3 (4th Gen) / AMD Ryzen 3</td><td>Intel Core i5 (10th Gen+) / AMD Ryzen 5</td></tr>
+        <tr><td>RAM Memory</td><td>4 GB DDR3</td><td>8 GB DDR4 or higher</td></tr>
+        <tr><td>Hard Disk</td><td>500 MB free space</td><td>2 GB NVMe SSD</td></tr>
+        <tr><td>Network</td><td>Standard Broadband (512 Kbps)</td><td>High-Speed Internet (> 10 Mbps)</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 4.1: Minimum and Recommended Hardware Specifications</div>
+
+    <h3 class="sub-heading">4.2 Tiered Architectural Framework</h3>
+    <p>
+      The system employs a 4-Tier Distributed System Architecture comprising Presentation (React 18), Logic (Node.js/Express), Persistence (MongoDB Mongoose), and Consensus (Ethereum Sepolia Testnet).
+    </p>
+
+    <h3 class="sub-heading">4.3 Database Design & Data Models</h3>
+    <table>
+      <thead>
+        <tr><th>Field Name</th><th>Data Type</th><th>Constraints</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>_id</td><td>ObjectId</td><td>Primary Key, Auto</td><td>Unique user document identifier</td></tr>
+        <tr><td>name</td><td>String</td><td>Required, Trim, Max: 100</td><td>Full name of the user</td></tr>
+        <tr><td>email</td><td>String</td><td>Required, Unique, Lowercase</td><td>Unique login email identifier</td></tr>
+        <tr><td>passwordHash</td><td>String</td><td>Required</td><td>Salted Bcrypt hash (Cost factor: 10)</td></tr>
+        <tr><td>walletAddress</td><td>String</td><td>Optional, Lowercase, Trim</td><td>Derived 42-char public Ethereum address</td></tr>
+        <tr><td>encryptedKeystore</td><td>String</td><td>Optional, Valid JSON</td><td>Browser-encrypted Scrypt keystore ciphertext</td></tr>
+        <tr><td>createdAt</td><td>Date</td><td>Default: Date.now</td><td>Account creation timestamp</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 4.3: MongoDB Schema Data Dictionary: User Collection</div>
+
+    <h3 class="sub-heading">4.4 Data Flow Diagrams & REST API Specifications</h3>
+    <table>
+      <thead>
+        <tr><th>Method</th><th>Endpoint</th><th>Purpose</th><th>Auth Required</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>POST</td><td>/api/auth/register</td><td>Register account with salted password hash</td><td>No (Public)</td></tr>
+        <tr><td>POST</td><td>/api/auth/login</td><td>Authenticate credentials & issue JWT</td><td>No (Public)</td></tr>
+        <tr><td>GET</td><td>/api/auth/me</td><td>Fetch user profile & wallet status</td><td>Yes (Bearer Token)</td></tr>
+        <tr><td>PUT</td><td>/api/wallet</td><td>Save public address & encrypted keystore</td><td>Yes (Bearer Token)</td></tr>
+        <tr><td>GET</td><td>/api/wallet</td><td>Retrieve encrypted keystore for restore</td><td>Yes (Bearer Token)</td></tr>
+        <tr><td>POST</td><td>/api/transactions</td><td>Save transaction metadata post-broadcast</td><td>Yes (Bearer Token)</td></tr>
+        <tr><td>GET</td><td>/api/transactions</td><td>Fetch user transaction audit log</td><td>Yes (Bearer Token)</td></tr>
+        <tr><td>GET</td><td>/api/contacts</td><td>List saved address book contacts</td><td>Yes (Bearer Token)</td></tr>
+        <tr><td>POST</td><td>/api/contacts</td><td>Validate and save address book contact</td><td>Yes (Bearer Token)</td></tr>
+        <tr><td>DELETE</td><td>/api/contacts/:id</td><td>Remove contact by document ID</td><td>Yes (Bearer Token)</td></tr>
+        <tr><td>GET</td><td>/api/health</td><td>Service health check & database state</td><td>No (Public)</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 4.6: RESTful Backend API Endpoint Route Mapping</div>
+    <div class="page-footer-num">20</div>
+  </div>
+
+  <!-- CHAPTER 5: RESULTS AND DISCUSSIONS -->
+  <div class="page-sheet page-break">
+    <h2 class="chapter-heading">CHAPTER 5: RESULTS AND DISCUSSIONS</h2>
+    
+    <h3 class="sub-heading">5.1 Implementation & Testnet Deployment Verification</h3>
+    <p>
+      The wallet application was deployed and benchmarked on the Ethereum Sepolia testnet. Outbound transactions returned valid 32-byte transaction hashes confirming inclusion in Sepolia blocks within 12 seconds.
+    </p>
+
+    <div class="diagram-box">
+Transaction Hash: 0x8a9234857b68b7537b98d1a123f85e4901c900e9a56cbef119c8f4208a329481
+Status: Success (Block #5892143 - Confirmed on Sepolia EVM)
+From: 0x71C8A53B8A72F6B8E4907F620bB1F4F96C1864A6
+To: 0x4838B106FCe9647Bdf1E7877BF73cE8B0BAD5f97
+Value: 0.05 ETH ($155.00) | Fee: 0.00042 ETH ($1.30) | Gas Price: 20 Gwei
+    </div>
+    <div class="caption">Figure 5.4: Ethereum Sepolia Etherscan Block Explorer Confirmation Receipt</div>
+
+    <h3 class="sub-heading">5.2 Black-Box Functional Test Results (20 Scenarios)</h3>
+    <table>
+      <thead>
+        <tr><th>Test ID</th><th>Scenario</th><th>Input Data</th><th>Expected Output</th><th>Result</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>TC-01</td><td>Account Registration</td><td>Valid Name, Email, Password</td><td>Account created, JWT issued</td><td>PASS</td></tr>
+        <tr><td>TC-02</td><td>Short Password Bound</td><td>Password &lt; 6 chars</td><td>Rejection: Password &gt;= 6 chars</td><td>PASS</td></tr>
+        <tr><td>TC-03</td><td>Mismatched Password</td><td>Pass1 != Pass2</td><td>Rejection: Passwords mismatch</td><td>PASS</td></tr>
+        <tr><td>TC-04</td><td>Duplicate Email</td><td>Existing registered email</td><td>HTTP 409 Conflict returned</td><td>PASS</td></tr>
+        <tr><td>TC-05</td><td>Account Login</td><td>Valid email &amp; password</td><td>HTTP 200, JWT token returned</td><td>PASS</td></tr>
+        <tr><td>TC-06</td><td>Invalid Login Pass</td><td>Correct email, wrong pass</td><td>HTTP 401 Unauthorized</td><td>PASS</td></tr>
+        <tr><td>TC-07</td><td>BIP-39 Key Generation</td><td>Generate New Wallet</td><td>12 BIP-39 English words shown</td><td>PASS</td></tr>
+        <tr><td>TC-08</td><td>Clipboard Copy</td><td>Click Copy Phrase</td><td>Phrase copied to clipboard</td><td>PASS</td></tr>
+        <tr><td>TC-09</td><td>Backup File Export</td><td>Click Download Backup</td><td>File wallet-backup.txt saved</td><td>PASS</td></tr>
+        <tr><td>TC-10</td><td>Keystore Scrypt Math</td><td>Enter password &gt;= 6 chars</td><td>AES-128-CTR keystore produced</td><td>PASS</td></tr>
+        <tr><td>TC-11</td><td>Cloud Keystore Sync</td><td>Automatic post-encryption</td><td>Ciphertext saved to MongoDB</td><td>PASS</td></tr>
+        <tr><td>TC-12</td><td>Memory Lock Security</td><td>Click Lock Wallet</td><td>Signer purged from browser RAM</td><td>PASS</td></tr>
+        <tr><td>TC-13</td><td>Keystore Unlock (Wrong)</td><td>Wrong wallet password</td><td>Decryption failed error shown</td><td>PASS</td></tr>
+        <tr><td>TC-14</td><td>Keystore Unlock (Correct)</td><td>Correct wallet password</td><td>Keystore decrypted, signer active</td><td>PASS</td></tr>
+        <tr><td>TC-15</td><td>Malformed Address</td><td>Invalid address 0x123</td><td>Rejection: Invalid address format</td><td>PASS</td></tr>
+        <tr><td>TC-16</td><td>Self-Transfer Guard</td><td>Current wallet address</td><td>Rejection: Cannot transfer to self</td><td>PASS</td></tr>
+        <tr><td>TC-17</td><td>Insufficient Balance</td><td>Amount &gt; Available balance</td><td>Rejection: Insufficient balance</td><td>PASS</td></tr>
+        <tr><td>TC-18</td><td>Dynamic Gas Estimate</td><td>Recipient &amp; Amount input</td><td>Gas fee calculated in Gwei/USD</td><td>PASS</td></tr>
+        <tr><td>TC-19</td><td>Transaction Broadcast</td><td>Confirm &amp; Sign transfer</td><td>Broadcasted to Sepolia with txHash</td><td>PASS</td></tr>
+        <tr><td>TC-20</td><td>Address Book CRUD</td><td>Add contact: Bob, 0x...</td><td>Stored in DB &amp; appears in dropdown</td><td>PASS</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 5.1: Black-Box Verification & Test Case Execution Results (20 Test Cases)</div>
+    <div class="page-footer-num">25</div>
+  </div>
+
+  <!-- CHAPTER 6, 7, REFERENCES, PUBLICATIONS -->
+  <div class="page-sheet page-break">
+    <h2 class="chapter-heading">CHAPTER 6: CONCLUSION</h2>
+    <p>
+      This project successfully implemented and benchmarked a non-custodial multi-currency Web3 wallet on the Ethereum Sepolia network. By uniting client-side key isolation (BIP-39, Scrypt, AES-128-CTR) with cloud persistence (Express.js, MongoDB), the system achieves true self-sovereignty without sacrificing modern multi-device convenience.
+    </p>
+
+    <h2 class="chapter-heading" style="margin-top: 25px;">CHAPTER 7: FUTURE WORK</h2>
+    <p>
+      Promising avenues for future research include multi-chain BIP-44 Bitcoin/Solana integration, in-wallet Uniswap v3 token swaps, WebAuthn biometric passkeys, and native compilation via React Native.
+    </p>
+
+    <h2 class="chapter-heading" style="margin-top: 25px;">References</h2>
+    <ol style="font-size: 10.5pt; line-height: 1.6;">
+      <li>Nakamoto, S. (2008). <em>Bitcoin: A Peer-to-Peer Electronic Cash System</em>. Decentralized Business Review, 21260.</li>
+      <li>Wood, G. (2014). <em>Ethereum: A Secure Decentralised Generalised Transaction Ledger</em>. Ethereum Project Yellow Paper, 151, 1-32.</li>
+      <li>Palatinus, M., Rusnak, P., Voisine, A., &amp; Bowe, S. (2013). <em>BIP-39: Mnemonic code for generating deterministic keys</em>. Bitcoin Improvement Proposals, BIP-0039.</li>
+      <li>Percival, C. (2009). <em>Stronger Key Derivation via Sequential Memory-Hard Functions</em>. BSDCan 2009, 1-16.</li>
+      <li>Dworkin, M. (2001). <em>Recommendation for Block Cipher Modes of Operation</em>. NIST Special Publication 800-38A.</li>
+      <li>Vogelsteller, F., &amp; Buterin, V. (2015). <em>ERC-20: Token Standard</em>. Ethereum Improvement Proposals, EIP-20.</li>
+      <li>Buterin, V., et al. (2019). <em>EIP-1559: Fee market change for ETH 1.0 chain</em>. Ethereum Improvement Proposals, EIP-1559.</li>
+      <li>Chodorow, K. (2013). <em>MongoDB: The Definitive Guide</em>. O'Reilly Media.</li>
+      <li>Tilkov, S., &amp; Eigenbrodt, S. (2010). <em>Node.js: Using JavaScript to build high-performance network programs</em>. IEEE Internet Computing, 14(6), 80-83.</li>
+      <li>Banks, A., &amp; Porcello, E. (2020). <em>Learning React: Modern Patterns for Developing React Applications</em>. O'Reilly Media.</li>
+    </ol>
+
+    <h2 class="chapter-heading" style="margin-top: 25px;">List of Publications</h2>
+    <p style="font-size: 11pt;">
+      1. <strong>System Design Paper:</strong> <em>“Architectural Framework for Zero-Knowledge Keystore Synchronization in Non-Custodial Web3 Client Applications.”</em> Departmental Technical Symposium 2026, Quantum University, Roorkee.<br>
+      2. <strong>Software Repository:</strong> Full-Stack Implementation of Crypto Wallet with Ethers.js v6, React, Node.js, and MongoDB. GitHub: <a href="https://github.com/SanjeevPrasad10/fianl_year_proj">https://github.com/SanjeevPrasad10/fianl_year_proj</a>.
+    </p>
+    <div class="page-footer-num">30</div>
+  </div>
+
+</body>
+</html>

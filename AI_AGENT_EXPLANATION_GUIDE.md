@@ -1,6 +1,6 @@
 # Web3 AI Wallet Co-Pilot (Aura) — Architecture & Defense Guide
 **Feature:** Autonomous Web3 AI Agent using the ReAct (Reason + Act + Observe) Pattern  
-**Author:** Sanjeev Prasad (Team Leader & System Architect)  
+**Author:** Sanjeev Prasad (System Architect)  
 **Curriculum Foundation:** Scott Moss's Agent Architecture (AI SDK & Function Calling)  
 
 ---
