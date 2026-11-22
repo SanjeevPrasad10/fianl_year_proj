@@ -53,9 +53,11 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      // Don't auto-clear on /me failures during initial boot
-      const isAuthRoute = error.config.url.includes('/auth/login') || error.config.url.includes('/auth/register');
-      if (!isAuthRoute && localStorage.getItem('cw_token')) {
+      // Don't auto-clear on auth routes, agent queries, or demo mode
+      const url = error.config?.url || '';
+      const isExempt = url.includes('/auth/') || url.includes('/agent/');
+      const currentToken = localStorage.getItem('cw_token');
+      if (!isExempt && currentToken && currentToken !== 'demo-jwt-token-preview') {
         // Token expired or invalid
         localStorage.removeItem('cw_token');
         localStorage.removeItem('cw_user');
