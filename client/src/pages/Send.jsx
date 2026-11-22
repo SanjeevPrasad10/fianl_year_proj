@@ -20,8 +20,12 @@ export const Send = () => {
     return queryAsset ? queryAsset.toUpperCase() : 'ETH';
   });
 
-  const [recipient, setRecipient] = useState('');
-  const [amount, setAmount] = useState('');
+  const [recipient, setRecipient] = useState(() => {
+    return searchParams.get('recipient') || searchParams.get('to') || '';
+  });
+  const [amount, setAmount] = useState(() => {
+    return searchParams.get('amount') || searchParams.get('value') || '';
+  });
   const [contacts, setContacts] = useState([]);
   const [showContactsDropdown, setShowContactsDropdown] = useState(false);
 
@@ -32,6 +36,20 @@ export const Send = () => {
   const [sending, setSending] = useState(false);
   const [txSuccess, setTxSuccess] = useState(null);
   const [error, setError] = useState('');
+
+  // Sync with URL query parameters when navigating from AI Copilot or other pages
+  useEffect(() => {
+    const queryAsset = searchParams.get('asset');
+    const queryRecipient = searchParams.get('recipient') || searchParams.get('to');
+    const queryAmount = searchParams.get('amount') || searchParams.get('value');
+
+    if (queryRecipient || queryAmount) {
+      setTxSuccess(null);
+    }
+    if (queryAsset) setSelectedAsset(queryAsset.toUpperCase());
+    if (queryRecipient) setRecipient(queryRecipient);
+    if (queryAmount) setAmount(queryAmount);
+  }, [searchParams]);
 
   useEffect(() => {
     const loadContacts = async () => {

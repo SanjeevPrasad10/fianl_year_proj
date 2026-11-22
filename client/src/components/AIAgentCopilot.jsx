@@ -117,7 +117,7 @@ export const AIAgentCopilot = () => {
         asset,
         recipient: recipient || '',
         amount,
-        url: `/send?asset=${asset}&recipient=${recipient}&amount=${amount}`,
+        url: `/send?asset=${asset}&recipient=${recipient}&to=${recipient}&amount=${amount}`,
       };
 
       reply = `I have prepared the transfer of **${amount} ${asset}**${recipient ? ` to \`${recipient.slice(0, 8)}...\`` : ''}. Click the confirmation button below to review gas fees and sign locally in your Send tab!`;

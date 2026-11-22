@@ -228,9 +228,9 @@ async function executeTool(name, args, context) {
         asset: args.asset.toUpperCase(),
         recipient: args.recipient,
         amount: args.amount,
-        url: `/send?asset=${encodeURIComponent(args.asset.toUpperCase())}&to=${encodeURIComponent(
+        url: `/send?asset=${encodeURIComponent(args.asset.toUpperCase())}&recipient=${encodeURIComponent(
           args.recipient
-        )}&amount=${encodeURIComponent(args.amount)}`,
+        )}&to=${encodeURIComponent(args.recipient)}&amount=${encodeURIComponent(args.amount)}`,
       };
     }
 
