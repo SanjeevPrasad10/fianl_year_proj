@@ -35,40 +35,69 @@ export const AIAgentCopilot = () => {
   if (!isAuthenticated) return null;
 
   const clientFallbackAgent = (userMessage) => {
-    const q = (userMessage || '').toLowerCase();
+    const q = (userMessage || '').trim().toLowerCase();
     const executedTools = [];
     let action = null;
     let reply = '';
 
-    if (q.includes('balance') || q.includes('eth') || q.includes('how much') || q.includes('holding')) {
+    // Greetings
+    if (/^(hi|hello|hey|good\s*(morning|afternoon|evening)|howdy|sup)\b/i.test(q)) {
+      reply = `Hello there! 👋 I'm Aura, your AI Web3 Wallet Co-Pilot. I'm connected to Ethereum Sepolia and ready to help. You can ask me to check your live balances, estimate gas fees, view current crypto prices, or draft a transfer!`;
+      return { reply, executedTools, action: null };
+    }
+
+    // Identity / Who are you
+    if (q.includes('who are you') || q.includes('what are you') || q.includes('your name')) {
+      reply = `I'm Aura, an autonomous AI assistant built into this non-custodial Web3 wallet. I operate under a zero-knowledge security model—meaning I help you navigate the blockchain, check balances, and prepare transactions, but I never have access to your private keys or funds.`;
+      return { reply, executedTools, action: null };
+    }
+
+    // Balances
+    if (q.includes('balance') || q.includes('eth') || q.includes('how much') || q.includes('holding') || q.includes('funds')) {
       executedTools.push({
         tool: 'getWalletBalances',
         args: { address: walletAddress || 'Active Wallet' },
       });
       if (walletAddress) {
-        reply = `Your active wallet (${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}) holds:\n• ETH: ${balances?.ETH || '0.0000'} ETH\n• USDC: ${balances?.USDC || '0.00'} USDC\n• LINK: ${balances?.LINK || '0.00'} LINK\n\nVerified directly on Ethereum Sepolia Testnet.`;
+        reply = `Your active wallet (${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}) holds:\n• **ETH:** ${balances?.ETH || '0.0000'} ETH\n• **USDC:** ${balances?.USDC || '0.00'} USDC\n• **LINK:** ${balances?.LINK || '0.00'} LINK\n\nVerified directly on Ethereum Sepolia Testnet.`;
       } else {
-        reply = `Your wallet is currently locked. Unlock your wallet to view real-time on-chain balances.`;
+        reply = `Your wallet is currently locked. Unlock your wallet to view real-time on-chain balances!`;
       }
-    } else if (q.includes('gas') || q.includes('fee') || q.includes('gwei')) {
+      return { reply, executedTools, action: null };
+    }
+
+    // Gas Prices
+    if (q.includes('gas') || q.includes('fee') || q.includes('gwei') || q.includes('cost to send')) {
       executedTools.push({
         tool: 'getGasPrices',
         args: {},
       });
-      reply = `Current Sepolia Network Gas is ~1.5 Gwei (Normal). Estimated standard ETH transfer gas fee is ~0.0000315 ETH (~$0.10 USD). Testnet gas fees are paid using free Sepolia faucet ETH.`;
-    } else if (q.includes('price') || q.includes('market') || q.includes('usd') || q.includes('rate') || q.includes('usdc') || q.includes('link')) {
+      reply = `Current Sepolia Network Gas is **~1.5 Gwei** (Normal). An estimated standard ETH transfer gas fee is ~**0.0000315 ETH** (~$0.10 USD). Testnet gas fees are paid using free Sepolia faucet ETH.`;
+      return { reply, executedTools, action: null };
+    }
+
+    // Token Prices
+    if (q.includes('price') || q.includes('market') || q.includes('usd') || q.includes('rate') || q.includes('usdc') || q.includes('link')) {
       executedTools.push({
         tool: 'getTokenPrices',
         args: {},
       });
-      reply = `Live market prices from CoinGecko:\n• Ethereum (ETH): $${(prices?.ETH || 3100).toLocaleString()}\n• Chainlink (LINK): $${prices?.LINK || 14.8}\n• USD Coin (USDC): $${prices?.USDC || 1.0}`;
-    } else if (q.includes('contact') || q.includes('address book') || q.includes('who') || q.includes('friend')) {
+      reply = `Live market prices from CoinGecko:\n• **Ethereum (ETH):** $${(prices?.ETH || 3100).toLocaleString()}\n• **Chainlink (LINK):** $${prices?.LINK || 14.8}\n• **USD Coin (USDC):** $${prices?.USDC || 1.0}`;
+      return { reply, executedTools, action: null };
+    }
+
+    // Contacts
+    if (q.includes('contact') || q.includes('address book') || q.includes('who') || q.includes('friend')) {
       executedTools.push({
         tool: 'searchContacts',
         args: {},
       });
-      reply = `You can search and manage your saved contacts under the Contacts page. You can add frequent recipients for 1-click transfers!`;
-    } else if (q.includes('send') || q.includes('transfer')) {
+      reply = `You can search and manage your saved contacts under the Contacts page. Would you like to add a frequent recipient for convenient 1-click transfers?`;
+      return { reply, executedTools, action: null };
+    }
+
+    // Send / Transfer
+    if (q.includes('send') || q.includes('transfer')) {
       const matchAmount = q.match(/(\d+(\.\d+)?)/);
       const amount = matchAmount ? matchAmount[1] : '0.01';
       let asset = 'ETH';
@@ -91,12 +120,21 @@ export const AIAgentCopilot = () => {
         url: `/send?asset=${asset}&recipient=${recipient}&amount=${amount}`,
       };
 
-      reply = `I have prepared the transfer of ${amount} ${asset}${recipient ? ` to ${recipient.slice(0, 8)}...` : ''}. Click the button below to confirm and sign in your Send tab!`;
-    } else {
-      reply = `👋 Hi! I'm Aura, your Web3 Wallet Co-Pilot. I can check your live Sepolia balances, estimate current network gas fees, fetch live token prices, or prepare a transfer for you! What would you like to do?`;
+      reply = `I have prepared the transfer of **${amount} ${asset}**${recipient ? ` to \`${recipient.slice(0, 8)}...\`` : ''}. Click the confirmation button below to review gas fees and sign locally in your Send tab!`;
+      return { reply, executedTools, action };
     }
 
-    return { reply, executedTools, action };
+    // Out of scope / Unsupported request
+    reply = `I cannot perform that request. As a non-custodial Web3 assistant, I am designed strictly for wallet operations:
+• Checking live balances on Sepolia
+• Estimating network gas fees
+• Fetching real-time token prices
+• Searching your address book contacts
+• Preparing transfer parameters for your review
+
+I cannot sign transactions, execute arbitrary code, or access your private keys. How can I help you with your wallet?`;
+
+    return { reply, executedTools, action: null };
   };
 
   const handleSendMessage = async (textToSend) => {
@@ -160,24 +198,27 @@ export const AIAgentCopilot = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-40 select-none font-sans">
-      {/* Floating Trigger Button */}
+      {/* Floating Trigger Button with Ambient Aura Glow */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="group flex items-center space-x-2 py-2.5 px-4 rounded-full bg-forest-800 hover:bg-forest-900 text-white shadow-xl hover:shadow-2xl transition-all duration-200 border border-forest-600/30 cursor-pointer active:scale-95"
+          className="group flex items-center space-x-2.5 py-3 px-5 rounded-full bg-gradient-to-r from-emerald-700 via-forest-800 to-forest-900 text-white shadow-[0_0_25px_rgba(16,185,129,0.35)] hover:shadow-[0_0_35px_rgba(16,185,129,0.55)] transition-all duration-300 border border-emerald-400/40 cursor-pointer active:scale-95"
           title="Open AI Web3 Assistant"
         >
           <span className="text-base animate-pulse">✨</span>
           <span className="text-xs font-bold tracking-wide">Aura AI Co-Pilot</span>
-          <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+          </span>
         </button>
       )}
 
-      {/* Slide-Up Chat Window */}
+      {/* Slide-Up Chat Window with Glassmorphism */}
       {isOpen && (
-        <div className="w-[360px] sm:w-[420px] h-[520px] bg-white dark:bg-darkcard border border-gray-200 dark:border-darkborder rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
+        <div className="w-[360px] sm:w-[420px] h-[530px] backdrop-blur-2xl bg-white/95 dark:bg-[#0c1612]/95 border border-emerald-500/30 dark:border-emerald-500/20 rounded-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
           {/* Header */}
-          <div className="px-4 py-3 bg-forest-900 text-white flex items-center justify-between border-b border-forest-800">
+          <div className="px-4 py-3.5 bg-gradient-to-r from-forest-950 via-[#0a2316] to-[#04160d] text-white flex items-center justify-between border-b border-emerald-900/60">
             <div className="flex items-center space-x-2.5">
               <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-sm shadow-inner">
                 ✨
@@ -185,11 +226,11 @@ export const AIAgentCopilot = () => {
               <div>
                 <h3 className="text-xs font-bold tracking-wide flex items-center gap-1.5">
                   Aura AI Co-Pilot
-                  <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
-                    ReAct Loop
+                  <span className="text-[9px] font-mono px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                    ReAct Engine
                   </span>
                 </h3>
-                <p className="text-[10px] text-emerald-200 font-mono">
+                <p className="text-[10px] text-emerald-200/80 font-mono">
                   Autonomous Web3 Wallet Assistant
                 </p>
               </div>
@@ -198,7 +239,7 @@ export const AIAgentCopilot = () => {
             <div className="flex items-center space-x-1">
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-7 h-7 rounded-md hover:bg-white/10 flex items-center justify-center text-gray-300 hover:text-white cursor-pointer text-xs"
+                className="w-7 h-7 rounded-md hover:bg-white/10 flex items-center justify-center text-gray-300 hover:text-white cursor-pointer text-xs transition-colors"
                 title="Minimize Co-Pilot"
               >
                 ✕

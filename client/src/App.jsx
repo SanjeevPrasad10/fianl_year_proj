@@ -25,9 +25,17 @@ export const App = () => {
     <BrowserRouter>
       <AuthProvider>
         <WalletProvider>
-          <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-darkbg dark:text-gray-100 flex flex-col transition-colors duration-200">
+          <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-darkbg dark:text-gray-100 flex flex-col transition-colors duration-200 relative overflow-x-hidden">
+            {/* Atmospheric Web3 Background Mesh */}
+            <div className="web3-bg-mesh">
+              <div className="web3-glow-orb-1" />
+              <div className="web3-glow-orb-2" />
+              <div className="web3-glow-orb-3" />
+              <div className="web3-grid-overlay" />
+            </div>
+
             <Navbar />
-            <main className="flex-1 pb-16">
+            <main className="flex-1 pb-16 relative z-10">
               <Routes>
                 {/* Public Auth Routes */}
                 <Route path="/login" element={<Login />} />

@@ -116,17 +116,23 @@ export const Dashboard = () => {
         </div>
       </div>
 
-      {/* Portfolio Valuation Header (Dark Green Background) */}
-      <div className="rounded-xl bg-forest-950 border border-forest-900 p-6 sm:p-8 text-white">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      {/* Portfolio Valuation Header (Advanced Modern Web3 Card) */}
+      <div className="rounded-2xl bg-gradient-to-br from-forest-950 via-[#072a17] to-[#04190e] border border-emerald-500/30 p-6 sm:p-8 text-white shadow-xl shadow-emerald-950/25 relative overflow-hidden backdrop-blur-xl">
+        <div className="absolute -right-20 -top-20 w-72 h-72 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <span className="text-[11px] uppercase font-mono font-semibold tracking-wider text-forest-300">
-              Total Portfolio Valuation (USD)
-            </span>
+            <div className="flex items-center space-x-2">
+              <span className="text-[11px] uppercase font-mono font-semibold tracking-wider text-emerald-300">
+                Total Portfolio Valuation (USD)
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            </div>
             <div className="text-3xl sm:text-4xl font-mono font-bold tracking-tight mt-1 text-white">
               {totalUsdValue}
             </div>
-            <p className="text-xs text-forest-300/80 mt-1">
+            <p className="text-xs text-emerald-300/80 mt-1">
               Live valuation aggregated from CoinGecko price feed
             </p>
           </div>
@@ -134,13 +140,13 @@ export const Dashboard = () => {
           <div className="flex items-center space-x-2.5">
             <button
               onClick={() => navigate('/send')}
-              className="py-2 px-5 rounded-lg bg-white text-forest-950 hover:bg-forest-50 font-bold text-xs tracking-wide transition-colors"
+              className="py-2.5 px-6 rounded-xl bg-white hover:bg-emerald-50 text-forest-950 font-bold text-xs tracking-wide shadow-md transition-all active:scale-95 cursor-pointer"
             >
               Send
             </button>
             <button
               onClick={() => navigate('/receive')}
-              className="py-2 px-5 rounded-lg border border-forest-700 hover:bg-forest-900 text-white font-bold text-xs tracking-wide transition-colors"
+              className="py-2.5 px-6 rounded-xl border border-emerald-500/40 hover:bg-emerald-950/60 text-white font-bold text-xs tracking-wide transition-all active:scale-95 cursor-pointer backdrop-blur-sm"
             >
               Receive
             </button>

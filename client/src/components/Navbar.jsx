@@ -36,23 +36,28 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-darkcard border-b border-gray-200 dark:border-darkborder transition-colors">
+    <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-[#0c1410]/80 border-b border-gray-200/70 dark:border-emerald-950/60 transition-colors shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Brand & Network */}
           <div className="flex items-center space-x-3">
             <Link to="/" className="flex items-center space-x-2">
-              <span className="font-extrabold text-base tracking-tight text-forest-900 dark:text-forest-400 uppercase">
+              <span className="font-extrabold text-base tracking-tight bg-gradient-to-r from-forest-900 to-forest-700 dark:from-white dark:to-emerald-400 bg-clip-text text-transparent uppercase">
                 Crypto Wallet
               </span>
-              <span className="text-[10px] tracking-wider uppercase font-semibold px-2 py-0.5 rounded bg-forest-100 text-forest-800 dark:bg-forest-950 dark:text-forest-300 border border-forest-200 dark:border-forest-800">
+              <span className="text-[10px] tracking-wider uppercase font-semibold px-2 py-0.5 rounded-full bg-forest-100 text-forest-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-forest-200 dark:border-emerald-800/60">
                 Non-Custodial
               </span>
             </Link>
 
-            <span className="hidden sm:inline-block text-[11px] font-mono font-medium px-2 py-0.5 rounded border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
-              Sepolia
-            </span>
+            {/* Live Web3 Network Badge */}
+            <div className="hidden sm:inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 font-mono text-[11px]">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>Sepolia Testnet</span>
+            </div>
           </div>
 
           {/* Desktop Nav Links */}
