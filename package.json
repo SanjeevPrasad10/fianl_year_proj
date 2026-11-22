@@ -20,5 +20,8 @@
     "mern"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "docx": "^9.16.0"
+  }
 }

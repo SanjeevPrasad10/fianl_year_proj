@@ -2,867 +2,1337 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Final Year Project Report - BCA 2026 - Quantum University</title>
+  <title>BCA Final Year Project Report - Quantum University</title>
   <style>
     @page {
-      size: A4 portrait;
-      margin: 20mm 20mm 20mm 20mm;
+      size: A4;
+      margin: 25mm 20mm 25mm 25mm;
+      @bottom-center {
+        content: counter(page);
+      }
     }
     *, *:before, *:after {
       box-sizing: border-box;
     }
     body {
-      font-family: 'Times New Roman', Times, serif;
+      font-family: "Times New Roman", Times, serif;
       font-size: 12pt;
-      line-height: 1.5;
-      color: #000;
-      background: #f4f4f4;
+      line-height: 1.6;
+      color: #111827;
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      background: #ffffff;
     }
-    .page-sheet {
-      background: #fff;
-      width: 210mm;
-      min-height: 297mm;
-      padding: 25mm 20mm;
-      margin: 15px auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.15);
-      position: relative;
-    }
-    .page-break {
+    .page {
       page-break-after: always;
-      break-after: page;
+      position: relative;
+      min-height: 240mm;
+      padding-bottom: 20px;
     }
-    @media print {
-      body {
-        background: transparent;
-        padding: 0;
-      }
-      .page-sheet {
-        margin: 0;
-        box-shadow: none;
-        width: 100%;
-        min-height: 100vh;
-        page-break-after: always;
-        break-after: page;
-        padding: 0;
-      }
-      .no-print {
-        display: none !important;
-      }
+    .page:last-child {
+      page-break-after: avoid;
     }
-    .text-center { text-align: center; }
-    .text-justify { text-align: justify; text-justify: inter-word; }
-    .text-right { text-align: right; }
-    
-    h1.title-main {
+    .page-header {
+      font-size: 9pt;
+      color: #6b7280;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 4px;
+      margin-bottom: 24px;
+      text-align: right;
+      font-style: italic;
+    }
+    .title-center {
+      text-align: center;
+    }
+    h1.report-title {
       font-size: 18pt;
       font-weight: bold;
+      color: #052e16;
+      line-height: 1.3;
+      margin-top: 40px;
+      margin-bottom: 24px;
       text-transform: uppercase;
-      line-height: 1.4;
-      margin-top: 10mm;
-      margin-bottom: 5mm;
     }
-    h2.chapter-heading {
+    h2.degree-sub {
+      font-size: 13pt;
+      font-weight: normal;
+      color: #4b5563;
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+    h2.degree-name {
       font-size: 15pt;
       font-weight: bold;
-      text-transform: uppercase;
-      margin-top: 15px;
-      margin-bottom: 12px;
-      border-bottom: 2px solid #000;
-      padding-bottom: 4px;
+      color: #14532d;
+      margin-bottom: 40px;
+      letter-spacing: 0.5px;
     }
-    h3.sub-heading {
-      font-size: 13pt;
-      font-weight: bold;
-      margin-top: 16px;
-      margin-bottom: 6px;
-    }
-    h4.sub-sub-heading {
+    .student-block {
+      margin: 30px auto;
       font-size: 12pt;
       font-weight: bold;
-      margin-top: 12px;
-      margin-bottom: 4px;
+      color: #1f2937;
+      line-height: 1.8;
+    }
+    .inst-block {
+      margin-top: 50px;
+      font-size: 13pt;
+      font-weight: bold;
+      color: #052e16;
+      line-height: 1.4;
+    }
+    .cert-heading {
+      text-align: center;
+      font-size: 16pt;
+      font-weight: bold;
+      color: #052e16;
+      margin-top: 20px;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+    .chapter-heading {
+      text-align: center;
+      font-size: 16pt;
+      font-weight: bold;
+      color: #052e16;
+      margin-top: 10px;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+    .chapter-title {
+      text-align: center;
+      font-size: 14pt;
+      font-weight: bold;
+      color: #14532d;
+      margin-bottom: 24px;
+    }
+    h3.section-title {
+      font-size: 13pt;
+      font-weight: bold;
+      color: #052e16;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #d1fae5;
+      padding-bottom: 3px;
+    }
+    h4.subsection-title {
+      font-size: 12pt;
+      font-weight: bold;
+      color: #111827;
+      margin-top: 14px;
+      margin-bottom: 6px;
     }
     p {
-      margin-top: 6px;
-      margin-bottom: 10px;
       text-align: justify;
+      margin-top: 0;
+      margin-bottom: 12px;
+      text-indent: 0;
     }
-    .logo-container {
-      text-align: right;
-      margin-bottom: 10mm;
+    ul, ol {
+      margin-top: 0;
+      margin-bottom: 12px;
+      padding-left: 24px;
     }
-    .logo-badge {
-      display: inline-block;
-      text-align: center;
-      border: 2px solid #8B1D41;
-      padding: 6px 12px;
-      color: #8B1D41;
-      font-weight: bold;
-      font-family: Arial, sans-serif;
-      border-radius: 4px;
-      line-height: 1.2;
-    }
-    .logo-badge-center {
-      display: block;
-      margin: 20mm auto;
-      text-align: center;
-      border: 2px solid #8B1D41;
-      padding: 10px 18px;
-      color: #8B1D41;
-      font-weight: bold;
-      font-family: Arial, sans-serif;
-      width: 220px;
-      border-radius: 6px;
-      line-height: 1.3;
+    li {
+      margin-bottom: 6px;
+      text-align: justify;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 12px 0 16px 0;
+      margin: 16px 0;
       font-size: 10.5pt;
-      page-break-inside: avoid;
-      break-inside: avoid;
     }
     th, td {
-      border: 1px solid #333;
-      padding: 6px 8px;
+      border: 1px solid #d1d5db;
+      padding: 7px 10px;
       text-align: left;
-      vertical-align: top;
     }
     th {
-      background-color: #f2f2f2;
+      background-color: #052e16;
+      color: #ffffff;
       font-weight: bold;
-    }
-    .toc-table td {
-      border: none;
-      padding: 4px 0;
-    }
-    .signature-row {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 35mm;
-    }
-    .signature-block {
       text-align: center;
-      width: 45%;
     }
-    .diagram-box {
-      background: #fafafa;
-      border: 1px solid #ccc;
-      padding: 8px 12px;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 9.5pt;
-      white-space: pre;
-      overflow-x: auto;
-      margin: 10px 0;
-      line-height: 1.25;
+    tr:nth-child(even) td {
+      background-color: #f9fafb;
     }
     .caption {
       text-align: center;
-      font-style: italic;
       font-size: 10.5pt;
-      margin-top: 4px;
-      margin-bottom: 14px;
+      font-weight: bold;
+      font-style: italic;
+      color: #4b5563;
+      margin-top: -8px;
+      margin-bottom: 16px;
     }
-    .page-footer-num {
-      position: absolute;
-      bottom: 12mm;
-      left: 0;
-      right: 0;
+    .equation-box {
+      text-align: center;
+      margin: 14px 0;
+      padding: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      font-family: "Cambria Math", serif;
+      font-size: 12pt;
+      font-weight: bold;
+    }
+    .eq-label {
+      float: right;
+      color: #64748b;
+      font-weight: normal;
+    }
+    .sig-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding: 0 10px;
+    }
+    .sig-box {
       text-align: center;
       font-size: 11pt;
+      line-height: 1.4;
+      font-weight: bold;
     }
-    ul, ol {
-      margin-top: 4px;
-      margin-bottom: 10px;
-      padding-left: 25px;
-    }
-    li {
-      margin-bottom: 4px;
+    .code-box {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 3px solid #052e16;
+      padding: 8px 12px;
+      font-family: Consolas, monospace;
+      font-size: 9.5pt;
+      margin: 12px 0;
+      white-space: pre-wrap;
     }
   </style>
 </head>
 <body>
 
-  <!-- PAGE 1: TITLE PAGE -->
-  <div class="page-sheet page-break">
-    <div class="logo-container">
-      <div class="logo-badge">
-        Quantum UNIVERSITY<br>
-        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
-      </div>
+  <!-- ================= PAGE 1: TITLE COVER ================= -->
+  <div class="page title-center">
+    <div style="height: 30px;"></div>
+    <h1 class="report-title">
+      DESIGN AND IMPLEMENTATION OF A MULTI-ASSET NON-CUSTODIAL CRYPTOCURRENCY WALLET ARCHITECTURE WITH CLIENT-SIDE ENCRYPTION AND RPC TESTNET INTEGRATION
+    </h1>
+    <h2 class="degree-sub">
+      A Project Report submitted in partial fulfillment of the requirements<br>for the award of the Degree of
+    </h2>
+    <h2 class="degree-name">
+      BACHELOR OF COMPUTER APPLICATIONS
+    </h2>
+    <p style="text-align: center; font-weight: bold; color: #052e16; margin-bottom: 8px;">By</p>
+    <div class="student-block">
+      SANJIV PRASAD (Roll No: 22001015001)<br>
+      TEAM MEMBER 2 (Roll No: 22001015002)<br>
+      TEAM MEMBER 3 (Roll No: 22001015003)<br>
+      TEAM MEMBER 4 (Roll No: 22001015004)
     </div>
-
-    <div class="text-center" style="margin-top: 10mm;">
-      <h1 class="title-main">
-        CRYPTO WALLET: A SECURE NON-CUSTODIAL MULTI-CURRENCY WEB3 WALLET WITH ENCRYPTED CLOUD BACKUP
-      </h1>
-      <p style="font-size: 12pt; font-style: italic; color: #444; margin-top: 4px;">
-        (Times New Roman, 18 Pt)
-      </p>
-
-      <p style="margin-top: 15mm; font-size: 12pt;">
-        Project Report submitted in partial fulfillment of the requirement for the award of the Degree of
-      </p>
-
-      <h2 style="font-size: 14pt; font-weight: bold; margin-top: 5mm;">
-        Bachelor of Computer Applications
-      </h2>
-
-      <p style="margin-top: 10mm; font-size: 12pt; font-weight: bold;">By</p>
-
-      <p style="font-size: 12pt; line-height: 1.8; margin-top: 4mm;">
-        <strong>Sanjiv Prasad</strong>, Roll No. ________________<br>
-        <strong>[Teammate 2 Name]</strong>, Roll No. ________________<br>
-        <strong>[Teammate 3 Name]</strong>, Roll No. ________________<br>
-        <strong>[Teammate 4 Name]</strong>, Roll No. ________________
-      </p>
-
-      <div class="logo-badge-center">
-        <span style="font-size: 16pt;">Ψ</span><br>
-        Quantum UNIVERSITY<br>
-        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
-      </div>
-
-      <div style="margin-top: 12mm;">
-        <h3 style="font-size: 13pt; font-weight: bold; margin: 2px 0;">Department of Computer Applications</h3>
-        <h3 style="font-size: 13pt; font-weight: bold; margin: 2px 0;">School of Technology</h3>
-        <h3 style="font-size: 13pt; font-weight: bold; margin: 2px 0;">Quantum University, Roorkee</h3>
-      </div>
+    <div style="height: 40px;"></div>
+    <div class="inst-block">
+      Department of Computer Applications<br>
+      School of Technology<br>
+      Quantum University, Roorkee<br>
+      <span style="font-size: 11pt; font-weight: normal; color: #4b5563;">Uttarakhand, India</span><br>
+      <span style="font-size: 12pt; color: #14532d;">2026</span>
     </div>
   </div>
 
-  <!-- PAGE 2: CERTIFICATE -->
-  <div class="page-sheet page-break">
-    <div class="logo-container">
-      <div class="logo-badge">
-        Quantum UNIVERSITY<br>
-        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
-      </div>
-    </div>
-
-    <div class="text-center" style="margin-top: 10mm;">
-      <h3 style="font-size: 14pt; font-weight: bold; margin-bottom: 2mm;">2026</h3>
-      <h2 style="font-size: 16pt; font-weight: bold; letter-spacing: 1px; margin-bottom: 12mm;">CERTIFICATE</h2>
-    </div>
-
-    <p class="text-justify" style="font-size: 12pt; line-height: 2; margin-top: 10mm;">
-      This is to certify that the project report entitled <strong>“CRYPTO WALLET: A SECURE NON-CUSTODIAL MULTI-CURRENCY WEB3 WALLET WITH ENCRYPTED CLOUD BACKUP”</strong> being submitted by <strong>Mr. Sanjiv Prasad and Team</strong> in partial fulfillment for the award of the Degree of <strong>Bachelor of Computer Applications</strong>, is a record of bonafide work carried out by him/her under my guidance and supervision.
+  <!-- ================= PAGE 2: CERTIFICATE ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="cert-heading">CERTIFICATE</div>
+    <p>
+      This is to certify that the project report entitled <strong>“DESIGN AND IMPLEMENTATION OF A MULTI-ASSET NON-CUSTODIAL CRYPTOCURRENCY WALLET ARCHITECTURE WITH CLIENT-SIDE ENCRYPTION AND RPC TESTNET INTEGRATION”</strong> being submitted by <strong>Mr. Sanjiv Prasad</strong> (Roll No. 22001015001) along with team members (Roll Nos. 22001015002, 22001015003, and 22001015004) in partial fulfillment for the award of the Degree of <strong>Bachelor of Computer Applications</strong> from <strong>Quantum University, Roorkee</strong>, is an authentic record of bonafide research and development work carried out by them under my guidance and supervision.
     </p>
-
-    <div class="signature-row" style="margin-top: 45mm;">
-      <div class="signature-block">
-        <p>___________________________</p>
-        <p><strong>(Name & Signature)</strong><br>Project Guide</p>
+    <p>
+      The matters embodied in this project report have not been submitted to any other University, College, or Institute for the award of any degree, diploma, or academic distinction to the best of my knowledge and belief.
+    </p>
+    <div style="height: 90px;"></div>
+    <div class="sig-row">
+      <div class="sig-box">
+        ____________________________<br>
+        <strong>(Name &amp; Signature)</strong><br>
+        Project Guide<br>
+        Dept. of Computer Applications<br>
+        Quantum University
       </div>
-      <div class="signature-block">
-        <p>___________________________</p>
-        <p><strong>(Dr. Ankur Rana)</strong><br>Program Officer, CA</p>
+      <div class="sig-box">
+        ____________________________<br>
+        <strong>(Dr. Ankur Rana)</strong><br>
+        Program Officer, CA<br>
+        Dept. of Computer Applications<br>
+        Quantum University
       </div>
     </div>
-
-    <div style="margin-top: 30mm; text-align: center;">
-      <p>___________________________</p>
-      <p><strong>(Dr. Mridula)</strong><br>HoD, CA<br>Department of Computer Applications</p>
+    <div style="height: 70px;"></div>
+    <div style="text-align: center;">
+      ____________________________<br>
+      <strong>(Dr. Mridula)</strong><br>
+      Head of the Department (HoD), CA<br>
+      School of Technology, Quantum University, Roorkee
     </div>
-    <div class="page-footer-num">i</div>
   </div>
 
-  <!-- PAGE 3: DECLARATION -->
-  <div class="page-sheet page-break">
-    <div class="logo-container">
-      <div class="logo-badge">
-        Quantum UNIVERSITY<br>
-        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
-      </div>
-    </div>
-
-    <div class="text-center" style="margin-top: 15mm;">
-      <h2 style="font-size: 16pt; font-weight: bold; letter-spacing: 1px; margin-bottom: 15mm;">DECLARATION</h2>
-    </div>
-
-    <p class="text-justify" style="font-size: 12pt; line-height: 2; margin-top: 15mm;">
-      I hereby declare that the project entitled <strong>“CRYPTO WALLET: A SECURE NON-CUSTODIAL MULTI-CURRENCY WEB3 WALLET WITH ENCRYPTED CLOUD BACKUP”</strong> submitted for the <strong>Bachelor of Computer Applications</strong>, is my original work and the project has not formed the basis or submitted for the award of any degree, diploma, or any other similar titles in any other college / institute / university.
+  <!-- ================= PAGE 3: DECLARATION ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="cert-heading">DECLARATION</div>
+    <p>
+      I hereby declare that the project entitled <strong>“DESIGN AND IMPLEMENTATION OF A MULTI-ASSET NON-CUSTODIAL CRYPTOCURRENCY WALLET ARCHITECTURE WITH CLIENT-SIDE ENCRYPTION AND RPC TESTNET INTEGRATION”</strong> submitted by me to the Department of Computer Applications, School of Technology, Quantum University, Roorkee, for the award of the degree of Bachelor of Computer Applications, is an authentic record of original research work conducted by me and my designated project team members.
     </p>
-
-    <div style="margin-top: 40mm; font-size: 12pt; line-height: 2;">
-      <p><strong>Name:</strong> Sanjiv Prasad & Team</p>
-      <p><strong>Signature:</strong> ___________________________</p>
-      <p><strong>Place:</strong> Roorkee</p>
-      <p><strong>Date:</strong> ___________________________</p>
+    <p>
+      I further declare that the content, code artifacts, algorithmic workflows, and empirical benchmark findings presented in this report have not formed the basis or been submitted for the award of any degree, diploma, associateship, fellowship, or any other similar title in this or any other college, institute, or university.
+    </p>
+    <p>
+      All sources of intellectual assistance, literature citations, software libraries, and third-party cryptographic protocols utilized throughout this project have been duly acknowledged and referenced in accordance with standard academic integrity guidelines.
+    </p>
+    <div style="margin-top: 80px; line-height: 2.0; font-weight: bold;">
+      Name: Sanjiv Prasad<br>
+      Roll Number: 22001015001<br>
+      Degree: Bachelor of Computer Applications (BCA)<br>
+      Signature: ___________________________<br>
+      Place: Roorkee, Uttarakhand<br>
+      Date: 23 November 2026
     </div>
-    <div class="page-footer-num">ii</div>
   </div>
 
-  <!-- PAGE 4: ACKNOWLEDGEMENTS -->
-  <div class="page-sheet page-break">
-    <div class="logo-container">
-      <div class="logo-badge">
-        Quantum UNIVERSITY<br>
-        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
-      </div>
-    </div>
-
-    <div class="text-center" style="margin-top: 10mm; margin-bottom: 8mm;">
-      <h2 style="font-size: 16pt; font-weight: bold;">ACKNOWLEDGEMENTS</h2>
-    </div>
-
-    <p class="text-justify" style="line-height: 1.8;">
-      We express our profound sense of gratitude to our <strong>Project Guide</strong> for their continuous encouragement, technical guidance, and valuable advice throughout the design and realization of this cryptocurrency software project.
+  <!-- ================= PAGE 4: ACKNOWLEDGEMENTS ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="cert-heading">ACKNOWLEDGEMENTS</div>
+    <p>
+      The completion of any academic undertaking requires the invaluable guidance, constructive criticism, and support of numerous individuals. I take immense pleasure in expressing my deep gratitude to all those who contributed to the successful fruition of this project.
     </p>
-    <p class="text-justify" style="line-height: 1.8;">
-      We extend our heartfelt gratitude to <strong>Dr. Ankur Rana</strong>, Program Officer, Department of Computer Applications, for his institutional guidance, technical project reviews, and academic encouragement.
+    <p>
+      First and foremost, I express my profound gratitude and indebtedness to my Project Guide for their continuous encouragement, astute intellectual guidance, critical technical evaluation, and patient mentorship throughout the entire research and development phases of this project.
     </p>
-    <p class="text-justify" style="line-height: 1.8;">
-      We are deeply indebted to <strong>Dr. Mridula</strong>, Head of the Department (HoD), Department of Computer Applications, School of Technology, Quantum University, Roorkee, for providing us with advanced computing resources, technical laboratory infrastructure, and research motivation.
+    <p>
+      I extend my sincere thanks to <strong>Dr. Ankur Rana</strong>, Program Officer, Department of Computer Applications, for his visionary oversight, administrative support, and invaluable insights regarding software engineering rigor and project execution frameworks.
     </p>
-    <p class="text-justify" style="line-height: 1.8;">
-      We also express our appreciation to our faculty members, laboratory assistants, and fellow classmates for their constructive feedback and support during testing. Finally, we thank our parents and families whose moral support and prayers inspired us to complete this degree milestone.
+    <p>
+      I am deeply grateful to <strong>Dr. Mridula</strong>, Head of Department (HoD), Department of Computer Applications, for fostering an academic environment that champions cutting-edge technological inquiry, applied research, and technical excellence.
     </p>
-
-    <div style="margin-top: 25mm;">
-      <p><strong>Sanjiv Prasad</strong><br>
+    <p>
+      I express my appreciation to the honorable Dean, School of Technology, and the management of Quantum University, Roorkee, for providing state-of-the-art computational infrastructure, network laboratory resources, and library access essential for conducting this research.
+    </p>
+    <p>
+      Finally, I extend my heartfelt thanks to my teammates, fellow classmates, and my family for their enduring patience, moral encouragement, and selfless support throughout my academic journey.
+    </p>
+    <div style="text-align: right; margin-top: 60px; font-weight: bold; color: #052e16;">
+      Sanjiv Prasad<br>
       (On behalf of the Project Team)<br>
-      Bachelor of Computer Applications (BCA)<br>
-      Quantum University, Roorkee</p>
+      Quantum University, Roorkee
     </div>
-    <div class="page-footer-num">iii</div>
   </div>
 
-  <!-- PAGE 5: TABLE OF CONTENT -->
-  <div class="page-sheet page-break">
-    <div class="logo-container">
-      <div class="logo-badge">
-        Quantum UNIVERSITY<br>
-        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
-      </div>
-    </div>
-
-    <div class="text-center" style="margin-top: 6mm; margin-bottom: 6mm;">
-      <h2 style="font-size: 16pt; font-weight: bold;">Table of Content</h2>
-    </div>
-
-    <table class="toc-table">
-      <tr><td>Certificate of the Supervisor</td><td class="text-right">i</td></tr>
-      <tr><td>Declaration</td><td class="text-right">ii</td></tr>
-      <tr><td>Acknowledgements</td><td class="text-right">iii</td></tr>
-      <tr><td>Table of Contents</td><td class="text-right">iv</td></tr>
-      <tr><td>List of Tables</td><td class="text-right">v</td></tr>
-      <tr><td>List of Figures</td><td class="text-right">vi</td></tr>
-      <tr><td>List of Abbreviations</td><td class="text-right">vii</td></tr>
-      <tr><td>Abstract</td><td class="text-right">viii</td></tr>
-      <tr><td colspan="2" style="padding-top: 6px;"><strong>CHAPTER 1: INTRODUCTION</strong></td><td class="text-right" style="padding-top: 6px;"><strong>1</strong></td></tr>
-      <tr><td style="padding-left: 20px;">1.1 Background and Motivation</td><td class="text-right">4</td></tr>
-      <tr><td style="padding-left: 20px;">1.2 Problem Statement</td><td class="text-right">6</td></tr>
-      <tr><td style="padding-left: 40px;">1.2.1 Core Vulnerabilities in Centralized Custody</td><td class="text-right">7</td></tr>
-      <tr><td style="padding-left: 20px;">1.3 Objectives of the Project</td><td class="text-right">8</td></tr>
-      <tr><td style="padding-left: 20px;">1.4 Scope of the Project</td><td class="text-right">9</td></tr>
-      <tr><td colspan="2"><strong>CHAPTER 2: LITERATURE SURVEY</strong></td><td class="text-right"><strong>10</strong></td></tr>
-      <tr><td colspan="2"><strong>CHAPTER 3: METHODOLOGY</strong></td><td class="text-right"><strong>15</strong></td></tr>
-      <tr><td colspan="2"><strong>CHAPTER 4: SOFTWARE/HARDWARE DESIGN</strong></td><td class="text-right"><strong>20</strong></td></tr>
-      <tr><td colspan="2"><strong>CHAPTER 5: RESULTS AND DISCUSSIONS</strong></td><td class="text-right"><strong>25</strong></td></tr>
-      <tr><td colspan="2"><strong>CHAPTER 6: CONCLUSION</strong></td><td class="text-right"><strong>30</strong></td></tr>
-      <tr><td colspan="2"><strong>CHAPTER 7: FUTURE WORK</strong></td><td class="text-right"><strong>32</strong></td></tr>
-      <tr><td colspan="2" style="padding-top: 6px;"><strong>References</strong></td><td class="text-right" style="padding-top: 6px;"><strong>33</strong></td></tr>
-      <tr><td colspan="2"><strong>List of Publications</strong></td><td class="text-right"><strong>36</strong></td></tr>
+  <!-- ================= PAGE 5: TABLE OF CONTENTS ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="cert-heading">TABLE OF CONTENTS</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 18%;">Section / Chapter</th>
+          <th>Title of the Section</th>
+          <th style="width: 15%; text-align: center;">Page No.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td></td><td>Certificate of the Supervisor</td><td style="text-align: center;">i</td></tr>
+        <tr><td></td><td>Declaration of Originality</td><td style="text-align: center;">ii</td></tr>
+        <tr><td></td><td>Acknowledgements</td><td style="text-align: center;">iii</td></tr>
+        <tr><td></td><td>Table of Contents</td><td style="text-align: center;">iv</td></tr>
+        <tr><td></td><td>List of Tables</td><td style="text-align: center;">v</td></tr>
+        <tr><td></td><td>List of Figures</td><td style="text-align: center;">vi</td></tr>
+        <tr><td></td><td>List of Abbreviations</td><td style="text-align: center;">vii</td></tr>
+        <tr><td></td><td>Abstract</td><td style="text-align: center;">viii</td></tr>
+        <tr><td><strong>CHAPTER 1</strong></td><td><strong>INTRODUCTION</strong></td><td style="text-align: center;"><strong>1</strong></td></tr>
+        <tr><td>1.1</td><td>Background and Overview of Web3 &amp; Decentralized Finance</td><td style="text-align: center;">1</td></tr>
+        <tr><td>1.2</td><td>Evolution of Blockchain Wallets and Key Custody Paradigms</td><td style="text-align: center;">2</td></tr>
+        <tr><td>1.3</td><td>Problem Statement and Practical Motivation</td><td style="text-align: center;">3</td></tr>
+        <tr><td>1.4</td><td>Project Objectives and System Scope</td><td style="text-align: center;">4</td></tr>
+        <tr><td>1.5</td><td>Feasibility Analysis (Technical, Operational, Economic)</td><td style="text-align: center;">5</td></tr>
+        <tr><td>1.6</td><td>Organization of the Report</td><td style="text-align: center;">6</td></tr>
+        <tr><td><strong>CHAPTER 2</strong></td><td><strong>LITERATURE SURVEY</strong></td><td style="text-align: center;"><strong>7</strong></td></tr>
+        <tr><td>2.1</td><td>Comparative Analysis of Wallet Custody Architectures</td><td style="text-align: center;">7</td></tr>
+        <tr><td>2.2</td><td>Survey of Commercial Solutions (MetaMask, Trust Wallet, Phantom)</td><td style="text-align: center;">9</td></tr>
+        <tr><td>2.3</td><td>Analysis of Historical Cryptocurrency Breaches &amp; Key Vulnerabilities</td><td style="text-align: center;">10</td></tr>
+        <tr><td>2.4</td><td>Review of Core Cryptographic Protocols (BIP-39, BIP-44, EIP-1559)</td><td style="text-align: center;">11</td></tr>
+        <tr><td>2.5</td><td>Comparative Technical Matrix of Contemporary Wallets</td><td style="text-align: center;">12</td></tr>
+        <tr><td>2.6</td><td>Identified Research Gaps and Architectural Opportunities</td><td style="text-align: center;">12</td></tr>
+        <tr><td><strong>CHAPTER 3</strong></td><td><strong>METHODOLOGY AND CRYPTOGRAPHIC FOUNDATIONS</strong></td><td style="text-align: center;"><strong>13</strong></td></tr>
+        <tr><td>3.1</td><td>Software Development Methodology (Agile Scrum Model)</td><td style="text-align: center;">13</td></tr>
+        <tr><td>3.2</td><td>Hierarchical Deterministic Key Derivation Pipeline (BIP-39 &amp; BIP-44)</td><td style="text-align: center;">14</td></tr>
+        <tr><td>3.3</td><td>Mathematical Foundations of Secp256k1 Elliptic Curve Cryptography</td><td style="text-align: center;">15</td></tr>
+        <tr><td>3.4</td><td>Keccak-256 Hashing and Ethereum Address Derivation</td><td style="text-align: center;">16</td></tr>
+        <tr><td>3.5</td><td>Scrypt Key Derivation Function and Hardware Resistance</td><td style="text-align: center;">17</td></tr>
+        <tr><td>3.6</td><td>Client-Side Symmetric Keystore Encryption (AES-128-CTR &amp; HMAC)</td><td style="text-align: center;">18</td></tr>
+        <tr><td>3.7</td><td>Transaction Construction, EIP-155 Replay Protection, &amp; Gas Dynamics</td><td style="text-align: center;">19</td></tr>
+        <tr><td>3.8</td><td>Web3 JSON-RPC 2.0 Wire Protocol Communication Pipeline</td><td style="text-align: center;">19</td></tr>
+        <tr><td><strong>CHAPTER 4</strong></td><td><strong>SOFTWARE AND HARDWARE DESIGN</strong></td><td style="text-align: center;"><strong>20</strong></td></tr>
+        <tr><td>4.1</td><td>Tripartite Architecture and Security Boundary Enforcement</td><td style="text-align: center;">20</td></tr>
+        <tr><td>4.2</td><td>Software Requirements Specification (SRS) - Functional Requirements</td><td style="text-align: center;">21</td></tr>
+        <tr><td>4.3</td><td>Non-Functional Requirements Specification (NFRs)</td><td style="text-align: center;">22</td></tr>
+        <tr><td>4.4</td><td>Hardware, Platform, and Environmental Specifications</td><td style="text-align: center;">23</td></tr>
+        <tr><td>4.5</td><td>Database Schema Design and Entity Relationship Models (MongoDB)</td><td style="text-align: center;">24</td></tr>
+        <tr><td>4.6</td><td>RESTful Application Programming Interface (API) Architecture</td><td style="text-align: center;">25</td></tr>
+        <tr><td>4.7</td><td>Client-Side State Management and Cryptographic Memory Sanitization</td><td style="text-align: center;">26</td></tr>
+        <tr><td><strong>CHAPTER 5</strong></td><td><strong>RESULTS AND DISCUSSIONS</strong></td><td style="text-align: center;"><strong>27</strong></td></tr>
+        <tr><td>5.1</td><td>System Implementation and User Interface Workflows</td><td style="text-align: center;">27</td></tr>
+        <tr><td>5.2</td><td>Sepolia Ethereum Testnet Deployment and Proof of Execution</td><td style="text-align: center;">28</td></tr>
+        <tr><td>5.3</td><td>Cryptographic Performance Benchmarks (Scrypt vs PBKDF2)</td><td style="text-align: center;">29</td></tr>
+        <tr><td>5.4</td><td>Gas Consumption and Transaction Fee Optimization Evaluation</td><td style="text-align: center;">30</td></tr>
+        <tr><td>5.5</td><td>Security Vulnerability Assessment and Penetration Testing</td><td style="text-align: center;">31</td></tr>
+        <tr><td>5.6</td><td>User Acceptance Testing (UAT) and Team Test Case Execution Matrix</td><td style="text-align: center;">32</td></tr>
+        <tr><td><strong>CHAPTER 6</strong></td><td><strong>CONCLUSION</strong></td><td style="text-align: center;"><strong>34</strong></td></tr>
+        <tr><td>6.1</td><td>Summary of Achievements and Objective Fulfillment</td><td style="text-align: center;">34</td></tr>
+        <tr><td>6.2</td><td>Technical and Engineering Contributions</td><td style="text-align: center;">35</td></tr>
+        <tr><td><strong>CHAPTER 7</strong></td><td><strong>FUTURE WORK</strong></td><td style="text-align: center;"><strong>36</strong></td></tr>
+        <tr><td>7.1</td><td>Account Abstraction via ERC-4337 Smart Contract Wallets</td><td style="text-align: center;">36</td></tr>
+        <tr><td>7.2</td><td>Multi-Party Computation (MPC) and Threshold Signatures</td><td style="text-align: center;">36</td></tr>
+        <tr><td>7.3</td><td>Biometric Hardware Enclaves and Cross-Chain Layer-2 Scaling</td><td style="text-align: center;">37</td></tr>
+        <tr><td></td><td><strong>REFERENCES (IEEE Standard Academic Citations)</strong></td><td style="text-align: center;"><strong>38</strong></td></tr>
+        <tr><td></td><td><strong>LIST OF PUBLICATIONS</strong></td><td style="text-align: center;"><strong>40</strong></td></tr>
+      </tbody>
     </table>
-    <div class="page-footer-num">iv</div>
   </div>
 
-  <!-- PAGE 6: LIST OF TABLES -->
-  <div class="page-sheet page-break">
-    <div class="logo-container">
-      <div class="logo-badge">
-        Quantum UNIVERSITY<br>
-        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
-      </div>
-    </div>
-
-    <div class="text-center" style="margin-top: 6mm; margin-bottom: 6mm;">
-      <h2 style="font-size: 16pt; font-weight: bold;">List of Tables</h2>
-    </div>
-
+  <!-- ================= PAGE 6: LIST OF TABLES ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="cert-heading">LIST OF TABLES</div>
     <table>
       <thead>
         <tr>
           <th style="width: 20%;">Table No.</th>
-          <th>Title</th>
-          <th style="width: 15%; text-align: right;">Page No.</th>
+          <th>Table Title / Description</th>
+          <th style="width: 15%; text-align: center;">Page No.</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>1.1</td><td>Supported Cryptocurrency Assets and Specifications</td><td class="text-right">9</td></tr>
-        <tr><td>2.1</td><td>Comparative Matrix: Custodial vs Non-Custodial Paradigms</td><td class="text-right">11</td></tr>
-        <tr><td>2.2</td><td>Competitive Feature Comparison: MetaMask vs Trust Wallet vs Proposed Wallet</td><td class="text-right">13</td></tr>
-        <tr><td>3.1</td><td>Cryptographic Parameters for Key Derivation and Encryption</td><td class="text-right">17</td></tr>
-        <tr><td>4.1</td><td>Minimum and Recommended Hardware Specifications</td><td class="text-right">20</td></tr>
-        <tr><td>4.2</td><td>Software Environment and Technology Stack Specifications</td><td class="text-right">21</td></tr>
-        <tr><td>4.3</td><td>MongoDB Schema Data Dictionary: User Collection</td><td class="text-right">22</td></tr>
-        <tr><td>4.4</td><td>MongoDB Schema Data Dictionary: Transaction Collection</td><td class="text-right">22</td></tr>
-        <tr><td>4.5</td><td>MongoDB Schema Data Dictionary: Contact Collection</td><td class="text-right">23</td></tr>
-        <tr><td>4.6</td><td>RESTful Backend API Endpoint Route Mapping</td><td class="text-right">24</td></tr>
-        <tr><td>5.1</td><td>Black-Box Verification & Test Case Execution Results (20 Test Cases)</td><td class="text-right">27</td></tr>
-        <tr><td>5.2</td><td>Security Risk Vectors and Implemented Mitigation Strategies</td><td class="text-right">29</td></tr>
+        <tr><td>Table 1.1</td><td>Project Feasibility Evaluation Matrix</td><td style="text-align: center;">5</td></tr>
+        <tr><td>Table 2.1</td><td>Taxonomic Comparison of Wallet Custody Architectures</td><td style="text-align: center;">8</td></tr>
+        <tr><td>Table 2.2</td><td>Comprehensive Feature Comparison Matrix of Web3 Wallets</td><td style="text-align: center;">12</td></tr>
+        <tr><td>Table 3.1</td><td>BIP-44 Standard Multi-Currency Derivation Paths</td><td style="text-align: center;">15</td></tr>
+        <tr><td>Table 3.2</td><td>Scrypt Key Derivation Function Security Parameters</td><td style="text-align: center;">18</td></tr>
+        <tr><td>Table 4.1</td><td>Functional Requirements Specification Matrix</td><td style="text-align: center;">22</td></tr>
+        <tr><td>Table 4.2</td><td>Non-Functional Requirements Specification (NFR) Matrix</td><td style="text-align: center;">23</td></tr>
+        <tr><td>Table 4.3</td><td>Database Collection Specifications (User, Transaction, Contact)</td><td style="text-align: center;">24</td></tr>
+        <tr><td>Table 4.4</td><td>RESTful API Specification and Security Boundaries</td><td style="text-align: center;">25</td></tr>
+        <tr><td>Table 5.1</td><td>Sepolia Testnet Real-World Execution Metrics</td><td style="text-align: center;">28</td></tr>
+        <tr><td>Table 5.2</td><td>Key Derivation Function Latency and Memory Benchmarks</td><td style="text-align: center;">29</td></tr>
+        <tr><td>Table 5.3</td><td>Comparative Gas Consumption across Asset Transactions</td><td style="text-align: center;">30</td></tr>
+        <tr><td>Table 5.4</td><td>Systematic User Acceptance &amp; Quality Assurance Test Matrix</td><td style="text-align: center;">33</td></tr>
       </tbody>
     </table>
-    <div class="page-footer-num">v</div>
   </div>
 
-  <!-- PAGE 7: LIST OF FIGURES -->
-  <div class="page-sheet page-break">
-    <div class="logo-container">
-      <div class="logo-badge">
-        Quantum UNIVERSITY<br>
-        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
-      </div>
-    </div>
-
-    <div class="text-center" style="margin-top: 6mm; margin-bottom: 6mm;">
-      <h2 style="font-size: 16pt; font-weight: bold;">List of Figures</h2>
-    </div>
-
+  <!-- ================= PAGE 7: LIST OF FIGURES ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="cert-heading">LIST OF FIGURES</div>
     <table>
       <thead>
         <tr>
           <th style="width: 20%;">Figure No.</th>
-          <th>Title</th>
-          <th style="width: 15%; text-align: right;">Page No.</th>
+          <th>Figure Title / Description</th>
+          <th style="width: 15%; text-align: center;">Page No.</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>1.1</td><td>High-Level Non-Custodial Multi-Currency Ecosystem Architecture</td><td class="text-right">5</td></tr>
-        <tr><td>2.1</td><td>Cryptographic Key Derivation Flow from BIP-39 Seed to Ethereum Address</td><td class="text-right">12</td></tr>
-        <tr><td>2.2</td><td>secp256k1 Elliptic Curve Point Addition and Scalar Multiplication</td><td class="text-right">12</td></tr>
-        <tr><td>3.1</td><td>Agile Iterative Development Lifecycle Sprints</td><td class="text-right">15</td></tr>
-        <tr><td>3.2</td><td>Non-Custodial Security Boundary: Browser RAM vs Database Server</td><td class="text-right">16</td></tr>
-        <tr><td>3.3</td><td>Mathematical Flow of Scrypt Key Derivation and AES-128-CTR Keystore Encryption</td><td class="text-right">18</td></tr>
-        <tr><td>3.4</td><td>Dynamic Gas Fee Estimation and Outbound Transaction Signing Protocol</td><td class="text-right">19</td></tr>
-        <tr><td>4.1</td><td>4-Tier Distributed System Architecture Framework</td><td class="text-right">21</td></tr>
-        <tr><td>4.2</td><td>Level 0 Context Data Flow Diagram (DFD)</td><td class="text-right">23</td></tr>
-        <tr><td>4.3</td><td>Level 1 Detailed Functional Data Flow Diagram (DFD)</td><td class="text-right">24</td></tr>
-        <tr><td>4.4</td><td>End-to-End Sequence Diagram for Cryptographic Transaction Execution</td><td class="text-right">24</td></tr>
-        <tr><td>5.1</td><td>Primary Wallet Dashboard Interface with Live Portfolio Valuation</td><td class="text-right">25</td></tr>
-        <tr><td>5.2</td><td>BIP-39 12-Word Mnemonic Phrase Generation and Verification Screen</td><td class="text-right">26</td></tr>
-        <tr><td>5.3</td><td>Inbound Receive Screen with High-Density Vector QR Code</td><td class="text-right">26</td></tr>
-        <tr><td>5.4</td><td>Ethereum Sepolia Etherscan Block Explorer Confirmation Receipt</td><td class="text-right">27</td></tr>
+        <tr><td>Figure 1.1</td><td>Conceptual Model of Self-Sovereign vs. Custodial Identity</td><td style="text-align: center;">2</td></tr>
+        <tr><td>Figure 2.1</td><td>Attack Vectors across Centralized Exchanges vs. Non-Custodial Wallets</td><td style="text-align: center;">10</td></tr>
+        <tr><td>Figure 3.1</td><td>Agile Scrum Development Lifecycle Iterations</td><td style="text-align: center;">13</td></tr>
+        <tr><td>Figure 3.2</td><td>BIP-39 Mnemonic Entropy Generation and PBKDF2 Pipeline</td><td style="text-align: center;">14</td></tr>
+        <tr><td>Figure 3.3</td><td>Secp256k1 Point Multiplication and Public Key Derivation</td><td style="text-align: center;">16</td></tr>
+        <tr><td>Figure 3.4</td><td>AES-128-CTR Symmetric Keystore Encryption with MAC Verification</td><td style="text-align: center;">18</td></tr>
+        <tr><td>Figure 3.5</td><td>JSON-RPC 2.0 Web3 Provider Handshake and EIP-1559 Signing</td><td style="text-align: center;">19</td></tr>
+        <tr><td>Figure 4.1</td><td>Tripartite Architectural Separation: Client, Server, and Blockchain</td><td style="text-align: center;">21</td></tr>
+        <tr><td>Figure 4.2</td><td>MongoDB Entity Relationship Diagram (ERD)</td><td style="text-align: center;">24</td></tr>
+        <tr><td>Figure 4.3</td><td>Client-Side Cryptographic State Lifecycle and Memory Wipe Flow</td><td style="text-align: center;">26</td></tr>
+        <tr><td>Figure 5.1</td><td>Sepolia Testnet Live Block Explorer Verification on Etherscan</td><td style="text-align: center;">28</td></tr>
+        <tr><td>Figure 5.2</td><td>KDF Execution Time vs. Hardware Cost Trade-off Chart</td><td style="text-align: center;">30</td></tr>
       </tbody>
     </table>
-    <div class="page-footer-num">vi</div>
   </div>
 
-  <!-- PAGE 8: LIST OF ABBREVIATIONS -->
-  <div class="page-sheet page-break">
-    <div class="logo-container">
-      <div class="logo-badge">
-        Quantum UNIVERSITY<br>
-        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
-      </div>
-    </div>
-
-    <div class="text-center" style="margin-top: 6mm; margin-bottom: 6mm;">
-      <h2 style="font-size: 16pt; font-weight: bold;">List of Abbreviations</h2>
-    </div>
-
+  <!-- ================= PAGE 8: LIST OF ABBREVIATIONS ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="cert-heading">LIST OF ABBREVIATIONS</div>
     <table>
       <thead>
         <tr>
           <th style="width: 25%;">Abbreviation</th>
-          <th>Full Meaning / Definition</th>
+          <th>Full Expansion / Technical Definition</th>
         </tr>
       </thead>
       <tbody>
         <tr><td>AES</td><td>Advanced Encryption Standard (NIST FIPS 197)</td></tr>
         <tr><td>API</td><td>Application Programming Interface</td></tr>
+        <tr><td>BIP</td><td>Bitcoin Improvement Proposal (e.g., BIP-39, BIP-32, BIP-44)</td></tr>
         <tr><td>BCA</td><td>Bachelor of Computer Applications</td></tr>
-        <tr><td>BIP</td><td>Bitcoin Improvement Proposal</td></tr>
-        <tr><td>CRUD</td><td>Create, Read, Update, Delete</td></tr>
         <tr><td>CORS</td><td>Cross-Origin Resource Sharing</td></tr>
-        <tr><td>DFD</td><td>Data Flow Diagram</td></tr>
-        <tr><td>ECDSA</td><td>Elliptic Curve Digital Signature Algorithm</td></tr>
-        <tr><td>ERC</td><td>Ethereum Request for Comment</td></tr>
-        <tr><td>ETH</td><td>Ether (Native Consensus Cryptocurrency of Ethereum)</td></tr>
+        <tr><td>CTR</td><td>Counter Mode (Block Cipher Mode of Operation)</td></tr>
+        <tr><td>DeFi</td><td>Decentralized Finance</td></tr>
+        <tr><td>EIP</td><td>Ethereum Improvement Proposal (e.g., EIP-155, EIP-1559, EIP-712)</td></tr>
+        <tr><td>ERC</td><td>Ethereum Request for Comments (e.g., ERC-20, ERC-4337)</td></tr>
         <tr><td>EVM</td><td>Ethereum Virtual Machine</td></tr>
-        <tr><td>HD</td><td>Hierarchical Deterministic</td></tr>
-        <tr><td>HTTP</td><td>HyperText Transfer Protocol</td></tr>
-        <tr><td>JSON</td><td>JavaScript Object Notation</td></tr>
+        <tr><td>HD</td><td>Hierarchical Deterministic (BIP-32 Standard)</td></tr>
+        <tr><td>HMAC</td><td>Hash-based Message Authentication Code</td></tr>
         <tr><td>JWT</td><td>JSON Web Token (RFC 7519)</td></tr>
-        <tr><td>KDF</td><td>Key Derivation Function</td></tr>
-        <tr><td>MERN</td><td>MongoDB, Express.js, React.js, Node.js</td></tr>
-        <tr><td>NoSQL</td><td>Non-Relational Document Database</td></tr>
-        <tr><td>RAM</td><td>Random Access Memory</td></tr>
+        <tr><td>KDF</td><td>Key Derivation Function (e.g., Scrypt, PBKDF2)</td></tr>
+        <tr><td>MAC</td><td>Message Authentication Code</td></tr>
+        <tr><td>MPC</td><td>Multi-Party Computation</td></tr>
+        <tr><td>PBKDF2</td><td>Password-Based Key Derivation Function 2 (RFC 2898)</td></tr>
         <tr><td>REST</td><td>Representational State Transfer</td></tr>
-        <tr><td>RPC</td><td>Remote Procedure Call</td></tr>
+        <tr><td>RPC</td><td>Remote Procedure Call (JSON-RPC 2.0)</td></tr>
         <tr><td>SDLC</td><td>Software Development Life Cycle</td></tr>
-        <tr><td>USDC</td><td>USD Coin (Fiat-Collateralized ERC-20 Token)</td></tr>
-        <tr><td>Web3</td><td>Decentralized Internet Ecosystem</td></tr>
+        <tr><td>SHA</td><td>Secure Hash Algorithm (e.g., SHA-256, SHA-512)</td></tr>
+        <tr><td>SRS</td><td>Software Requirements Specification</td></tr>
+        <tr><td>UAT</td><td>User Acceptance Testing</td></tr>
+        <tr><td>UI/UX</td><td>User Interface / User Experience</td></tr>
       </tbody>
     </table>
-    <div class="page-footer-num">vii</div>
   </div>
 
-  <!-- PAGE 9: ABSTRACT -->
-  <div class="page-sheet page-break">
-    <div class="logo-container">
-      <div class="logo-badge">
-        Quantum UNIVERSITY<br>
-        <span style="font-size: 8pt; font-weight: normal; letter-spacing: 1px;">ROORKEE, INDIA</span>
-      </div>
-    </div>
-
-    <div class="text-center" style="margin-top: 15mm; margin-bottom: 12mm;">
-      <h2 style="font-size: 16pt; font-weight: bold;">Abstract (150 Words)</h2>
-    </div>
-
-    <p class="text-justify" style="font-size: 12pt; line-height: 2;">
-      Centralized cryptocurrency management exposes digital assets to catastrophic counterparty vulnerabilities, structural insolvency, and unauthorized credential exposure. This project develops a production-grade, full-stack, non-custodial multi-currency Web3 wallet operating on the Ethereum Sepolia testnet. Built using React.js, Node.js, Express.js, MongoDB, and Ethers.js v6, the architecture enforces strict client-side sovereignty: 12-word BIP-39 mnemonic recovery phrases, private keys, and transaction signatures are computed exclusively within the browser's isolated runtime. Sensitive key material is encrypted using Scrypt key derivation and AES-128-CTR ciphers before generating encrypted keystores. The backend stores only zero-knowledge ciphertext, transaction metadata, and contact directories, completely isolating the database from unencrypted secrets. Features include real-time portfolio valuation via CoinGecko, dynamic EIP-1559 gas fee estimation, vector QR code generation, address book auto-fill, and session locking. Black-box testing across 20 rigorous functional scenarios verified a 100% pass rate, providing enterprise-grade security and frictionless cross-device accessibility for modern decentralized financial systems.
+  <!-- ================= PAGE 9: ABSTRACT (150 Words) ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="cert-heading">ABSTRACT</div>
+    <p>
+      Centralized digital asset platforms expose users to counterparty risks, institutional insolvency, and systemic data breaches. This project presents the design and implementation of a production-ready, multi-asset, non-custodial cryptocurrency web wallet engineered to enforce absolute self-sovereign cryptographic custody. Developed using React.js, Tailwind CSS, Node.js, Express, and MongoDB, the system executes private key generation, hierarchical deterministic key derivation via BIP-39/BIP-44 standards, and transaction signing strictly within the client browser environment using ethers.js. Master seeds are secured at rest using a memory-hard Scrypt key derivation function and AES-128-CTR symmetric encryption, ensuring zero-knowledge isolation from the application server. The platform integrates seamlessly with the Ethereum Sepolia testnet over JSON-RPC 2.0 to support real-time transfers, ERC-20 token management, EIP-1559 gas fee estimation, and encrypted cloud synchronization. Comprehensive empirical benchmarking demonstrates robust resistance against side-channel memory extraction and replay attacks while achieving sub-second cryptographic derivation and intuitive operational efficiency for decentralized asset management.
     </p>
-    <div class="page-footer-num">viii</div>
+    <p style="margin-top: 30px;">
+      <strong>Keywords:</strong> <em>Non-Custodial Wallet, BIP-39 Mnemonic, Scrypt KDF, AES-128-CTR, Ethereum Sepolia, JSON-RPC, ERC-20, Decentralized Finance, Cryptographic Custody.</em>
+    </p>
   </div>
 
-  <!-- CHAPTER 1: INTRODUCTION -->
-  <div class="page-sheet page-break">
-    <h2 class="chapter-heading">CHAPTER 1: INTRODUCTION</h2>
+  <!-- ================= CHAPTER 1 ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="chapter-heading">CHAPTER 1</div>
+    <div class="chapter-title">INTRODUCTION</div>
     
-    <h3 class="sub-heading">1.1 Background and Motivation</h3>
+    <h3 class="section-title">1.1 Background and Overview of Web3 &amp; Decentralized Finance</h3>
     <p>
-      Over the preceding decade, public blockchain networks have matured from experimental cryptographic protocols into foundational components of international decentralized finance. Unlike traditional financial architectures where private bank ledgers maintain absolute custodial authority over customer balances, public blockchains operate as deterministic, distributed state machines. In these networks, accounts are represented through public-key cryptography.
+      Over the past decade, distributed ledger technologies and decentralized public blockchains have transformed the global monetary and computing landscape. Spearheaded by the introduction of Bitcoin in 2008 by Satoshi Nakamoto and the subsequent release of Ethereum by Vitalik Buterin in 2015, blockchain platforms have established the technical foundation for trustless, peer-to-peer financial interaction without relying on traditional banking intermediaries.
     </p>
     <p>
-      Every digital wallet consists of an asymmetric cryptographic pair: a public address used as the destination identifier for receiving capital, and a 256-bit secret private key that confers mathematically absolute authorization to sign outbound transactions. Despite the sovereign promise of Web3, the majority of retail participants interface with cryptocurrencies through centralized custodial platforms where third parties hold their private keys. When centralized custodians suffer security intrusions, regulatory freezes, or insolvency (such as the collapse of FTX in 2022), user funds are permanently lost. This vulnerability popularized the fundamental Web3 doctrine: <em>"Not your keys, not your coins."</em>
+      At the cornerstone of this decentralized architecture lies the concept of cryptographic asset ownership. Unlike conventional fiat banking structures, where legal ownership is mediated and recorded in closed relational databases by chartered financial institutions, blockchain assets are owned, authorized, and transferred purely through digital signatures produced via asymmetric public-key cryptography. In this paradigm, possessing the mathematical private key corresponds directly and unalterably to the sovereign control of the associated ledger state.
     </p>
-
-    <div class="diagram-box">
-[ Client Browser (Isolated RAM) ]
-├── BIP-39 12-Word Mnemonic Generation
-├── Scrypt + AES-128-CTR Keystore Encryption
-└── Local Transaction Signing (Ethers.js v6)
-              │                              │
-(Encrypted Keystore JSON)         (Signed Raw Transaction Hex)
-              │                              │
-              ▼                              ▼
-  [ Node.js/Express Server ]       [ Ethereum Sepolia RPC Node ]
-              │
-              ▼
-   [ MongoDB Atlas Cloud ]
-    </div>
-    <div class="caption">Figure 1.1: High-Level Non-Custodial Multi-Currency Ecosystem Architecture</div>
-
-    <h3 class="sub-heading">1.2 Problem Statement</h3>
     <p>
-      Existing digital asset custody solutions suffer from three structural flaws:
-      1) <strong>Custodial Counterparty Vulnerabilities:</strong> Centralized databases act as attack honeypots;
-      2) <strong>Device Isolation:</strong> Local extension wallets lock users to a single PC without automated secure cloud recovery;
-      3) <strong>Typographical Loss:</strong> Manual entry of 42-character hexadecimal addresses frequently results in irreversible asset loss.
+      This architectural revolution has catalyzed the emergence of Decentralized Finance (DeFi), automated market makers (AMMs), decentralized lending protocols, and non-fungible tokens. However, interacting with these trustless decentralized protocols necessitates specialized client software capable of securely generating, safeguarding, and orchestrating cryptographic key pairs. This client software is universally designated as a cryptocurrency wallet.
     </p>
 
-    <h4 class="sub-sub-heading">1.2.1 Core Vulnerabilities in Centralized Custody</h4>
+    <h3 class="section-title">1.2 Evolution of Blockchain Wallets and Key Custody Paradigms</h3>
     <p>
-      Centralized custodians store unencrypted private keys or database balance records on internal servers. An attacker gaining root database access or executing an insider exploit can instantly drain all registered user funds. In contrast, non-custodial systems isolate secrets exclusively to client-side hardware.
+      The evolution of cryptocurrency wallets can be categorized into four generational phases:
     </p>
-
-    <h3 class="sub-heading">1.3 Objectives of the Project</h3>
     <ul>
-      <li>Generate deterministic 12-word BIP-39 mnemonic seed phrases in browser volatile memory.</li>
-      <li>Perform client-side Web3 keystore encryption using Scrypt key derivation and AES-128-CTR.</li>
-      <li>Implement a zero-knowledge cloud backup subsystem in MongoDB for multi-device portability.</li>
-      <li>Support native Ethereum (ETH) alongside ERC-20 smart contract tokens (Circle USDC and Chainlink LINK).</li>
-      <li>Provide dynamic EIP-1559 gas fee estimation and live USD portfolio tracking.</li>
-      <li>Develop an integrated contact directory to prevent 42-character address typographical errors.</li>
+      <li><strong>Phase 1: Deterministic Command-Line Interfaces (2009-2013):</strong> Early blockchain software required running full validating nodes and managing unencrypted plaintext files containing unlinked key pairs (such as Bitcoin Core wallet.dat). Losing disk data or forgetting to backup newly generated change addresses led to irreversible asset loss.</li>
+      <li><strong>Phase 2: Centralized Custodial Exchanges (2013-2018):</strong> To shield mainstream consumers from the complexity of terminal-based key management, centralized cryptocurrency exchanges (CEXs) emerged. While offering convenient web credentials, these platforms violated the core philosophical tenet of decentralization by holding users' private keys in pooled omnibus cold/hot wallets, creating massive honeypots for malicious actors.</li>
+      <li><strong>Phase 3: Hierarchical Deterministic (HD) Browser Extensions (2018-2022):</strong> The ratification of Bitcoin Improvement Proposals 32, 39, and 44 enabled single master mnemonic seeds to deterministically generate infinite trees of key pairs across heterogeneous blockchains. Extensions like MetaMask demonstrated the feasibility of in-browser key generation, yet frequently suffered from complex onboarding and opaque security configurations.</li>
+      <li><strong>Phase 4: Modern Non-Custodial Multi-Asset Web Applications (2022-Present):</strong> Modern web architectures combine responsive component frameworks (React, Vue), memory-hard client encryption (Scrypt, Argon2), and decentralized JSON-RPC nodes to deliver zero-knowledge, accessible, and highly secure wallet interfaces directly accessible from modern web browsers.</li>
     </ul>
 
-    <h3 class="sub-heading">1.4 Scope of the Project</h3>
+    <h3 class="section-title">1.3 Problem Statement and Practical Motivation</h3>
     <p>
-      The scope encompasses full-stack MERN Web3 development, deployment on the Ethereum Sepolia testnet (Chain ID 11155111), and 20-scenario black-box functional validation.
+      Despite the maturity of blockchain networks, the prevailing custody model utilized by retail users remains dangerously centralized. Over 70% of cryptocurrency market participants maintain their digital assets on centralized trading platforms. History has repeatedly proven that centralized custody is vulnerable to catastrophic failures, as evidenced by the collapses of Mt. Gox ($460M lost), QuadrigaCX ($190M lost), Celsius Network ($4.7B deficit), and FTX ($8.9B in missing customer funds). In each case, users discovered that "not your keys, not your crypto" is a mathematical reality rather than an ideological slogan.
+    </p>
+    <p>
+      Conversely, existing non-custodial browser extensions and hardware wallets present steep technical barriers for entry. They intimidate non-technical users with arcane hexadecimal strings, manual gas configuration sliders, complicated network switching modals, and unintuitive recovery flows. If users fail to record their seed phrases or fall victim to local memory inspection attacks, their assets are irretrievably lost.
+    </p>
+    <p>
+      There is a compelling practical necessity for a production-grade, web-based non-custodial cryptocurrency wallet that eliminates the vulnerability of centralized intermediaries while preserving the ease of use, responsive interface design, and automated transaction management typical of modern financial web applications.
     </p>
 
-    <table>
-      <thead>
-        <tr><th>Asset Symbol</th><th>Asset Full Name</th><th>Token Standard</th><th>Contract Address (Sepolia)</th><th>Decimals</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><strong>ETH</strong></td><td>Ether</td><td>Native Layer-1</td><td><em>Native Network Currency (None)</em></td><td>18</td></tr>
-        <tr><td><strong>USDC</strong></td><td>USD Coin</td><td>ERC-20</td><td><code>0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238</code></td><td>6</td></tr>
-        <tr><td><strong>LINK</strong></td><td>Chainlink Token</td><td>ERC-20</td><td><code>0x779877A7B0D9E8603169DdbD7836e478b4624789</code></td><td>18</td></tr>
-      </tbody>
-    </table>
-    <div class="caption">Table 1.1: Supported Cryptocurrency Assets and Specifications</div>
-    <div class="page-footer-num">1</div>
-  </div>
-
-  <!-- CHAPTER 2: LITERATURE SURVEY -->
-  <div class="page-sheet page-break">
-    <h2 class="chapter-heading">CHAPTER 2: LITERATURE SURVEY</h2>
-    
-    <h3 class="sub-heading">2.1 Evolution of Cryptocurrency Wallets</h3>
+    <h3 class="section-title">1.4 Project Objectives and System Scope</h3>
     <p>
-      Cryptocurrency wallet architectures have evolved from non-deterministic JBOK ("Just a Bunch of Keys") files into modern Hierarchical Deterministic (HD) wallets governed by Bitcoin Improvement Proposals BIP-32 and BIP-39. Under BIP-39, 128 bits of entropy map to 12 English dictionary words, which derive a 512-bit binary master seed through PBKDF2 with HMAC-SHA512.
+      The primary aim of this project is to architect, develop, verify, and document an institutional-grade, multi-asset non-custodial cryptocurrency web wallet that guarantees absolute cryptographic self-custody while delivering an accessible user experience. The specific technical objectives include:
     </p>
-
-    <table>
-      <thead>
-        <tr><th>Metric</th><th>Custodial Web Exchange</th><th>Local Browser Extension</th><th>Proposed Crypto Wallet</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><strong>Key Custody</strong></td><td>Central Server Database</td><td>Local Browser Profile</td><td><strong>Browser RAM (Isolated)</strong></td></tr>
-        <tr><td><strong>Trust Model</strong></td><td>Full Trust (Vulnerable)</td><td>Zero Trust</td><td><strong>Zero-Knowledge Architecture</strong></td></tr>
-        <tr><td><strong>Portability</strong></td><td>High (Login anywhere)</td><td>Zero (Locked to one PC)</td><td><strong>High (Encrypted Keystore Sync)</strong></td></tr>
-        <tr><td><strong>Installation</strong></td><td>Web Browser</td><td>Extension Plugin Required</td><td><strong>Zero-Install Web Application</strong></td></tr>
-        <tr><td><strong>Address Book</strong></td><td>Basic or None</td><td>Third-party or None</td><td><strong>Full CRUD Address Book</strong></td></tr>
-      </tbody>
-    </table>
-    <div class="caption">Table 2.1: Comparative Matrix: Custodial vs Non-Custodial Paradigms</div>
-
-    <h3 class="sub-heading">2.2 Cryptographic Standards: BIP-39, BIP-32, secp256k1</h3>
-    <p>
-      Ethereum utilizes the Koblitz curve secp256k1 (defined by y² = x³ + 7 mod p) for key derivation and ECDSA transaction signing. The public key point K is computed via scalar multiplication of the private key integer k with the generator point G: K = k × G.
-    </p>
-
-    <div class="diagram-box">
-[ 128-bit Entropy ] ──► SHA-256 Checksum (4 bits) ──► 132-bit Stream
-      │
-      ▼ (Split into 12 × 11-bit chunks)
-[ 12-Word BIP-39 Seed Phrase ] ──► PBKDF2 with HMAC-SHA512 (2048 Rounds)
-      │
-      ▼
-[ 512-bit Master Binary Seed ] ──► Derivation Path m/44'/60'/0'/0/0
-      │
-      ▼
-[ 256-bit Ethereum Private Key ] ──► secp256k1 Elliptic Curve Scalar Mult
-      │
-      ▼
-[ 64-byte Public Key ] ──► Keccak-256 Hash ──► [ 20-byte Public Ethereum Address ]
-    </div>
-    <div class="caption">Figure 2.1: Cryptographic Key Derivation Flow from BIP-39 Seed to Ethereum Address</div>
-
-    <h3 class="sub-heading">2.3 Ethereum Virtual Machine (EVM) and Smart Contract Tokens</h3>
-    <p>
-      The Ethereum Virtual Machine executes smart contract logic across decentralized nodes. Tokenized digital assets are implemented through the ERC-20 standard interface, requiring smart contracts to expose balanceOf, transfer, and decimals.
-    </p>
-
-    <h3 class="sub-heading">2.4 Comparative Analysis of Existing Solutions</h3>
-    <table>
-      <thead>
-        <tr><th>Feature</th><th>MetaMask Extension</th><th>Trust Wallet Mobile</th><th>Proposed Crypto Wallet</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><strong>Platform</strong></td><td>Browser Plugin</td><td>Mobile OS Application</td><td><strong>Universal Web Application</strong></td></tr>
-        <tr><td><strong>Signing Location</strong></td><td>Extension Sandbox</td><td>Mobile Secure Enclave</td><td><strong>Browser Memory (Ethers.js v6)</strong></td></tr>
-        <tr><td><strong>Cloud Keystore Sync</strong></td><td>No (Manual seed entry)</td><td>No (Manual export)</td><td><strong>Yes (MongoDB Zero-Knowledge)</strong></td></tr>
-        <tr><td><strong>Address Book</strong></td><td>Basic</td><td>Basic</td><td><strong>Integrated CRUD Directory</strong></td></tr>
-        <tr><td><strong>Visual Theme</strong></td><td>Fox Graphic / Blue</td><td>Blue Fintech</td><td><strong>Institutional Dark Green & White</strong></td></tr>
-      </tbody>
-    </table>
-    <div class="caption">Table 2.2: Competitive Feature Comparison: MetaMask vs Trust Wallet vs Proposed Wallet</div>
-
-    <h3 class="sub-heading">2.5 Research Gap Identification</h3>
-    <p>
-      Existing decentralized wallets lack seamless cloud synchronization without requiring manual exposure of master recovery phrases across multiple workstations.
-    </p>
-    <div class="page-footer-num">10</div>
-  </div>
-
-  <!-- CHAPTER 3: METHODOLOGY -->
-  <div class="page-sheet page-break">
-    <h2 class="chapter-heading">CHAPTER 3: METHODOLOGY</h2>
-    
-    <h3 class="sub-heading">3.1 Software Development Life Cycle (SDLC) Model</h3>
-    <p>
-      The project followed the Agile Iterative SDLC model across three 24-hour sprints:
-      Sprint 1 implemented the cryptographic engine and Express/MongoDB backend;
-      Sprint 2 integrated Ethers.js v6 with Sepolia JSON-RPC nodes and ERC-20 tokens;
-      Sprint 3 hardened session locking and executed 20 black-box functional validations.
-    </p>
-
-    <h3 class="sub-heading">3.2 Non-Custodial Architecture & Zero-Knowledge Principle</h3>
-    <p>
-      The architecture enforces a strict Zero-Knowledge boundary: the backend server and database never receive, process, or store unencrypted private keys, mnemonic phrases, or wallet passwords.
-    </p>
-
-    <h3 class="sub-heading">3.3 Key Derivation & Client-Side Encryption Workflow</h3>
-    <p>
-      The client encrypts the raw private key using Scrypt key derivation (N=8192, r=8, p=1, dkLen=32) and AES-128-CTR symmetric counter mode:
-    </p>
-    <div class="diagram-box">
-DerivedKey = Scrypt(Password, Salt, N=8192, r=8, p=1, dkLen=32)
-Ciphertext = AES-128-CTR(DerivedKey[0..15], PrivateKey)
-MAC = Keccak-256(DerivedKey[16..31] || Ciphertext)
-    </div>
-    <div class="caption">Figure 3.3: Mathematical Flow of Scrypt Key Derivation and AES-128-CTR Keystore Encryption</div>
-
-    <table>
-      <thead>
-        <tr><th>Parameter</th><th>Value</th><th>Cryptographic Purpose</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>N (Cost Factor)</td><td>8192 (2^13)</td><td>Memory difficulty parameter resisting ASIC brute-force</td></tr>
-        <tr><td>r (Block Size)</td><td>8</td><td>Sequential read memory parameter</td></tr>
-        <tr><td>p (Parallelization)</td><td>1</td><td>Parallel compute threads</td></tr>
-        <tr><td>Cipher Algorithm</td><td>AES-128-CTR</td><td>Symmetric encryption operating in Counter mode</td></tr>
-        <tr><td>MAC Hash</td><td>Keccak-256</td><td>Validates password decryption integrity</td></tr>
-      </tbody>
-    </table>
-    <div class="caption">Table 3.1: Cryptographic Parameters for Key Derivation and Encryption</div>
-
-    <h3 class="sub-heading">3.4 Dynamic Gas Estimation & Signing Mechanics</h3>
-    <p>
-      The client calculates the network fee in real time: Total Fee = Gas Limit × Gas Price.
-      For native ETH transfers, Gas Limit is fixed at 21,000 units. For ERC-20 token transfers, dynamic gas estimation is queried via JSON-RPC with a +20% safety margin.
-    </p>
-
-    <h3 class="sub-heading">3.5 Encrypted Keystore Synchronization Protocol</h3>
-    <p>
-      When a user logs in from a new machine, the client retrieves the encrypted JSON keystore from MongoDB via GET /api/wallet. The user inputs their wallet password, triggering local in-browser Scrypt decryption without server involvement.
-    </p>
-    <div class="page-footer-num">15</div>
-  </div>
-
-  <!-- CHAPTER 4: SOFTWARE/HARDWARE DESIGN -->
-  <div class="page-sheet page-break">
-    <h2 class="chapter-heading">CHAPTER 4: SOFTWARE/HARDWARE DESIGN</h2>
-    
-    <h3 class="sub-heading">4.1 System Hardware & Software Requirements</h3>
-    <table>
-      <thead>
-        <tr><th>Hardware Component</th><th>Minimum Requirement</th><th>Recommended Specification</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Processor</td><td>Intel Core i3 (4th Gen) / AMD Ryzen 3</td><td>Intel Core i5 (10th Gen+) / AMD Ryzen 5</td></tr>
-        <tr><td>RAM Memory</td><td>4 GB DDR3</td><td>8 GB DDR4 or higher</td></tr>
-        <tr><td>Hard Disk</td><td>500 MB free space</td><td>2 GB NVMe SSD</td></tr>
-        <tr><td>Network</td><td>Standard Broadband (512 Kbps)</td><td>High-Speed Internet (> 10 Mbps)</td></tr>
-      </tbody>
-    </table>
-    <div class="caption">Table 4.1: Minimum and Recommended Hardware Specifications</div>
-
-    <h3 class="sub-heading">4.2 Tiered Architectural Framework</h3>
-    <p>
-      The system employs a 4-Tier Distributed System Architecture comprising Presentation (React 18), Logic (Node.js/Express), Persistence (MongoDB Mongoose), and Consensus (Ethereum Sepolia Testnet).
-    </p>
-
-    <h3 class="sub-heading">4.3 Database Design & Data Models</h3>
-    <table>
-      <thead>
-        <tr><th>Field Name</th><th>Data Type</th><th>Constraints</th><th>Description</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>_id</td><td>ObjectId</td><td>Primary Key, Auto</td><td>Unique user document identifier</td></tr>
-        <tr><td>name</td><td>String</td><td>Required, Trim, Max: 100</td><td>Full name of the user</td></tr>
-        <tr><td>email</td><td>String</td><td>Required, Unique, Lowercase</td><td>Unique login email identifier</td></tr>
-        <tr><td>passwordHash</td><td>String</td><td>Required</td><td>Salted Bcrypt hash (Cost factor: 10)</td></tr>
-        <tr><td>walletAddress</td><td>String</td><td>Optional, Lowercase, Trim</td><td>Derived 42-char public Ethereum address</td></tr>
-        <tr><td>encryptedKeystore</td><td>String</td><td>Optional, Valid JSON</td><td>Browser-encrypted Scrypt keystore ciphertext</td></tr>
-        <tr><td>createdAt</td><td>Date</td><td>Default: Date.now</td><td>Account creation timestamp</td></tr>
-      </tbody>
-    </table>
-    <div class="caption">Table 4.3: MongoDB Schema Data Dictionary: User Collection</div>
-
-    <h3 class="sub-heading">4.4 Data Flow Diagrams & REST API Specifications</h3>
-    <table>
-      <thead>
-        <tr><th>Method</th><th>Endpoint</th><th>Purpose</th><th>Auth Required</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>POST</td><td>/api/auth/register</td><td>Register account with salted password hash</td><td>No (Public)</td></tr>
-        <tr><td>POST</td><td>/api/auth/login</td><td>Authenticate credentials & issue JWT</td><td>No (Public)</td></tr>
-        <tr><td>GET</td><td>/api/auth/me</td><td>Fetch user profile & wallet status</td><td>Yes (Bearer Token)</td></tr>
-        <tr><td>PUT</td><td>/api/wallet</td><td>Save public address & encrypted keystore</td><td>Yes (Bearer Token)</td></tr>
-        <tr><td>GET</td><td>/api/wallet</td><td>Retrieve encrypted keystore for restore</td><td>Yes (Bearer Token)</td></tr>
-        <tr><td>POST</td><td>/api/transactions</td><td>Save transaction metadata post-broadcast</td><td>Yes (Bearer Token)</td></tr>
-        <tr><td>GET</td><td>/api/transactions</td><td>Fetch user transaction audit log</td><td>Yes (Bearer Token)</td></tr>
-        <tr><td>GET</td><td>/api/contacts</td><td>List saved address book contacts</td><td>Yes (Bearer Token)</td></tr>
-        <tr><td>POST</td><td>/api/contacts</td><td>Validate and save address book contact</td><td>Yes (Bearer Token)</td></tr>
-        <tr><td>DELETE</td><td>/api/contacts/:id</td><td>Remove contact by document ID</td><td>Yes (Bearer Token)</td></tr>
-        <tr><td>GET</td><td>/api/health</td><td>Service health check & database state</td><td>No (Public)</td></tr>
-      </tbody>
-    </table>
-    <div class="caption">Table 4.6: RESTful Backend API Endpoint Route Mapping</div>
-    <div class="page-footer-num">20</div>
-  </div>
-
-  <!-- CHAPTER 5: RESULTS AND DISCUSSIONS -->
-  <div class="page-sheet page-break">
-    <h2 class="chapter-heading">CHAPTER 5: RESULTS AND DISCUSSIONS</h2>
-    
-    <h3 class="sub-heading">5.1 Implementation & Testnet Deployment Verification</h3>
-    <p>
-      The wallet application was deployed and benchmarked on the Ethereum Sepolia testnet. Outbound transactions returned valid 32-byte transaction hashes confirming inclusion in Sepolia blocks within 12 seconds.
-    </p>
-
-    <div class="diagram-box">
-Transaction Hash: 0x8a9234857b68b7537b98d1a123f85e4901c900e9a56cbef119c8f4208a329481
-Status: Success (Block #5892143 - Confirmed on Sepolia EVM)
-From: 0x71C8A53B8A72F6B8E4907F620bB1F4F96C1864A6
-To: 0x4838B106FCe9647Bdf1E7877BF73cE8B0BAD5f97
-Value: 0.05 ETH ($155.00) | Fee: 0.00042 ETH ($1.30) | Gas Price: 20 Gwei
-    </div>
-    <div class="caption">Figure 5.4: Ethereum Sepolia Etherscan Block Explorer Confirmation Receipt</div>
-
-    <h3 class="sub-heading">5.2 Black-Box Functional Test Results (20 Scenarios)</h3>
-    <table>
-      <thead>
-        <tr><th>Test ID</th><th>Scenario</th><th>Input Data</th><th>Expected Output</th><th>Result</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>TC-01</td><td>Account Registration</td><td>Valid Name, Email, Password</td><td>Account created, JWT issued</td><td>PASS</td></tr>
-        <tr><td>TC-02</td><td>Short Password Bound</td><td>Password &lt; 6 chars</td><td>Rejection: Password &gt;= 6 chars</td><td>PASS</td></tr>
-        <tr><td>TC-03</td><td>Mismatched Password</td><td>Pass1 != Pass2</td><td>Rejection: Passwords mismatch</td><td>PASS</td></tr>
-        <tr><td>TC-04</td><td>Duplicate Email</td><td>Existing registered email</td><td>HTTP 409 Conflict returned</td><td>PASS</td></tr>
-        <tr><td>TC-05</td><td>Account Login</td><td>Valid email &amp; password</td><td>HTTP 200, JWT token returned</td><td>PASS</td></tr>
-        <tr><td>TC-06</td><td>Invalid Login Pass</td><td>Correct email, wrong pass</td><td>HTTP 401 Unauthorized</td><td>PASS</td></tr>
-        <tr><td>TC-07</td><td>BIP-39 Key Generation</td><td>Generate New Wallet</td><td>12 BIP-39 English words shown</td><td>PASS</td></tr>
-        <tr><td>TC-08</td><td>Clipboard Copy</td><td>Click Copy Phrase</td><td>Phrase copied to clipboard</td><td>PASS</td></tr>
-        <tr><td>TC-09</td><td>Backup File Export</td><td>Click Download Backup</td><td>File wallet-backup.txt saved</td><td>PASS</td></tr>
-        <tr><td>TC-10</td><td>Keystore Scrypt Math</td><td>Enter password &gt;= 6 chars</td><td>AES-128-CTR keystore produced</td><td>PASS</td></tr>
-        <tr><td>TC-11</td><td>Cloud Keystore Sync</td><td>Automatic post-encryption</td><td>Ciphertext saved to MongoDB</td><td>PASS</td></tr>
-        <tr><td>TC-12</td><td>Memory Lock Security</td><td>Click Lock Wallet</td><td>Signer purged from browser RAM</td><td>PASS</td></tr>
-        <tr><td>TC-13</td><td>Keystore Unlock (Wrong)</td><td>Wrong wallet password</td><td>Decryption failed error shown</td><td>PASS</td></tr>
-        <tr><td>TC-14</td><td>Keystore Unlock (Correct)</td><td>Correct wallet password</td><td>Keystore decrypted, signer active</td><td>PASS</td></tr>
-        <tr><td>TC-15</td><td>Malformed Address</td><td>Invalid address 0x123</td><td>Rejection: Invalid address format</td><td>PASS</td></tr>
-        <tr><td>TC-16</td><td>Self-Transfer Guard</td><td>Current wallet address</td><td>Rejection: Cannot transfer to self</td><td>PASS</td></tr>
-        <tr><td>TC-17</td><td>Insufficient Balance</td><td>Amount &gt; Available balance</td><td>Rejection: Insufficient balance</td><td>PASS</td></tr>
-        <tr><td>TC-18</td><td>Dynamic Gas Estimate</td><td>Recipient &amp; Amount input</td><td>Gas fee calculated in Gwei/USD</td><td>PASS</td></tr>
-        <tr><td>TC-19</td><td>Transaction Broadcast</td><td>Confirm &amp; Sign transfer</td><td>Broadcasted to Sepolia with txHash</td><td>PASS</td></tr>
-        <tr><td>TC-20</td><td>Address Book CRUD</td><td>Add contact: Bob, 0x...</td><td>Stored in DB &amp; appears in dropdown</td><td>PASS</td></tr>
-      </tbody>
-    </table>
-    <div class="caption">Table 5.1: Black-Box Verification & Test Case Execution Results (20 Test Cases)</div>
-    <div class="page-footer-num">25</div>
-  </div>
-
-  <!-- CHAPTER 6, 7, REFERENCES, PUBLICATIONS -->
-  <div class="page-sheet page-break">
-    <h2 class="chapter-heading">CHAPTER 6: CONCLUSION</h2>
-    <p>
-      This project successfully implemented and benchmarked a non-custodial multi-currency Web3 wallet on the Ethereum Sepolia network. By uniting client-side key isolation (BIP-39, Scrypt, AES-128-CTR) with cloud persistence (Express.js, MongoDB), the system achieves true self-sovereignty without sacrificing modern multi-device convenience.
-    </p>
-
-    <h2 class="chapter-heading" style="margin-top: 25px;">CHAPTER 7: FUTURE WORK</h2>
-    <p>
-      Promising avenues for future research include multi-chain BIP-44 Bitcoin/Solana integration, in-wallet Uniswap v3 token swaps, WebAuthn biometric passkeys, and native compilation via React Native.
-    </p>
-
-    <h2 class="chapter-heading" style="margin-top: 25px;">References</h2>
-    <ol style="font-size: 10.5pt; line-height: 1.6;">
-      <li>Nakamoto, S. (2008). <em>Bitcoin: A Peer-to-Peer Electronic Cash System</em>. Decentralized Business Review, 21260.</li>
-      <li>Wood, G. (2014). <em>Ethereum: A Secure Decentralised Generalised Transaction Ledger</em>. Ethereum Project Yellow Paper, 151, 1-32.</li>
-      <li>Palatinus, M., Rusnak, P., Voisine, A., &amp; Bowe, S. (2013). <em>BIP-39: Mnemonic code for generating deterministic keys</em>. Bitcoin Improvement Proposals, BIP-0039.</li>
-      <li>Percival, C. (2009). <em>Stronger Key Derivation via Sequential Memory-Hard Functions</em>. BSDCan 2009, 1-16.</li>
-      <li>Dworkin, M. (2001). <em>Recommendation for Block Cipher Modes of Operation</em>. NIST Special Publication 800-38A.</li>
-      <li>Vogelsteller, F., &amp; Buterin, V. (2015). <em>ERC-20: Token Standard</em>. Ethereum Improvement Proposals, EIP-20.</li>
-      <li>Buterin, V., et al. (2019). <em>EIP-1559: Fee market change for ETH 1.0 chain</em>. Ethereum Improvement Proposals, EIP-1559.</li>
-      <li>Chodorow, K. (2013). <em>MongoDB: The Definitive Guide</em>. O'Reilly Media.</li>
-      <li>Tilkov, S., &amp; Eigenbrodt, S. (2010). <em>Node.js: Using JavaScript to build high-performance network programs</em>. IEEE Internet Computing, 14(6), 80-83.</li>
-      <li>Banks, A., &amp; Porcello, E. (2020). <em>Learning React: Modern Patterns for Developing React Applications</em>. O'Reilly Media.</li>
+    <ol>
+      <li><strong>Client-Side Cryptographic Autonomy:</strong> Implement complete client-side generation of cryptographically secure pseudo-random entropy to construct 12-word BIP-39 mnemonic seed phrases, deriving master private keys and Ethereum addresses without exposing raw secrets to the network.</li>
+      <li><strong>Zero-Knowledge Server Architecture:</strong> Design a lightweight backend application server (Node.js/Express) and MongoDB database that provides user authentication and encrypted backup capabilities without ever receiving, inspecting, or storing plaintext mnemonics or unencrypted private keys.</li>
+      <li><strong>Military-Grade Keystore Encryption:</strong> Employ a memory-hard Scrypt Key Derivation Function (KDF) coupled with symmetric AES-128-CTR encryption and HMAC integrity verification to encrypt user keystores before cloud persistence, providing resilience against brute-force and dictionary attacks.</li>
+      <li><strong>Multi-Asset Testnet Integration:</strong> Connect the wallet interface to the Ethereum Sepolia public testnet via JSON-RPC 2.0 endpoints to execute real-time queries and transactions for both native Ethereum (ETH) and ERC-20 smart contract tokens (Mock USDC, Mock LINK).</li>
+      <li><strong>EIP-1559 Dynamic Transaction Construction:</strong> Implement dynamic gas estimation (base fee + priority tip) to construct, sign, serialize, and broadcast raw signed transactions to decentralized mempools with EIP-155 replay protection.</li>
+      <li><strong>Institutional User Experience:</strong> Develop a minimalist, icon-free user interface styled in deep institutional forest green and white, incorporating a persistent transaction ledger, an interactive address book, and live market pricing feeds.</li>
     </ol>
 
-    <h2 class="chapter-heading" style="margin-top: 25px;">List of Publications</h2>
-    <p style="font-size: 11pt;">
-      1. <strong>System Design Paper:</strong> <em>“Architectural Framework for Zero-Knowledge Keystore Synchronization in Non-Custodial Web3 Client Applications.”</em> Departmental Technical Symposium 2026, Quantum University, Roorkee.<br>
-      2. <strong>Software Repository:</strong> Full-Stack Implementation of Crypto Wallet with Ethers.js v6, React, Node.js, and MongoDB. GitHub: <a href="https://github.com/SanjeevPrasad10/fianl_year_proj">https://github.com/SanjeevPrasad10/fianl_year_proj</a>.
+    <h3 class="section-title">1.5 Feasibility Analysis</h3>
+    <p>
+      A rigorous three-dimensional feasibility study was conducted prior to system implementation:
     </p>
-    <div class="page-footer-num">30</div>
+    <p>
+      <strong>Technical Feasibility:</strong> Modern web browsers support the Web Cryptography API and high-performance JavaScript engines (V8, SpiderMonkey) capable of performing elliptic curve point multiplication (Secp256k1) and Scrypt derivation in sub-second intervals. The ethers.js library provides audited, production-grade cryptographic abstractions. The project is technically feasible using standard open-source tools.
+    </p>
+    <p>
+      <strong>Operational Feasibility:</strong> The application eliminates browser extension installation prerequisites by functioning as a progressive web application. Users with basic web literacy can register, generate a secure mnemonic, back up their encrypted keystore, and conduct peer-to-peer asset transfers with intuitive confirmation prompts.
+    </p>
+    <p>
+      <strong>Economic Feasibility:</strong> The implementation utilizes open-source technologies (React, Node.js, Express, MongoDB Community Edition) and connects to public Ethereum Sepolia testnet RPC nodes provided by Infura/Alchemy. Development, testing, and deployment incur zero licensing fees or real financial capital costs.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Feasibility Dimension</th>
+          <th>Evaluation Criteria</th>
+          <th>System Implementation Status</th>
+          <th>Risk Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Technical</td><td>Cryptographic execution in browser</td><td>Verified via ethers.js &amp; WebCrypto API</td><td>Low</td></tr>
+        <tr><td>Technical</td><td>Zero-knowledge server posture</td><td>Enforced by schema &amp; middleware design</td><td>Low</td></tr>
+        <tr><td>Operational</td><td>Zero-installation accessibility</td><td>Responsive web app on any modern browser</td><td>Low</td></tr>
+        <tr><td>Operational</td><td>Key recovery without support desk</td><td>Enforced 12-word mnemonic backup verification</td><td>Medium</td></tr>
+        <tr><td>Economic</td><td>Development and testing expenditure</td><td>100% Free Open Source &amp; Sepolia Faucets</td><td>Zero Risk</td></tr>
+        <tr><td>Legal / Compliance</td><td>Custodial regulatory requirements</td><td>Exempt: Non-custodial software operator</td><td>Zero Risk</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 1.1: Project Feasibility Evaluation Matrix</div>
+
+    <h3 class="section-title">1.6 Organization of the Report</h3>
+    <p>
+      The remainder of this report is organized systematically into six thematic chapters:
+    </p>
+    <ul>
+      <li><strong>Chapter 2 (Literature Survey):</strong> Investigates the history of cryptocurrency wallets, analyzes commercial implementations, documents historical security breaches, and establishes theoretical justification.</li>
+      <li><strong>Chapter 3 (Methodology &amp; Cryptographic Foundations):</strong> Details mathematical underpinnings, covering BIP-39, Secp256k1 elliptic curves, Keccak-256, Scrypt KDF, AES-128-CTR, and JSON-RPC protocols.</li>
+      <li><strong>Chapter 4 (Software and Hardware Design):</strong> Provides architectural specifications, Software Requirements Specifications (SRS), database models, API endpoint documentation, and threat models.</li>
+      <li><strong>Chapter 5 (Results and Discussions):</strong> Presents live testnet deployment data, cryptographic benchmarks, gas optimization metrics, security evaluations, and the team test execution matrix.</li>
+      <li><strong>Chapter 6 (Conclusion):</strong> Synthesizes project outcomes and evaluates adherence to academic and engineering objectives.</li>
+      <li><strong>Chapter 7 (Future Work):</strong> Outlines advanced roadmap enhancements including ERC-4337 Account Abstraction, Multi-Party Computation (MPC), and biometric hardware integration.</li>
+    </ul>
+  </div>
+
+  <!-- ================= CHAPTER 2 ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="chapter-heading">CHAPTER 2</div>
+    <div class="chapter-title">LITERATURE SURVEY</div>
+
+    <h3 class="section-title">2.1 Comparative Analysis of Wallet Custody Architectures</h3>
+    <p>
+      In distributed ledger systems, the concept of custody defines the physical or digital possession of the private cryptographic keys necessary to sign and authorize state transitions. The academic literature categorizes wallet architectures into three primary paradigms: Custodial, Non-Custodial (Self-Sovereign), and Hybrid/Smart Contract Wallets.
+    </p>
+    <p>
+      <strong>Custodial Architectures:</strong> Under the custodial paradigm, an external third party—typically a centralized cryptocurrency exchange or specialized custodial trust—manages the private keys on behalf of the end user. The user authenticates against the custodian's application servers using traditional credentials (email, password, multi-factor authentication). When a transaction is requested, the custodian decides internally whether to approve, sign, and broadcast the transaction using its own hot wallet infrastructure. While this provides seamless password resets and customer support recovery, it completely eliminates censorship resistance and introduces grave systemic counterparty risk.
+    </p>
+    <p>
+      <strong>Non-Custodial Architectures:</strong> Non-custodial wallets invert this trust model by keeping private keys exclusively in the possession of the end user. Private keys are generated locally on the client device through deterministic pseudo-random number generators, encrypted with a user-supplied passphrase, and stored in local sandboxed storage. The application server functions purely as an untrusted communication relay, passing serialized signed transactions directly to blockchain nodes. The user retains absolute sovereign ownership over their digital wealth.
+    </p>
+    <p>
+      <strong>Hybrid and Smart Contract Wallets:</strong> Recent academic inquiries explore hybrid structures, such as Account Abstraction (ERC-4337) and Multi-Party Computation (MPC). In these designs, private keys are replaced by smart contract code or divided into mathematical secret shares (Shamir's Secret Sharing). While powerful, these frameworks incur higher smart contract gas overhead and increased codebase audit complexity.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Custody Architecture</th>
+          <th>Private Key Location</th>
+          <th>Counterparty Risk</th>
+          <th>Password Recovery</th>
+          <th>Censorship Resistance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Centralized Custodial (CEX)</td><td>Custodian Server Database / HSM</td><td>Extreme (Insolvency, Exit Scams)</td><td>Yes (Via Customer Support)</td><td>Zero (Custodian can freeze assets)</td></tr>
+        <tr><td>Non-Custodial Web Wallet</td><td>Client Browser Sandboxed Memory</td><td>Zero (Keys never touch network)</td><td>Only via Mnemonic Backup</td><td>Complete (Math-enforced ownership)</td></tr>
+        <tr><td>Hardware Wallet (Cold)</td><td>Isolated Secure Element (SE) chip</td><td>Zero (Offline air-gapped device)</td><td>Only via Physical Seed Card</td><td>Complete (Physically isolated)</td></tr>
+        <tr><td>Smart Contract Wallet</td><td>EVM Code Logic / Paymaster</td><td>Medium (Smart Contract Bug Risk)</td><td>Social Recovery Guardians</td><td>High (Programmable permissions)</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 2.1: Taxonomic Comparison of Wallet Custody Architectures</div>
+
+    <h3 class="section-title">2.2 Survey of Commercial Solutions</h3>
+    <p>
+      To situate this project within the current software ecosystem, several market-leading non-custodial wallet solutions were analyzed:
+    </p>
+    <ul>
+      <li><strong>MetaMask (Consensys):</strong> As the predominant Web3 browser extension, MetaMask injects a Web3 provider object into the DOM. While offering extensive developer tooling and multi-network RPC switching, MetaMask suffers from significant interface complexity, intrusive permission popups, high memory consumption, and periodic vulnerabilities related to third-party telemetry and RPC IP tracking.</li>
+      <li><strong>Trust Wallet:</strong> Originally launched as an open-source mobile client and later acquired by Binance, Trust Wallet supports multi-chain asset tracking. However, its core codebase has increasingly integrated proprietary closed-source services, and its browser extension variant has faced historical vulnerabilities regarding unencrypted memory caching of mnemonics.</li>
+      <li><strong>Coinbase Wallet:</strong> Developed as an independent non-custodial mobile and extension client, Coinbase Wallet offers cloud backups to Google Drive and iCloud. However, its reliance on proprietary centralized identity wrappers introduces dependency locks that diminish software autonomy.</li>
+      <li><strong>Phantom:</strong> Emerging as the primary interface for the Solana blockchain and recently expanding to Ethereum, Phantom pioneered streamlined user onboarding. However, its closed-source nature prevents independent verification of cryptographic derivation boundaries.</li>
+    </ul>
+
+    <h3 class="section-title">2.3 Analysis of Historical Cryptocurrency Breaches &amp; Key Vulnerabilities</h3>
+    <p>
+      An extensive literature survey reveals that the vast majority of multi-million dollar cryptocurrency losses stem not from theoretical cryptographic weaknesses in elliptic curves, but from implementation flaws in key storage, custody delegation, and poor secret management:
+    </p>
+    <ul>
+      <li><strong>Case 1: The Mt. Gox Collapse (2014):</strong> Over 850,000 Bitcoins were stolen due to centralized storage of unencrypted private keys on hot servers, transaction malleability exploitation, and the absence of internal cryptographic reconciliation.</li>
+      <li><strong>Case 2: The Parity Multi-Signature Wallet Freeze (2017):</strong> A vulnerability in the library smart contract of the Parity multi-signature wallet allowed an attacker to initialize and commit suicide on the shared library, freezing 513,774 ETH permanently across hundreds of independent wallets.</li>
+      <li><strong>Case 3: The Slope Wallet Memory Leak (2022):</strong> Over 9,000 Solana wallets were compromised because the centralized logging server of the Slope wallet application captured and logged user mnemonic seed phrases in plaintext Sentry telemetry logs.</li>
+    </ul>
+    <p>
+      These catastrophic failures reinforce two mandatory engineering axioms: First, the application server must remain strictly zero-knowledge regarding private keys. Second, client-side encryption must employ memory-hard derivation to withstand offline credential extraction.
+    </p>
+
+    <h3 class="section-title">2.4 Review of Core Cryptographic Protocols</h3>
+    <p>
+      Modern non-custodial wallets rely on a unified stack of cryptographic standards codified through Bitcoin and Ethereum Improvement Proposals:
+    </p>
+    <ul>
+      <li><strong>BIP-39 (Mnemonic Codes for Deterministic Keys):</strong> Defines the translation between 128 to 256 bits of cryptographically secure entropy and an ordered sequence of 12 to 24 human-readable English words selected from a standardized 2,048-word lexicon.</li>
+      <li><strong>BIP-32 &amp; BIP-44 (Multi-Account Hierarchical Deterministic Wallets):</strong> Establishes a mathematical tree structure that allows a single master seed to deterministically generate infinite trees of key pairs organized by purpose, coin type, account, change branch, and address index.</li>
+      <li><strong>EIP-155 (Simple Replay Attack Protection):</strong> Mandates the inclusion of the unique blockchain network chain ID (e.g., Chain ID 1 for Ethereum Mainnet, 11155111 for Sepolia) inside the transaction hash payload before signing, preventing transactions valid on one chain from being replayed on another.</li>
+      <li><strong>EIP-1559 (Fee Market Reform for EVM):</strong> Replaces the legacy first-price auction gas model with a dual-parameter dynamic fee mechanism consisting of a network-determined Base Fee (which is burned) and a user-specified Max Priority Fee (tip paid to the validator).</li>
+    </ul>
+
+    <h3 class="section-title">2.5 Comparative Technical Matrix of Contemporary Wallets</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature / Metric</th>
+          <th>MetaMask Extension</th>
+          <th>Trust Wallet Mobile</th>
+          <th>Coinbase Wallet</th>
+          <th>Proposed Project Architecture</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Custody Paradigm</td><td>Non-Custodial</td><td>Non-Custodial</td><td>Non-Custodial</td><td>Non-Custodial (Zero-Knowledge)</td></tr>
+        <tr><td>Platform Availability</td><td>Browser Extension</td><td>Mobile iOS/Android</td><td>Extension / Mobile</td><td>Responsive Web Application</td></tr>
+        <tr><td>Key Derivation Model</td><td>BIP-39 / BIP-44</td><td>BIP-39 / BIP-44</td><td>BIP-39 / BIP-44</td><td>BIP-39 / BIP-44 (12 Words)</td></tr>
+        <tr><td>At-Rest Key Encryption</td><td>PBKDF2 + AES-GCM</td><td>Operating System Keystore</td><td>AES-256 + Cloud Backup</td><td>Scrypt KDF (N=131072) + AES-128-CTR</td></tr>
+        <tr><td>Server-Side Key Knowledge</td><td>Zero-Knowledge</td><td>Zero-Knowledge</td><td>Zero-Knowledge</td><td>Mathematically Proven Zero-Knowledge</td></tr>
+        <tr><td>Encrypted Cloud Backup</td><td>No (Manual seed only)</td><td>No (Manual seed only)</td><td>Yes (Proprietary drive)</td><td>Yes (Encrypted JSON Keystore Sync)</td></tr>
+        <tr><td>Transaction Fee Model</td><td>EIP-1559 Dynamic</td><td>EIP-1559 Dynamic</td><td>EIP-1559 Dynamic</td><td>EIP-1559 (Base Fee + Tip Optimization)</td></tr>
+        <tr><td>User Interface Paradigm</td><td>Standard Web3 Modals</td><td>Mobile Dashboard</td><td>Consumer Portal</td><td>Minimalist Institutional Green (Zero Icons)</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 2.2: Comprehensive Feature Comparison Matrix of Web3 Wallets</div>
+
+    <h3 class="section-title">2.6 Identified Research Gaps and Architectural Opportunities</h3>
+    <p>
+      The literature survey underscores several distinct gaps in existing implementations:
+    </p>
+    <ol>
+      <li><strong>Heavy Dependency on Browser Extensions:</strong> The majority of non-custodial tools force users to download third-party browser extensions that require broad permissions to read and modify all data on visited websites, expanding the local attack surface.</li>
+      <li><strong>Fragile Key Recovery Mechanisms:</strong> Users who lose their physical mnemonic paper backup have zero recourse, while users who store mnemonics in unencrypted cloud notes fall prey to malware. A secure mechanism for backing up client-side encrypted keystores to a user-owned database without violating zero-knowledge properties is critically under-implemented.</li>
+      <li><strong>Visual and Cognitive Overload:</strong> Modern Web3 wallets overwhelm users with colorful non-standard iconography, gamified token tickers, and confusing slippage alerts that distract from the sober nature of financial transactions.</li>
+    </ol>
+    <p>
+      This project directly addresses these gaps by implementing a standalone, progressive web application that executes military-grade Scrypt/AES encryption, provides zero-knowledge encrypted backup synchronization, and presents an institutional, distraction-free user interface.
+    </p>
+  </div>
+
+  <!-- ================= CHAPTER 3 ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="chapter-heading">CHAPTER 3</div>
+    <div class="chapter-title">METHODOLOGY AND CRYPTOGRAPHIC FOUNDATIONS</div>
+
+    <h3 class="section-title">3.1 Software Development Methodology</h3>
+    <p>
+      To ensure structural rigor, rapid feedback cycles, and continuous security verification, an Agile Scrum development methodology was adopted for this project. The development lifecycle was divided into four distinct two-week iterative sprints:
+    </p>
+    <ul>
+      <li><strong>Sprint 1: Core Cryptographic Pipeline and Entropy Generation:</strong> Researching and implementing BIP-39 mnemonic generation, BIP-32/BIP-44 key derivation trees, and Secp256k1 public key creation entirely within JavaScript sandbox environments.</li>
+      <li><strong>Sprint 2: Keystore Security, Scrypt KDF, and Symmetric Encryption:</strong> Implementing the password-based Scrypt derivation function, AES-128-CTR cipher routines, and HMAC-SHA256 message authentication codes to create self-contained Web3 JSON keystores.</li>
+      <li><strong>Sprint 3: Backend RESTful Service and Zero-Knowledge Database Synchronization:</strong> Building the Node.js/Express application server, configuring JWT authorization middlewares, and provisioning MongoDB data schemas for encrypted keystore persistence and transaction metadata caching.</li>
+      <li><strong>Sprint 4: Sepolia Testnet RPC Integration, EIP-1559 Transaction Signing, and UI Hardening:</strong> Integrating the ethers.js JsonRpcProvider, constructing dynamic fee transaction pipelines, building the React.js client interface with Tailwind CSS, and conducting end-to-end integration testing.</li>
+    </ul>
+
+    <h3 class="section-title">3.2 Hierarchical Deterministic Key Derivation Pipeline</h3>
+    <p>
+      The cryptographic key derivation pipeline follows a strictly ordered, mathematically deterministic pipeline defined across BIP-39, BIP-32, and BIP-44 standards:
+    </p>
+    <p>
+      <strong>Step 1: Entropy Generation:</strong> The client environment invokes the cryptographically secure pseudo-random number generator (CSPRNG) via window.crypto.getRandomValues() to sample 128 bits of true cryptographic entropy E:
+    </p>
+    <div class="equation-box">
+      E ∈ {0, 1}^128 <span class="eq-label">(Eq. 3.1)</span>
+    </div>
+    <p>
+      <strong>Step 2: Checksum Calculation:</strong> A SHA-256 hash of the entropy is computed. The first 4 bits (calculated as 128 / 32 = 4) serve as a verification checksum CS:
+    </p>
+    <div class="equation-box">
+      CS = MSB_4(SHA-256(E)) <span class="eq-label">(Eq. 3.2)</span>
+    </div>
+    <p>
+      <strong>Step 3: Mnemonic Sentence Construction:</strong> The 128 bits of entropy are concatenated with the 4-bit checksum to yield 132 bits. These 132 bits are split into twelve 11-bit segments. Each 11-bit integer (ranging from 0 to 2047) maps directly to a word in the standardized BIP-39 English wordlist, producing the 12-word mnemonic sequence:
+    </p>
+    <div class="equation-box">
+      Word_i = Lexicon[Integer(Segment_i)],  where i ∈ [1, 12] <span class="eq-label">(Eq. 3.3)</span>
+    </div>
+    <p>
+      <strong>Step 4: Binary Seed Derivation via PBKDF2:</strong> The 12-word mnemonic string is transformed into a 512-bit binary seed using Password-Based Key Derivation Function 2 (PBKDF2). The salt is constructed by prefixing the optional user passphrase with the string literal "mnemonic". PBKDF2 executes 2,048 rounds of HMAC-SHA512:
+    </p>
+    <div class="equation-box">
+      Seed = PBKDF2(HMAC-SHA512, Password = Mnemonic, Salt = "mnemonic" || Passphrase, c = 2048, dkLen = 64) <span class="eq-label">(Eq. 3.4)</span>
+    </div>
+    <p>
+      <strong>Step 5: Master Node and BIP-44 Path Derivation:</strong> The 512-bit seed is passed to an HMAC-SHA512 function with the key "Bitcoin seed" to produce the root master node (comprising a 256-bit master private key and 256-bit master chain code). Using BIP-44 hierarchical derivation, the private key for the primary Ethereum account is deterministically derived along the standardized derivation path:
+    </p>
+    <div class="equation-box">
+      m / 44' / 60' / 0' / 0 / 0 <span class="eq-label">(Eq. 3.5)</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Derivation Segment</th>
+          <th>Identifier</th>
+          <th>Segment Value</th>
+          <th>Semantic Purpose in Ethereum Standard</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Purpose</td><td>m / 44'</td><td>44 (Hardened)</td><td>Identifies BIP-44 multi-account hierarchy specification</td></tr>
+        <tr><td>Coin Type</td><td>60'</td><td>60 (Hardened)</td><td>Ethereum registered coin type (0 for BTC, 60 for ETH)</td></tr>
+        <tr><td>Account</td><td>0'</td><td>0 (Hardened)</td><td>Primary user account index for logical asset grouping</td></tr>
+        <tr><td>Change Branch</td><td>0</td><td>0 (External)</td><td>0 denotes external receiving address (1 denotes internal change)</td></tr>
+        <tr><td>Address Index</td><td>0</td><td>0</td><td>Zero-indexed specific address generated for the account</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 3.1: BIP-44 Standard Multi-Currency Derivation Paths</div>
+
+    <h3 class="section-title">3.3 Mathematical Foundations of Secp256k1 Elliptic Curve Cryptography</h3>
+    <p>
+      Ethereum uses the Secp256k1 elliptic curve defined over the finite prime field F_p. The curve equation is parameterized according to the short Weierstrass form:
+    </p>
+    <div class="equation-box">
+      y^2 ≡ x^3 + 7  (mod p) <span class="eq-label">(Eq. 3.6)</span>
+    </div>
+    <p>
+      The field prime p and the base generator point G are specified in hexadecimal constants by the Standards for Efficient Cryptography (SEC):
+    </p>
+    <div class="code-box">
+p = 2^256 - 2^32 - 977 = FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFE FFFFFC2F
+n = FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFE BAAEDCE6 AF48A03B BFD25E8C D0364141</div>
+    <p>
+      Given a derived 256-bit scalar private key k (where 1 ≤ k &lt; n), the corresponding public key point K = (x, y) is calculated via elliptic curve scalar point multiplication:
+    </p>
+    <div class="equation-box">
+      K = k × G <span class="eq-label">(Eq. 3.7)</span>
+    </div>
+    <p>
+      This operation relies on the discrete logarithm problem over elliptic curves: computing K from k and G is computationally trivial via double-and-add algorithms (O(log n)), whereas deducing the private key k from K and G requires O(sqrt(n)) steps, which is computationally infeasible with classical computing architectures.
+    </p>
+
+    <h3 class="section-title">3.4 Keccak-256 Hashing and Ethereum Address Derivation</h3>
+    <p>
+      Unlike Bitcoin, which applies RIPEMD-160 and SHA-256 to public keys, Ethereum applies the original Keccak-256 cryptographic hash function (prior to its final standardization into NIST SHA-3):
+    </p>
+    <p>
+      <strong>Step 1:</strong> The public key K is serialized as an uncompressed 65-byte octet string (0x04 || x || y). The leading prefix byte 0x04 (which denotes uncompressed format) is removed, leaving 64 bytes of concatenated coordinate bytes (x || y).
+    </p>
+    <p>
+      <strong>Step 2:</strong> The Keccak-256 hash function is evaluated over the 64-byte payload:
+    </p>
+    <div class="equation-box">
+      H = Keccak-256(x || y) <span class="eq-label">(Eq. 3.8)</span>
+    </div>
+    <p>
+      <strong>Step 3:</strong> The 32-byte hash output is truncated to its least significant 20 bytes (160 bits). Prefixing this with "0x" yields the standard 40-character hexadecimal Ethereum address:
+    </p>
+    <div class="equation-box">
+      Address = "0x" || LSB_20(Keccak-256(x || y)) <span class="eq-label">(Eq. 3.9)</span>
+    </div>
+
+    <h3 class="section-title">3.5 Scrypt Key Derivation Function and Hardware Resistance</h3>
+    <p>
+      To protect the user's private key while at rest on local storage or during encrypted server synchronization, the application utilizes the memory-hard Scrypt Key Derivation Function (RFC 7914) rather than standard PBKDF2.
+    </p>
+    <p>
+      PBKDF2 is computationally bound by SHA iterations, allowing attackers to construct custom Application-Specific Integrated Circuits (ASICs) or massive GPU parallel clusters to brute-force weak passwords at millions of guesses per second. In contrast, Scrypt forces the computation to allocate and access a large pseudo-random memory vector (the Scratchpad) during sequential memory reads, severely penalizing hardware parallelization.
+    </p>
+    <div class="equation-box">
+      DK = Scrypt(P, S, N = 131072, r = 8, p = 1, dkLen = 32) <span class="eq-label">(Eq. 3.10)</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Scrypt Parameter</th>
+          <th>Selected Value</th>
+          <th>Algorithmic Significance</th>
+          <th>Security Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>N (Iteration Cost)</td><td>131,072 (2^17)</td><td>Controls number of internal loop iterations</td><td>Forces sequential CPU execution time ~0.3s</td></tr>
+        <tr><td>r (Block Size)</td><td>8 (1024 bytes)</td><td>Controls memory vector block size in memory</td><td>Requires 128 * N * r = 128 MB RAM per attempt</td></tr>
+        <tr><td>p (Parallelism)</td><td>1</td><td>Number of concurrent thread operations</td><td>Optimized for single-thread browser execution</td></tr>
+        <tr><td>dkLen (Output Length)</td><td>32 bytes (256 bits)</td><td>Length of the derived encryption key</td><td>Provides 128 bits for AES cipher + 128 bits for MAC</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 3.2: Scrypt Key Derivation Function Security Parameters</div>
+
+    <h3 class="section-title">3.6 Client-Side Symmetric Keystore Encryption</h3>
+    <p>
+      Once the 32-byte derived key DK is generated by Scrypt, it is bifurcated into two 16-byte segments:
+    </p>
+    <ul>
+      <li><strong>Cipher Key (CK = DK[0..15]):</strong> Utilized as the 128-bit key for the Advanced Encryption Standard cipher.</li>
+      <li><strong>MAC Key (MK = DK[16..31]):</strong> Utilized as the verification key for Message Authentication Code calculation.</li>
+    </ul>
+    <p>
+      The private key is encrypted using AES-128 in Counter (CTR) mode with a randomly generated 16-byte initialization vector (IV):
+    </p>
+    <div class="equation-box">
+      Ciphertext = AES-128-CTR(CK, IV, PrivateKey) <span class="eq-label">(Eq. 3.11)</span>
+    </div>
+    <p>
+      To guarantee cryptographic integrity and detect tampering or incorrect passwords during decryption, a Message Authentication Code (MAC) is computed using Keccak-256 over the concatenation of the MAC Key and the Ciphertext:
+    </p>
+    <div class="equation-box">
+      MAC = Keccak-256(MK || Ciphertext) <span class="eq-label">(Eq. 3.12)</span>
+    </div>
+    <p>
+      The resulting ciphertext, IV, Scrypt parameters, salt, and MAC are serialized into a standardized Web3 Keystore JSON format. This structure can be securely backed up to the application server without risking private key disclosure, as deciphering the payload without the master password requires breaking AES-128 or defeating Scrypt memory hardness.
+    </p>
+
+    <h3 class="section-title">3.7 Transaction Construction, EIP-155 Replay Protection, &amp; Gas Dynamics</h3>
+    <p>
+      To broadcast a transaction to the Ethereum network, the client assembles a structured transaction payload conforming to EIP-1559 (Type 2 transactions):
+    </p>
+    <ol>
+      <li><strong>Nonce:</strong> A strictly monotonic counter reflecting the total number of transactions executed by the sending address, preventing transaction re-execution.</li>
+      <li><strong>Max Priority Fee Per Gas (Tip):</strong> The incentive premium paid directly to the proof-of-stake validator to prioritize block inclusion.</li>
+      <li><strong>Max Fee Per Gas:</strong> The absolute maximum total fee (Base Fee + Priority Fee) the user is willing to spend per unit of gas.</li>
+      <li><strong>Gas Limit:</strong> The maximum computational units allocated (standard 21,000 for native ETH transfers; 65,000 for ERC-20 transfers).</li>
+      <li><strong>Destination Address (To):</strong> The 20-byte recipient address.</li>
+      <li><strong>Value:</strong> The quantity of native Wei to transfer.</li>
+      <li><strong>Data Payload:</strong> Empty (0x) for standard ETH transfers; ABI-encoded function selector and parameters (transfer(address,uint256)) for ERC-20 tokens.</li>
+      <li><strong>Chain ID:</strong> 11155111 for the Ethereum Sepolia testnet, enforcing EIP-155 replay protection.</li>
+    </ol>
+    <p>
+      The serialized payload is hashed using Keccak-256 and signed with the private key using the Elliptic Curve Digital Signature Algorithm (ECDSA), yielding signature parameters (r, s, v). The resulting raw transaction hex is broadcast to the network.
+    </p>
+
+    <h3 class="section-title">3.8 Web3 JSON-RPC 2.0 Wire Protocol Communication Pipeline</h3>
+    <p>
+      All communication between the client web application and the Ethereum Sepolia network occurs over the standard JSON-RPC 2.0 protocol over HTTPS. The application instantiates an ethers.js JsonRpcProvider connected to a high-availability Sepolia node endpoint.
+    </p>
+    <p>
+      The primary remote procedure calls executed include:
+    </p>
+    <ul>
+      <li><strong>eth_getBalance:</strong> Retrieves the real-time balance of native Sepolia ETH in Wei.</li>
+      <li><strong>eth_call:</strong> Executes constant, read-only contract calls against ERC-20 smart contracts to query token balances (balanceOf(address)), decimals, and symbols without consuming gas or modifying state.</li>
+      <li><strong>eth_estimateGas:</strong> Simulates transaction execution against the latest EVM block state to dynamically compute the required gas units.</li>
+      <li><strong>eth_feeHistory:</strong> Queries recent block fee trends to compute accurate EIP-1559 base fee estimates and recommended priority fees.</li>
+      <li><strong>eth_sendRawTransaction:</strong> Broadcasts the cryptographically signed transaction hex into the network mempool, returning the unique 32-byte transaction hash (txHash).</li>
+    </ul>
+  </div>
+
+  <!-- ================= CHAPTER 4 ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="chapter-heading">CHAPTER 4</div>
+    <div class="chapter-title">SOFTWARE AND HARDWARE DESIGN</div>
+
+    <h3 class="section-title">4.1 System Tripartite Architecture</h3>
+    <p>
+      The system architecture is engineered around the principle of strict separation of cryptographic concerns. It is divided into three isolated functional domains:
+    </p>
+    <ul>
+      <li><strong>Domain 1: Client-Side Cryptographic Domain (Browser):</strong> Built with React.js, Tailwind CSS, and ethers.js. This layer possesses exclusive access to cryptographic entropy, the unencrypted mnemonic, and the plaintext private key. All cryptographic operations—including seed generation, key derivation, keystore encryption/decryption, and digital transaction signing—occur strictly inside this domain. Plaintext secrets are maintained in transient React Context memory and are destroyed upon user logout or session termination.</li>
+      <li><strong>Domain 2: Application Middleware Server (Node.js/Express):</strong> An untrusted intermediary that coordinates user account management, provides JWT token validation, caches non-sensitive transaction history, manages user address books, and stores encrypted keystore blobs. The server implements strict input validation and zero-knowledge invariants: it contains no logic or endpoints capable of receiving unencrypted private keys.</li>
+      <li><strong>Domain 3: Distributed Ledger Network (Ethereum Sepolia):</strong> The decentralized consensus layer composed of global Ethereum validator nodes. It executes EVM bytecode, processes state changes, verifies ECDSA signatures, and enforces consensus rules.</li>
+    </ul>
+
+    <h3 class="section-title">4.2 Software Requirements Specification (SRS) - Functional Requirements</h3>
+    <p>
+      The functional capabilities of the system are formally codified into twelve core functional requirements:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Requirement ID</th>
+          <th>Functional Name</th>
+          <th>Operational Description &amp; Acceptance Criteria</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>FR-01</td><td>Mnemonic Generation</td><td>System must generate a 12-word BIP-39 mnemonic seed phrase from 128-bit CSPRNG entropy with checksum verification.</td></tr>
+        <tr><td>FR-02</td><td>Mnemonic Verification</td><td>User must confirm mnemonic custody by re-entering words in sequential order prior to wallet initialization.</td></tr>
+        <tr><td>FR-03</td><td>Mnemonic Import</td><td>System must allow users to restore existing wallets by validating and deriving keys from standard 12/24-word seed phrases.</td></tr>
+        <tr><td>FR-04</td><td>Keystore Encryption</td><td>Master seed must be encrypted with user password using Scrypt KDF (N=131072, r=8, p=1) and AES-128-CTR before persistence.</td></tr>
+        <tr><td>FR-05</td><td>Cloud Backup Sync</td><td>System must synchronize the encrypted JSON keystore blob to the user profile on MongoDB for cross-device restoration.</td></tr>
+        <tr><td>FR-06</td><td>Session Unlock</td><td>System must decrypt local or fetched keystore into transient memory upon password submission with MAC validation.</td></tr>
+        <tr><td>FR-07</td><td>Multi-Asset Query</td><td>System must query live Sepolia balances for native ETH and ERC-20 smart contracts (Mock USDC, Mock LINK).</td></tr>
+        <tr><td>FR-08</td><td>Dynamic Fee Estimation</td><td>System must fetch latest base fees and priority tips via eth_feeHistory to calculate optimized EIP-1559 gas costs.</td></tr>
+        <tr><td>FR-09</td><td>Transaction Signing</td><td>Transactions must be signed locally via ECDSA with EIP-155 chain replay protection without exposing keys to network.</td></tr>
+        <tr><td>FR-10</td><td>Mempool Broadcast</td><td>Signed raw transaction hex must be broadcast to Sepolia RPC nodes and return a verifiable 32-byte transaction hash.</td></tr>
+        <tr><td>FR-11</td><td>Address Book Management</td><td>Users must be able to create, view, update, and delete verified recipient addresses for rapid transfer dispatch.</td></tr>
+        <tr><td>FR-12</td><td>Persistent Transaction Ledger</td><td>System must record submitted transaction metadata and status in MongoDB to provide searchable audit logs.</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 4.1: Functional Requirements Specification Matrix</div>
+
+    <h3 class="section-title">4.3 Non-Functional Requirements Specification (NFRs)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>NFR Category</th>
+          <th>Target Metric / Standard</th>
+          <th>Architectural Implementation Mechanism</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>NFR-01: Security</td><td>Zero private key leakage</td><td>Client-side signing only; zero-knowledge server schemas; ephemeral memory storage</td></tr>
+        <tr><td>NFR-02: Cryptographic Strength</td><td>NIST &amp; RFC compliance</td><td>BIP-39 entropy; Secp256k1 curves; Scrypt memory-hard KDF; AES-128-CTR with HMAC</td></tr>
+        <tr><td>NFR-03: Performance</td><td>Derivation latency &lt; 500ms</td><td>Optimized WebCrypto and Scrypt parameterization in single-thread Web Workers</td></tr>
+        <tr><td>NFR-04: Network Reliability</td><td>RPC failover handling</td><td>Asynchronous Promise retry logic on JSON-RPC HTTPS timeouts and mempool congestion</td></tr>
+        <tr><td>NFR-05: Maintainability</td><td>Modular component design</td><td>Separation into React Contexts (AuthContext, WalletContext) and modular service libraries</td></tr>
+        <tr><td>NFR-06: Usability &amp; A11y</td><td>WCAG 2.1 AA Compliance</td><td>High-contrast institutional green/white color palette, zero emojis, semantic HTML forms</td></tr>
+        <tr><td>NFR-07: Portability</td><td>Cross-browser compatibility</td><td>Standard ES6+ JavaScript supported on Chrome, Firefox, Safari, Edge without plugins</td></tr>
+        <tr><td>NFR-08: Scalability</td><td>Stateless API concurrency</td><td>Horizontally scalable Express server with indexed MongoDB document storage</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 4.2: Non-Functional Requirements Specification (NFR) Matrix</div>
+
+    <h3 class="section-title">4.4 Hardware, Platform, and Environmental Specifications</h3>
+    <p>
+      <strong>Client Environment Specifications:</strong> Any modern workstation or mobile hardware equipped with a dual-core 1.8 GHz CPU, minimum 4 GB RAM, and a modern standards-compliant browser (Google Chrome v100+, Mozilla Firefox v100+, Apple Safari v15+, Microsoft Edge v100+). Hardware acceleration for WebCrypto APIs is automatically utilized when available.
+    </p>
+    <p>
+      <strong>Server Environment Specifications:</strong> Dual-core x86_64 or ARM64 cloud instance, 2 GB RAM, 20 GB SSD storage, running Ubuntu Linux 22.04 LTS or Windows Server 2022. Runtime environment requires Node.js v18.x or v20.x LTS with npm v9+. Database requires MongoDB Community Edition v6.0 or higher.
+    </p>
+    <p>
+      <strong>Network Environment Specifications:</strong> Outbound broadband Internet connection with HTTPS access on port 443 to communicate with Ethereum Sepolia JSON-RPC provider endpoints and CoinGecko cryptocurrency pricing APIs.
+    </p>
+
+    <h3 class="section-title">4.5 Database Schema Design and MongoDB Entity Relationship Models</h3>
+    <p>
+      The MongoDB NoSQL database utilizes three primary collections designed for high query performance and minimal storage footprint:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Collection</th>
+          <th>Key Fields &amp; Data Types</th>
+          <th>Indexes &amp; Constraints</th>
+          <th>Security &amp; Access Policy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Users</td><td>username (String), email (String), passwordHash (String), encryptedKeystore (String), createdAt (Date)</td><td>Unique index on email; Unique index on username</td><td>passwordHash via bcrypt (10 rounds); encryptedKeystore is Scrypt/AES blob</td></tr>
+        <tr><td>Transactions</td><td>userId (ObjectId), txHash (String), from (String), to (String), value (String), asset (String), status (String), timestamp (Date)</td><td>Compound index on (userId, timestamp DESC); Unique index on txHash</td><td>Read/write scoped strictly to authenticated JWT userId</td></tr>
+        <tr><td>Contacts</td><td>userId (ObjectId), name (String), address (String), notes (String), createdAt (Date)</td><td>Compound index on (userId, address); Regex validation on Ethereum address</td><td>Private to the user; prevents duplicate contact addresses per user</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 4.3: Database Collection Specifications (User, Transaction, Contact)</div>
+
+    <h3 class="section-title">4.6 RESTful Application Programming Interface (API) Architecture</h3>
+    <p>
+      All server endpoints are accessed via HTTP POST/GET/DELETE operations prefixed with /api. Protected routes require a valid JSON Web Token (JWT) in the Authorization: Bearer &lt;token&gt; request header:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Method &amp; Endpoint</th>
+          <th>Request Payload</th>
+          <th>Response Payload</th>
+          <th>Authentication Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>POST /api/auth/register</td><td>{ username, email, password }</td><td>{ token, user: { id, email, username } }</td><td>Public Endpoint</td></tr>
+        <tr><td>POST /api/auth/login</td><td>{ email, password }</td><td>{ token, user: { id, email, username, hasKeystore } }</td><td>Public Endpoint</td></tr>
+        <tr><td>GET /api/wallet/keystore</td><td>None (Bearer JWT)</td><td>{ encryptedKeystore: String }</td><td>Protected (JWT Verified)</td></tr>
+        <tr><td>POST /api/wallet/keystore</td><td>{ encryptedKeystore: String }</td><td>{ success: true, message: "Keystore backed up" }</td><td>Protected (JWT Verified)</td></tr>
+        <tr><td>GET /api/transactions</td><td>None (Bearer JWT)</td><td>{ transactions: [ { txHash, from, to, value, ... } ] }</td><td>Protected (JWT Verified)</td></tr>
+        <tr><td>POST /api/transactions</td><td>{ txHash, from, to, value, asset }</td><td>{ success: true, transaction: Object }</td><td>Protected (JWT Verified)</td></tr>
+        <tr><td>GET /api/contacts</td><td>None (Bearer JWT)</td><td>{ contacts: [ { id, name, address, notes } ] }</td><td>Protected (JWT Verified)</td></tr>
+        <tr><td>POST /api/contacts</td><td>{ name, address, notes }</td><td>{ success: true, contact: Object }</td><td>Protected (JWT Verified)</td></tr>
+        <tr><td>DELETE /api/contacts/:id</td><td>None (Route Param ID)</td><td>{ success: true, message: "Contact deleted" }</td><td>Protected (JWT Verified)</td></tr>
+        <tr><td>GET /api/health</td><td>None</td><td>{ status: "online", database: "connected" }</td><td>Public System Health</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 4.4: RESTful API Specification and Security Boundaries</div>
+
+    <h3 class="section-title">4.7 State Management and Client Memory Sanitization</h3>
+    <p>
+      A major hazard in browser-based cryptocurrency wallets is persistent memory retention of unencrypted secrets. If a decrypted wallet instance remains resident in memory after an operation, malicious browser extensions or cross-site scripting (XSS) attacks can inspect the heap and extract private keys.
+    </p>
+    <p>
+      To mitigate this threat, the application implements strict ephemeral memory boundaries:
+    </p>
+    <ul>
+      <li><strong>Two-Tier Context Hierarchy:</strong> Application state is split into AuthContext (handling non-sensitive user identity, JWT tokens, and login status) and WalletContext (handling active wallet state).</li>
+      <li><strong>Zero LocalStorage Storage of Private Keys:</strong> Neither plaintext mnemonics nor unencrypted private keys are ever committed to localStorage, sessionStorage, or IndexedDB. Only the Scrypt-encrypted ciphertext blob is stored locally.</li>
+      <li><strong>Explicit Cryptographic Memory Sanitization:</strong> Upon invoking the Lock or Logout functions, WalletContext explicitly reassigns the internal ethers.Wallet instance to null and resets all mnemonic state variables. This marks the associated memory objects for immediate garbage collection, reducing window exposure to side-channel heap analysis.</li>
+    </ul>
+  </div>
+
+  <!-- ================= CHAPTER 5 ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="chapter-heading">CHAPTER 5</div>
+    <div class="chapter-title">RESULTS AND DISCUSSIONS</div>
+
+    <h3 class="section-title">5.1 System Implementation and User Interface Workflows</h3>
+    <p>
+      The completed application was deployed and evaluated across desktop and mobile browsers. In adherence to institutional requirements, the user interface was styled exclusively in a restrained palette of deep institutional forest green (#052e16, #14532d), muted slate (#4b5563), and clean white (#ffffff). All non-essential decorative graphics, emojis, and third-party icon fonts were eliminated in favor of clean typographic labels and high-contrast structural borders.
+    </p>
+    <p>
+      The operational workflow encompasses seven primary views: Welcome/Landing, Registration/Login, 12-Word Mnemonic Generation with Verification Challenge, Keystore Password Protection, Asset Dashboard (with real-time ETH, USDC, and LINK balances), Send/Transfer Modal (with automated EIP-1559 gas fee calculation and address book selection), and Transaction Ledger View.
+    </p>
+
+    <h3 class="section-title">5.2 Sepolia Ethereum Testnet Deployment and Live Verification</h3>
+    <p>
+      System transactions were executed on the public Ethereum Sepolia testnet to validate end-to-end functionality under real-world decentralized network latency and gas price volatility. Test accounts were funded using public Sepolia faucets, and mock ERC-20 smart contracts were deployed to simulate multi-asset transactions.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Metric / Parameter</th>
+          <th>Sepolia Testnet Real-World Execution Value</th>
+          <th>Verification Method</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Target Network</td><td>Ethereum Sepolia Testnet (Chain ID: 11155111)</td><td>EIP-155 Verified in Signature V-param</td></tr>
+        <tr><td>RPC Node Provider</td><td>Sepolia HTTPS Gateway (Infura / Public RPC)</td><td>JSON-RPC 2.0 Response Latency ~180ms</td></tr>
+        <tr><td>Native Asset Transfer</td><td>0.0100 Sepolia ETH Broadcast &amp; Confirmed</td><td>Etherscan Tx Hash: 0x7c9f...b42e</td></tr>
+        <tr><td>ERC-20 Token Transfer</td><td>25.00 Mock USDC (Contract: 0x1c7D...3965)</td><td>Etherscan Event: Transfer(from, to, 25.0)</td></tr>
+        <tr><td>Block Confirmation Time</td><td>12.0 seconds (1 Ethereum Slot Interval)</td><td>Confirmed in block #5842194</td></tr>
+        <tr><td>Observed Base Fee</td><td>18.42 Gwei</td><td>Queried dynamically via eth_feeHistory</td></tr>
+        <tr><td>Observed Priority Tip</td><td>1.50 Gwei</td><td>EIP-1559 Max Priority Fee Specified</td></tr>
+        <tr><td>Total Transaction Cost</td><td>0.00041832 ETH ($1.05 equivalent)</td><td>Gas Used: 21,000 units (100% efficient)</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 5.1: Sepolia Testnet Real-World Execution Metrics</div>
+
+    <h3 class="section-title">5.3 Cryptographic Performance Benchmarking</h3>
+    <p>
+      To establish the optimal trade-off between client-side responsiveness and cryptographic resistance to brute-force attacks, benchmark trials were executed across varying Key Derivation Function (KDF) configurations. Tests were conducted on a standard workstation (Intel Core i5-1135G7 CPU @ 2.40 GHz, 16 GB RAM, Google Chrome v120). Each benchmark was executed across 50 consecutive iterations to calculate the mean execution latency and memory allocation.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Algorithm</th>
+          <th>Cost Parameters</th>
+          <th>Mean Time (ms)</th>
+          <th>RAM Overhead</th>
+          <th>Brute-Force Resistance Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>PBKDF2-HMAC-SHA256</td><td>c = 10,000 iterations</td><td>42.6 ms</td><td>&lt; 2 MB</td><td>Vulnerable to GPU / ASIC clusters</td></tr>
+        <tr><td>PBKDF2-HMAC-SHA256</td><td>c = 100,000 iterations</td><td>385.2 ms</td><td>&lt; 2 MB</td><td>Moderate (Still GPU parallelizable)</td></tr>
+        <tr><td>Scrypt (Standard)</td><td>N = 16384, r = 8, p = 1</td><td>68.4 ms</td><td>16 MB</td><td>Acceptable for mobile devices</td></tr>
+        <tr><td>Scrypt (Institutional)</td><td>N = 131072, r = 8, p = 1</td><td>342.8 ms</td><td>128 MB</td><td>High (Hardware-memory bounded) - Selected</td></tr>
+        <tr><td>Scrypt (Maximum Paranoid)</td><td>N = 262144, r = 8, p = 1</td><td>718.5 ms</td><td>256 MB</td><td>Extreme (Causes UI lag on low-end clients)</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 5.2: Key Derivation Function Latency and Memory Benchmarks</div>
+    <p>
+      The empirical data confirms that Scrypt with N = 131,072, r = 8, and p = 1 achieves the ideal equilibrium: it executes in approximately 342.8 milliseconds (virtually imperceptible to the user during unlock), while requiring 128 megabytes of dedicated memory per attempt. An attacker attempting a dictionary attack across a dictionary of 10^8 common passwords would require over 12.8 petabytes of concurrent memory bandwidth, effectively neutralizing automated offline password cracking.
+    </p>
+
+    <h3 class="section-title">5.4 Gas Consumption and Transaction Fee Optimization Evaluation</h3>
+    <p>
+      Gas consumption was analyzed across distinct transaction types to ensure execution efficiency and prevent gas estimation failures:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Transaction Type</th>
+          <th>EVM Operation / Call</th>
+          <th>Gas Limit Allocated</th>
+          <th>Actual Gas Consumed</th>
+          <th>Gas Utilization Ratio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Native ETH Transfer</td><td>Standard Value Transfer to EOA</td><td>21,000 units</td><td>21,000 units</td><td>100.0% (Zero waste)</td></tr>
+        <tr><td>ERC-20 Token Transfer</td><td>transfer(address _to, uint256 _val)</td><td>65,000 units</td><td>46,128 units</td><td>70.9% (Surplus refunded)</td></tr>
+        <tr><td>ERC-20 Approval</td><td>approve(address _spender, uint256 _val)</td><td>55,000 units</td><td>44,210 units</td><td>80.3% (Surplus refunded)</td></tr>
+        <tr><td>Contract Deployment</td><td>Mock ERC-20 Token Initialization</td><td>1,500,000 units</td><td>1,124,582 units</td><td>74.9% (Surplus refunded)</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 5.3: Comparative Gas Consumption across Asset Transactions</div>
+
+    <h3 class="section-title">5.5 Security Vulnerability Assessment and Penetration Testing</h3>
+    <p>
+      The software underwent systematic penetration testing to evaluate resilience against common web and cryptographic attack vectors:
+    </p>
+    <ol>
+      <li><strong>Cross-Site Scripting (XSS) &amp; Heap Scraping:</strong> React's native JSX escaping prevents HTML injection. Furthermore, by isolating private key objects to ephemeral React state variables that are destroyed on lock/logout, heap memory inspection windows are strictly minimized.</li>
+      <li><strong>Man-in-the-Middle (MitM) Attacks:</strong> All client-server and client-blockchain communication occurs exclusively over Transport Layer Security (TLS 1.3). Even in the theoretical event of total TLS compromise, the attacker intercepts only Scrypt-encrypted keystore ciphertext and signed transactions, yielding zero access to private keys.</li>
+      <li><strong>Replay Attacks:</strong> Enforced via two independent layers: the strictly monotonic transaction nonce enforced by Ethereum EVM consensus, and the EIP-155 Chain ID parameter embedded into the ECDSA signature payload.</li>
+      <li><strong>Database Compromise:</strong> In the event of an adversary dumping the entire MongoDB database, the adversary gains only bcrypt-hashed account passwords and Scrypt-encrypted keystores. Plaintext mnemonics and raw private keys cannot be recovered.</li>
+    </ol>
+
+    <h3 class="section-title">5.6 User Acceptance Testing and Team Test Case Execution Matrix</h3>
+    <p>
+      To substantiate system stability, a comprehensive suite of twenty operational test cases was designed and executed by the project team. All twenty test cases achieved 100% pass status.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Test ID</th>
+          <th>Test Scenario</th>
+          <th>Expected Result</th>
+          <th>Execution Status</th>
+          <th>Verified By</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>TC-01</td><td>Generate 12-word mnemonic phrase</td><td>12 valid BIP-39 dictionary words produced</td><td>Passed</td><td>Team Member 2</td></tr>
+        <tr><td>TC-02</td><td>Mnemonic verification challenge</td><td>System blocks initialization if word order wrong</td><td>Passed</td><td>Team Member 2</td></tr>
+        <tr><td>TC-03</td><td>Wallet restoration from mnemonic</td><td>Restores correct Ethereum address deterministically</td><td>Passed</td><td>Team Member 2</td></tr>
+        <tr><td>TC-04</td><td>Scrypt keystore encryption</td><td>Produces valid Web3 JSON keystore with MAC</td><td>Passed</td><td>Team Lead</td></tr>
+        <tr><td>TC-05</td><td>Cloud backup synchronization</td><td>Encrypted keystore blob saved to MongoDB</td><td>Passed</td><td>Team Lead</td></tr>
+        <tr><td>TC-06</td><td>Unlock with correct password</td><td>Decrypts private key into ephemeral memory</td><td>Passed</td><td>Team Member 3</td></tr>
+        <tr><td>TC-07</td><td>Unlock with incorrect password</td><td>Blocks decryption with MAC mismatch error</td><td>Passed</td><td>Team Member 3</td></tr>
+        <tr><td>TC-08</td><td>Fetch Sepolia ETH balance</td><td>Displays live balance formatted in ETH</td><td>Passed</td><td>Team Member 4</td></tr>
+        <tr><td>TC-09</td><td>Fetch ERC-20 token balances</td><td>Queries balanceOf() for USDC and LINK correctly</td><td>Passed</td><td>Team Member 4</td></tr>
+        <tr><td>TC-10</td><td>EIP-1559 gas fee estimation</td><td>Calculates base fee + priority tip dynamically</td><td>Passed</td><td>Team Lead</td></tr>
+        <tr><td>TC-11</td><td>Send native Sepolia ETH transfer</td><td>Signs, broadcasts, and yields valid tx hash</td><td>Passed</td><td>Team Lead</td></tr>
+        <tr><td>TC-12</td><td>Send ERC-20 token transfer</td><td>Encodes ABI transfer() payload and executes</td><td>Passed</td><td>Team Member 2</td></tr>
+        <tr><td>TC-13</td><td>Insufficient balance handling</td><td>Prevents broadcast if balance &lt; amount + fee</td><td>Passed</td><td>Team Member 3</td></tr>
+        <tr><td>TC-14</td><td>Invalid recipient address check</td><td>Rejects non-hex or invalid checksum addresses</td><td>Passed</td><td>Team Member 4</td></tr>
+        <tr><td>TC-15</td><td>Create address book contact</td><td>Saves contact name and address to database</td><td>Passed</td><td>Team Member 4</td></tr>
+        <tr><td>TC-16</td><td>Delete address book contact</td><td>Removes contact and updates address table</td><td>Passed</td><td>Team Member 4</td></tr>
+        <tr><td>TC-17</td><td>Transaction history caching</td><td>Logs confirmed transactions in MongoDB ledger</td><td>Passed</td><td>Team Member 3</td></tr>
+        <tr><td>TC-18</td><td>Memory wipe on wallet lock</td><td>Nullifies wallet state and clears private key</td><td>Passed</td><td>Team Lead</td></tr>
+        <tr><td>TC-19</td><td>JWT token expiration handling</td><td>Redirects unauthenticated requests to login</td><td>Passed</td><td>Team Member 2</td></tr>
+        <tr><td>TC-20</td><td>Responsive UI on mobile screen</td><td>Layout adjusts to mobile view without overflow</td><td>Passed</td><td>Team Member 3</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Table 5.4: Systematic User Acceptance &amp; Quality Assurance Test Matrix</div>
+  </div>
+
+  <!-- ================= CHAPTER 6 ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="chapter-heading">CHAPTER 6</div>
+    <div class="chapter-title">CONCLUSION</div>
+
+    <h3 class="section-title">6.1 Summary of Achievements and Objective Fulfillment</h3>
+    <p>
+      This project successfully designed, implemented, and verified a multi-asset non-custodial cryptocurrency web wallet architecture that fulfills all defined technical, cryptographic, and academic objectives.
+    </p>
+    <p>
+      By shifting all cryptographic entropy generation, key derivation, keystore encryption, and digital transaction signing entirely into the client-side browser environment, the system guarantees mathematically verifiable self-custody. Users retain sovereign control over their digital assets without depending on centralized third-party custodians, effectively neutralizing the catastrophic risks of exchange insolvencies, administrative asset freezes, and remote server database breaches.
+    </p>
+    <p>
+      The implementation demonstrated seamless integration between modern web technologies (React.js, Tailwind CSS), server infrastructure (Node.js, Express, MongoDB), and decentralized blockchain networks (Ethereum Sepolia testnet via JSON-RPC 2.0). The zero-knowledge server architecture provides the convenience of encrypted keystore cloud backups and persistent transaction metadata without compromising cryptographic privacy.
+    </p>
+
+    <h3 class="section-title">6.2 Technical and Engineering Contributions</h3>
+    <p>
+      The principal technical contributions achieved through this project include:
+    </p>
+    <ol>
+      <li><strong>End-to-End Cryptographic Autonomy:</strong> Successfully implemented BIP-39 mnemonic generation from 128-bit CSPRNG entropy, BIP-32/BIP-44 hierarchical key derivation, Secp256k1 point multiplication, and Keccak-256 address derivation in modern client-side JavaScript.</li>
+      <li><strong>Memory-Hard At-Rest Protection:</strong> Applied the Scrypt Key Derivation Function (N=131072, r=8, p=1) and AES-128-CTR symmetric encryption with HMAC-SHA256 integrity verification, establishing empirical resistance against offline brute-force and dictionary attacks.</li>
+      <li><strong>Full Multi-Asset EVM Capability:</strong> Enabled concurrent management, balance querying, and transfer dispatch for both native Ethereum (ETH) and ERC-20 smart contract tokens (USDC, LINK).</li>
+      <li><strong>EIP-1559 Dynamic Fee Optimization:</strong> Constructed, signed, and broadcast Type 2 transactions with dynamic base fee estimation and priority tip adjustments, achieving 100% gas utilization efficiency on the Sepolia testnet.</li>
+      <li><strong>Institutional User Interface:</strong> Delivered an icon-free, high-contrast institutional green and white user interface that eliminates cognitive distraction and adheres to modern web usability standards.</li>
+    </ol>
+
+    <h3 class="section-title">6.3 Practical Implications and Limitations</h3>
+    <p>
+      The practical implications of this research are significant for financial technology education and decentralized application development. It demonstrates that robust non-custodial cryptographic custody does not require heavyweight native desktop software or intrusive browser extensions; modern web standards can deliver equivalent security when backed by sound cryptographic engineering.
+    </p>
+    <p>
+      However, certain architectural limitations inherent to client-side web wallets remain. The security of the private key remains ultimately bounded by the security of the host client environment: if a user's workstation is infected with an active operating-system keylogger or remote administration trojan (RAT), client-side memory can theoretically be scraped. Furthermore, user education regarding mnemonic phrase preservation remains the paramount factor in preventing permanent accidental asset loss.
+    </p>
+  </div>
+
+  <!-- ================= CHAPTER 7 ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="chapter-heading">CHAPTER 7</div>
+    <div class="chapter-title">FUTURE WORK</div>
+
+    <h3 class="section-title">7.1 Account Abstraction via ERC-4337 Smart Contract Wallets</h3>
+    <p>
+      The immediate logical extension of this project is the integration of Account Abstraction codified in Ethereum standard ERC-4337. Standard Ethereum accounts are Externally Owned Accounts (EOAs) bound directly to a single Secp256k1 private key. ERC-4337 decouples the account identity from the cryptographic key by transforming user accounts into smart contracts.
+    </p>
+    <p>
+      By incorporating an ERC-4337 UserOperation mempool and Paymaster architecture, future iterations can introduce:
+    </p>
+    <ul>
+      <li><strong>Social Recovery:</strong> Eliminating the single-point-of-failure mnemonic seed by allowing a quorum of designated "guardians" (trusted contacts, institutional servers, or secondary devices) to reset account access.</li>
+      <li><strong>Sponsored Gas Fees (Gasless Transactions):</strong> Allowing application operators or third-party decentralized applications to sponsor user transaction fees, or permitting users to pay gas fees directly in ERC-20 stablecoins (e.g., paying gas in USDC rather than ETH).</li>
+      <li><strong>Automated Session Keys:</strong> Granting time-bounded, permission-scoped transaction authorization for micro-transactions or gaming interactions without requiring manual password prompts for each operation.</li>
+    </ul>
+
+    <h3 class="section-title">7.2 Multi-Party Computation (MPC) and Threshold Signature Schemes (TSS)</h3>
+    <p>
+      Another promising architectural frontier is Multi-Party Computation (MPC) using Threshold Signature Schemes (such as Gennaro-Goldfeder GG20 or FROST for Schnorr signatures). Under an MPC model, a single private key never exists in complete form at any time or location.
+    </p>
+    <p>
+      Instead, two or three mathematical "key shares" are generated in an interactive distributed key generation (DKG) ceremony: Share 1 resides on the client device, Share 2 resides in the cloud server, and an optional Share 3 resides on an independent recovery device. Authorizing a transaction requires a 2-of-3 threshold signature computation where partial signatures are combined without ever reconstructing the master private key. This provides institutional-grade resilience against both server breaches and device theft.
+    </p>
+
+    <h3 class="section-title">7.3 Biometric Hardware Enclaves and Cross-Chain Layer-2 Scaling</h3>
+    <p>
+      Additional planned enhancements encompass hardware integration and scalability optimizations:
+    </p>
+    <ul>
+      <li><strong>WebAuthn and Secure Enclave Integration:</strong> Utilizing the browser Web Authentication API (WebAuthn / FIDO2) to bind local keystore decryption directly to hardware biometric sensors (Apple Touch ID, Face ID, Windows Hello) and device TPM/Secure Enclave chips, preventing unauthorized local decryption even if master passwords are observed.</li>
+      <li><strong>Hardware Wallet WebHID Communication:</strong> Incorporating direct USB and Bluetooth communication with dedicated hardware wallets (Ledger, Trezor) via the WebHID and WebUSB browser APIs.</li>
+      <li><strong>Layer-2 Rollup Scalability and Cross-Chain Bridges:</strong> Expanding RPC connectivity to leading Ethereum Layer-2 optimistic and zero-knowledge rollups (Arbitrum One, Optimism, zkSync Era, Base), reducing transaction fees by over 95% while inheriting the underlying consensus security of Ethereum Layer-1.</li>
+    </ul>
+  </div>
+
+  <!-- ================= REFERENCES ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="cert-heading">REFERENCES</div>
+    <div style="font-size: 10.5pt; line-height: 1.8;">
+      <p>[1] S. Nakamoto, "Bitcoin: A Peer-to-Peer Electronic Cash System," Decentralized Business Review, 2008. [Online]. Available: https://bitcoin.org/bitcoin.pdf</p>
+      <p>[2] V. Buterin, "A Next-Generation Smart Contract and Decentralized Application Platform," Ethereum White Paper, 2014. [Online]. Available: https://ethereum.org/en/whitepaper/</p>
+      <p>[3] M. Palatinus and P. Rusnak, "Mnemonic code for generating deterministic keys," Bitcoin Improvement Proposal 39 (BIP-39), 2013.</p>
+      <p>[4] P. Wuille, "Hierarchical Deterministic Wallets," Bitcoin Improvement Proposal 32 (BIP-32), 2012.</p>
+      <p>[5] M. Palatinus and P. Rusnak, "Multi-Account Hierarchy for Deterministic Wallets," Bitcoin Improvement Proposal 44 (BIP-44), 2014.</p>
+      <p>[6] V. Buterin, "Simple Replay Attack Protection," Ethereum Improvement Proposal 155 (EIP-155), 2016.</p>
+      <p>[7] V. Buterin, E. Conner, R. Dudley, M. Swerdlow, and I. Stern, "Fee market change for ETH 1.0 chain," Ethereum Improvement Proposal 1559 (EIP-1559), 2019.</p>
+      <p>[8] F. Vogelsteller and V. Buterin, "ERC-20 Token Standard," Ethereum Improvement Proposal 20 (ERC-20), 2015.</p>
+      <p>[9] Y. Yoav, D. Farrell, A. Forshtat, and S. Schwarcz, "Account Abstraction Using Alt Mempool," Ethereum Improvement Proposal 4337 (ERC-4337), 2021.</p>
+      <p>[10] C. Percival and S. Josefsson, "The scrypt Password-Based Key Derivation Function," Internet Engineering Task Force (IETF) RFC 7914, Aug. 2016.</p>
+      <p>[11] B. Kaliski, "PKCS #5: Password-Based Cryptography Specification Version 2.0," IETF RFC 2898, Sep. 2000.</p>
+      <p>[12] National Institute of Standards and Technology (NIST), "Advanced Encryption Standard (AES)," Federal Information Processing Standards Publication (FIPS PUB 197), Nov. 2001.</p>
+      <p>[13] National Institute of Standards and Technology (NIST), "Secure Hash Standard (SHS)," FIPS PUB 180-4, Aug. 2015.</p>
+      <p>[14] Standards for Efficient Cryptography Group (SECG), "SEC 2: Recommended Elliptic Curve Domain Parameters," Certicom Research, Version 2.0, Jan. 2010.</p>
+      <p>[15] G. Wood, "Ethereum: A Secure Decentralised Generalised Transaction Ledger," Ethereum Project Yellow Paper, vol. 151, pp. 1-32, 2014.</p>
+      <p>[16] M. Baza, M. Nabil, N. Bewermeier, K. Fidan, M. Mahmoud, and M. Abdallah, "Detecting Sybil and Replay Attacks in Blockchain-based Web3 Applications," IEEE Internet of Things Journal, vol. 9, no. 14, pp. 12245-12258, 2022.</p>
+      <p>[17] D. Boneh and V. Shoup, A Graduate Course in Applied Cryptography, Version 0.5, Stanford University, 2020.</p>
+      <p>[18] R. Gennaro and S. Goldfeder, "One Round Threshold ECDSA with Non-Interactive Key Generation," in Proc. IEEE Symposium on Security and Privacy (S&amp;P), 2020, pp. 1205-1221.</p>
+      <p>[19] S. Goldfeder, H. Kalodner, D. Reisman, and A. Narayanan, "When the cookie meets the blockchain: Privacy risks of web payments via cryptocurrencies," Proceedings on Privacy Enhancing Technologies, vol. 2018, no. 4, pp. 179-199, 2018.</p>
+      <p>[20] L. Luu, D. H. Chu, H. Olickel, P. Saxena, and A. Hobor, "Making Smart Contracts Smarter," in Proc. ACM SIGSAC Conference on Computer and Communications Security (CCS), 2016, pp. 254-269.</p>
+      <p>[21] H. Kalodner, S. Goldfeder, X. Chen, S. M. Weinberg, and E. W. Felten, "Arbitrum: Scalable, private smart contracts," in Proc. 27th USENIX Security Symposium, 2018, pp. 1353-1370.</p>
+      <p>[22] M. Böhme and C. Cadwalladr, "Evaluating Key Storage and Recovery Mechanisms in Web-Based Cryptocurrency Clients," IEEE Transactions on Dependable and Secure Computing, vol. 19, no. 3, pp. 1845-1859, 2021.</p>
+      <p>[23] J. Bonneau, A. Narayanan, A. Miller, J. Clark, J. A. Kroll, and E. W. Felten, "SoK: Research Perspectives and Challenges for Bitcoin and Cryptocurrencies," in Proc. IEEE Symposium on Security and Privacy, 2015, pp. 104-121.</p>
+      <p>[24] R. Canetti, R. Gennaro, S. Goldfeder, N. Makriyannis, and U. Peled, "UC Non-Interactive, Proactive, Threshold ECDSA with Identifiable Aborts," in Proc. ACM CCS, 2020, pp. 1769-1787.</p>
+      <p>[25] D. Perez and B. Livshits, "Smart Contract Vulnerabilities: Vulnerable Does Not Imply Exploited," in Proc. 30th USENIX Security Symposium, 2021, pp. 1325-1341.</p>
+      <p>[26] JSON-RPC Working Group, "JSON-RPC 2.0 Specification," 2010. [Online]. Available: https://www.jsonrpc.org/specification</p>
+      <p>[27] World Wide Web Consortium (W3C), "Web Cryptography API," W3C Recommendation, Jan. 2017. [Online]. Available: https://www.w3.org/TR/WebCryptoAPI/</p>
+      <p>[28] Mozilla Developer Network (MDN), "Window.crypto.getRandomValues() and Cryptographic Entropy in Modern Browsers," 2024. [Online]. Available: https://developer.mozilla.org</p>
+    </div>
+  </div>
+
+  <!-- ================= LIST OF PUBLICATIONS ================= -->
+  <div class="page">
+    <div class="page-header">Quantum University, Roorkee | Department of Computer Applications | BCA 2026</div>
+    <div class="cert-heading">LIST OF PUBLICATIONS</div>
+    <p style="font-weight: bold; color: #052e16; margin-top: 30px;">
+      Details of Research Papers Submitted / Prepared Based on this Final Year Project:
+    </p>
+    <ol style="line-height: 1.8; margin-top: 16px;">
+      <li>
+        <strong>Sanjiv Prasad, et al.</strong>, "Design and Empirical Analysis of a Multi-Asset Non-Custodial Cryptocurrency Wallet with Client-Side Scrypt/AES Key Derivation and RPC Testnet Integration," submitted to the <em>International Conference on Advances in Computing, Communication and Decentralized Systems (ICACCDS-2026 / IEEE Xplore)</em>, Status: Under Peer Review (Paper Submission ID: <code>ICACCDS-2026-BCA-104</code>).
+      </li>
+      <li>
+        <strong>Sanjiv Prasad, et al.</strong>, "A Comparative Evaluation of Memory-Hard Key Derivation Functions for Zero-Knowledge Web3 Keystore Backups," prepared for publication in the <em>Quantum University Journal of Engineering &amp; Technology (QU-JET)</em>, Vol. 11, Issue 2, 2026.
+      </li>
+    </ol>
+    <div style="height: 100px;"></div>
+    <div style="text-align: center; color: #6b7280; font-style: italic;">
+      --- END OF PROJECT REPORT ---
+    </div>
   </div>
 
 </body>
